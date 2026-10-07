@@ -1,0 +1,159 @@
+Roles of Expert Systems
+Roles of Expert Systems
+
+An Expert System is an AI system that uses a knowledge base and an inference engine to solve problems and make decisions in a specific domain, similar to a human expert.
+
+Major Roles of Expert Systems
+1. Decision Making
+
+Expert systems help users make decisions by analyzing available facts and applying expert knowledge.
+
+Example:
+A medical expert system analyzes symptoms and suggests possible diseases.
+
+2. Diagnosis
+
+They identify the cause of a problem based on observed symptoms or conditions.
+
+Examples:
+
+Medical diagnosis
+Machine fault diagnosis
+Network failure diagnosis
+Car fault diagnosis
+
+Example rule:
+
+IF engine does not start
+AND battery voltage is low
+THEN battery may be faulty.
+3. Prediction and Forecasting
+
+Expert systems can predict future conditions based on current information and historical knowledge.
+
+Examples:
+
+Weather prediction
+Predicting machine failures
+Financial risk assessment
+Crop disease prediction
+4. Planning
+
+They help determine a sequence of actions required to achieve a particular goal.
+
+Examples:
+
+Production planning
+Project planning
+Robot task planning
+Treatment planning
+5. Design
+
+Expert systems assist experts in designing systems, products, or configurations.
+
+Examples:
+
+Computer system configuration
+Electronic circuit design
+Building design
+Network design
+6. Monitoring
+
+They continuously observe a system and identify abnormal conditions.
+
+Example:
+
+An industrial expert system monitors:
+
+Temperature
+Pressure
+Voltage
+Machine speed
+
+If a value exceeds a safe limit, it can generate an alarm or warning.
+
+7. Interpretation
+
+Expert systems interpret complex data and convert it into meaningful information.
+
+Examples:
+
+Interpreting medical test results
+Interpreting geological data
+Analyzing sensor data
+Interpreting satellite images
+8. Troubleshooting
+
+They help users find and correct problems in a system.
+
+Example:
+
+A computer troubleshooting system may reason:
+
+IF computer does not power ON
+AND power indicator is OFF
+THEN check power supply.
+9. Instruction and Training
+
+Expert systems can act as intelligent tutors by explaining concepts and guiding users through problem-solving.
+
+Examples:
+
+Student tutoring systems
+Medical training systems
+Technical training systems
+
+They can also explain why a particular conclusion was reached.
+
+10. Recommendation
+
+Expert systems recommend suitable actions, products, or solutions based on user requirements.
+
+Examples:
+
+Financial investment recommendations
+Equipment selection
+Medical treatment suggestions
+Product configuration
+11. Consultation
+
+They provide expert-level advice to users who may not have access to a human specialist.
+
+Example:
+
+A farmer can enter information about:
+
+Soil
+Crop
+Weather
+Symptoms
+
+The system can recommend possible treatments or actions.
+
+12. Automation of Routine Expert Tasks
+
+Expert systems can automate repetitive tasks that normally require specialized knowledge.
+
+Examples:
+
+Loan evaluation
+Equipment inspection
+Insurance assessment
+Technical support
+Summary
+Role	Purpose	Example
+Decision Making	Select the best action	Medical decision support
+Diagnosis	Find the cause of a problem	Disease diagnosis
+Prediction	Forecast future conditions	Machine failure prediction
+Planning	Determine actions to achieve a goal	Production planning
+Design	Create suitable configurations	Circuit design
+Monitoring	Observe systems for abnormalities	Industrial monitoring
+Interpretation	Analyze and explain data	Medical test interpretation
+Troubleshooting	Find and fix problems	Computer troubleshooting
+Instruction	Teach and guide users	Intelligent tutoring
+Recommendation	Suggest suitable choices	Investment recommendation
+Consultation	Provide expert advice	Agricultural advice
+Automation	Automate expert tasks	Loan assessment
+In one sentence
+
+The main role of an expert system is to capture expert knowledge and use it to perform tasks such as diagnosis, decision-making, prediction, planning, monitoring, troubleshooting, recommendation, and consultation.

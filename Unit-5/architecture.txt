@@ -1,0 +1,263 @@
+Architecture of Expert systems
+Architecture of Expert Systems
+
+An Expert System is an AI system that uses stored knowledge and reasoning mechanisms to solve problems that normally require human expertise.
+
+Basic Architecture
+                 ┌──────────────────────┐
+                 │      USER            │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │    USER INTERFACE    │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │   INFERENCE ENGINE   │
+                 └──────┬─────────┬─────┘
+                        │         │
+              ┌─────────┘         └──────────┐
+              ▼                              ▼
+   ┌─────────────────────┐       ┌─────────────────────┐
+   │   KNOWLEDGE BASE    │       │  WORKING MEMORY     │
+   │                     │       │                     │
+   │ • Facts             │       │ • Current facts    │
+   │ • Rules             │       │ • User inputs      │
+   │ • Heuristics        │       │ • Intermediate      │
+   └─────────────────────┘       │   results           │
+              ▲                  └─────────────────────┘
+              │
+              │
+   ┌──────────┴──────────────┐
+   │ KNOWLEDGE ACQUISITION   │
+   │       MODULE            │
+   └──────────┬──────────────┘
+              │
+              ▼
+       ┌───────────────┐
+       │ HUMAN EXPERT  │
+       └───────────────┘
+
+                 ┌──────────────────────┐
+                 │ EXPLANATION FACILITY │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                       USER / EXPERT
+1. Knowledge Base
+
+The Knowledge Base stores the knowledge required to solve a particular problem.
+
+It generally contains:
+
+Facts – information known to be true.
+Rules – relationships between facts.
+Heuristics – rules of thumb obtained from experts.
+Domain-specific knowledge.
+Example
+
+For a medical diagnosis system:
+
+Fact:
+Patient has fever.
+
+Rule:
+IF patient has fever AND cough
+THEN patient may have flu.
+
+Thus, the knowledge base represents the expert's knowledge.
+
+2. Inference Engine
+
+The Inference Engine is the reasoning component of an expert system.
+
+It applies the rules in the knowledge base to the facts in working memory and derives new conclusions.
+
+For example:
+
+Fact 1: Fever
+Fact 2: Cough
+
+Rule:
+IF Fever AND Cough
+THEN Flu
+
+Conclusion:
+Flu
+Main functions
+Select applicable rules.
+Match facts with rule conditions.
+Apply rules.
+Generate new facts.
+Reach conclusions.
+Common reasoning methods
+
+Forward Chaining
+
+Facts → Rules → New Facts → Conclusion
+
+Backward Chaining
+
+Goal → Rules → Required Facts → Conclusion
+3. Working Memory
+
+Working Memory stores the information related to the current problem.
+
+It may contain:
+
+User-provided facts
+Initial conditions
+Intermediate conclusions
+Temporary information generated during reasoning
+
+Example:
+
+Working Memory
+
+Fever = Yes
+Cough = Yes
+Body Pain = Yes
+
+The inference engine uses this information while reasoning.
+
+4. User Interface
+
+The User Interface allows the user to communicate with the expert system.
+
+It provides facilities for:
+
+Entering information
+Answering questions
+Receiving conclusions
+Viewing recommendations
+
+Example:
+
+Expert System:
+Do you have fever?
+
+User:
+Yes
+
+Expert System:
+Do you have cough?
+
+User:
+Yes
+
+Result:
+Possible flu.
+5. Explanation Facility
+
+The Explanation Facility explains how and why the system reached a conclusion.
+
+It can answer questions such as:
+
+"Why?"
+Why do you suspect flu?
+
+Because:
+1. Patient has fever.
+2. Patient has cough.
+3. Rule R3 states:
+   IF fever AND cough
+   THEN possible flu.
+"How?"
+
+It explains the reasoning path used to reach the conclusion.
+
+This is particularly important because users may need to trust and verify the system's decision.
+
+6. Knowledge Acquisition Module
+
+The Knowledge Acquisition Module obtains knowledge from human experts and other sources and puts it into the knowledge base.
+
+Sources can include:
+
+Human experts
+Books
+Documents
+Databases
+Previous cases
+Other information systems
+
+For example:
+
+Human Expert
+     ↓
+Knowledge Acquisition
+     ↓
+Rules and Facts
+     ↓
+Knowledge Base
+
+The process of converting expert knowledge into a form that an expert system can use is called knowledge acquisition.
+
+7. Knowledge Engineer
+
+A Knowledge Engineer acts as an intermediary between the domain expert and the expert system.
+
+Domain Expert
+      ↓
+Knowledge Engineer
+      ↓
+Knowledge Base
+
+The knowledge engineer:
+
+Interviews experts.
+Extracts domain knowledge.
+Represents knowledge as rules/facts.
+Tests the knowledge.
+Updates the knowledge base.
+Overall Working of an Expert System
+
+Consider a simple car fault diagnosis system.
+
+User
+ │
+ │ "Car does not start"
+ ▼
+User Interface
+ │
+ ▼
+Working Memory
+ │
+ │ Problem facts
+ ▼
+Inference Engine
+ │
+ ├──────► Knowledge Base
+ │         Rules:
+ │         IF battery is dead
+ │         THEN car will not start
+ │
+ └──────► Apply rules
+             │
+             ▼
+        Diagnosis:
+        Battery Problem
+             │
+             ▼
+       Explanation Facility
+             │
+             ▼
+            User
+In simple terms:
+
+User provides facts → Working Memory stores them → Inference Engine reasons using Knowledge Base → Conclusion is generated → Explanation Facility explains the conclusion → User receives the result.
+
+Important Components for Examination
+Component	Main Function
+Knowledge Base	Stores facts, rules and expert knowledge
+Inference Engine	Performs reasoning
+Working Memory	Stores current problem information
+User Interface	Communication between user and system
+Explanation Facility	Explains how/why a conclusion was reached
+Knowledge Acquisition	Collects and updates expert knowledge
+Knowledge Engineer	Converts expert knowledge into machine-usable form
+One-line definition
+
+The architecture of an expert system consists mainly of a knowledge base, inference engine, working memory, user interface, explanation facility, and knowledge acquisition module that work together to provide expert-level problem solving.

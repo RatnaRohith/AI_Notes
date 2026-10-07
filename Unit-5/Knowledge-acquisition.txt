@@ -1,0 +1,317 @@
+Roles of Expert Systems : Knowledge Acquisition
+Roles of Expert Systems: Knowledge Acquisition
+1. What is Knowledge Acquisition?
+
+Knowledge Acquisition is the process of collecting, extracting, organizing, and transferring knowledge from experts and other sources into a form that an expert system can use.
+
+In simple words:
+
+Knowledge Acquisition = Getting expert knowledge and putting it into the Knowledge Base of an Expert System.
+
+The acquired knowledge may include:
+
+Facts
+Rules
+Procedures
+Heuristics
+Relationships
+Problem-solving strategies
+Experiences of human experts
+Example
+
+Suppose we are developing a medical diagnosis expert system.
+
+A doctor may provide knowledge such as:
+
+If the patient has fever and cough, then the patient may have flu.
+If the patient has high fever and skin rash, then the patient may have measles.
+
+This knowledge is collected from the doctor and represented as rules in the expert system.
+
+2. Role of an Expert System in Knowledge Acquisition
+
+Knowledge acquisition is one of the important roles involved in developing and maintaining an expert system.
+
+The expert system development process can be viewed as:
+
+Human Expert → Knowledge Acquisition → Knowledge Representation → Knowledge Base → Inference Engine → Solution
+
+The Knowledge Acquisition Module helps capture knowledge from experts and convert it into machine-processable knowledge.
+
+3. Sources of Knowledge
+
+Knowledge can be acquired from several sources.
+
+1. Human Experts
+
+The primary source is often a domain expert.
+
+Examples:
+
+Doctor → Medical diagnosis
+Engineer → Equipment troubleshooting
+Financial analyst → Investment decisions
+Lawyer → Legal reasoning
+2. Books and Documents
+
+Knowledge can be extracted from:
+
+Textbooks
+Manuals
+Research papers
+Technical documents
+Regulations
+3. Databases
+
+Existing databases can provide:
+
+Historical records
+Measurements
+Cases
+Transactions
+4. Observations
+
+Knowledge can be obtained by observing experts while they solve real problems.
+
+5. Existing Software and Knowledge Bases
+
+Knowledge may also be extracted from existing systems.
+
+4. Knowledge Acquisition Process
+
+A typical knowledge acquisition process consists of the following steps:
+
+Step 1: Identify the Knowledge
+
+Determine what knowledge is required to solve the problem.
+
+Example:
+
+For a medical system, identify:
+
+Symptoms
+Diseases
+Diagnostic rules
+Treatment guidelines
+Step 2: Identify the Knowledge Source
+
+Determine where the knowledge will come from.
+
+For example:
+
+Doctor
+Medical books
+Patient records
+Research papers
+Step 3: Elicit the Knowledge
+
+Knowledge elicitation means extracting knowledge from the source.
+
+Common methods include:
+
+Interviews
+Questionnaires
+Observation
+Case analysis
+Brainstorming
+Step 4: Organize the Knowledge
+
+The acquired knowledge is structured into:
+
+Facts
+Rules
+Concepts
+Relationships
+Procedures
+Step 5: Represent the Knowledge
+
+The knowledge is converted into a representation suitable for the expert system.
+
+For example:
+
+IF fever AND cough
+THEN flu
+
+Step 6: Validate the Knowledge
+
+The acquired knowledge is checked with domain experts to ensure that it is:
+
+Correct
+Complete
+Consistent
+Relevant
+Step 7: Store in Knowledge Base
+
+After validation, the knowledge is stored in the Knowledge Base.
+
+5. Knowledge Acquisition Techniques
+A. Interview
+
+The knowledge engineer asks questions to the domain expert.
+
+Example:
+
+"What symptoms indicate pneumonia?"
+
+The expert provides the required knowledge.
+
+Advantage: Detailed information can be obtained.
+
+Limitation: Experts may find it difficult to explain their reasoning.
+
+B. Observation
+
+The knowledge engineer observes how an expert performs a task.
+
+Example:
+
+Observing a technician diagnosing a machine failure.
+
+This is useful for acquiring procedural knowledge.
+
+C. Questionnaire
+
+A set of predefined questions is given to the expert.
+
+Advantage: Easy to organize and compare answers.
+
+Limitation: May not capture complex reasoning.
+
+D. Case Analysis
+
+Previous problem-solving cases are studied.
+
+For example:
+
+Patient symptoms → Diagnosis → Treatment
+
+Repeated cases can reveal useful rules.
+
+E. Automatic Knowledge Acquisition
+
+Knowledge can sometimes be extracted automatically from:
+
+Databases
+Machine-learning models
+Text
+Historical cases
+
+This reduces dependence on manual knowledge extraction.
+
+6. Knowledge Engineer
+
+A knowledge engineer plays a major role in knowledge acquisition.
+
+The knowledge engineer acts as a bridge between the domain expert and the computer system.
+
+Knowledge Engineer's Responsibilities
+Identify knowledge sources.
+Interview domain experts.
+Extract useful knowledge.
+Organize the knowledge.
+Select suitable representation techniques.
+Encode knowledge into the knowledge base.
+Validate the knowledge.
+Update and maintain the knowledge base.
+Relationship
+
+Domain Expert
+↓
+Provides expertise
+↓
+Knowledge Engineer
+↓
+Acquires and represents knowledge
+↓
+Knowledge Base
+↓
+Used by
+↓
+Inference Engine
+
+7. Problems in Knowledge Acquisition
+
+Knowledge acquisition is often considered one of the most difficult and time-consuming parts of developing an expert system.
+
+1. Knowledge Acquisition Bottleneck
+
+Experts possess a large amount of knowledge, but extracting all of it can be difficult.
+
+This problem is called the knowledge acquisition bottleneck.
+
+2. Tacit Knowledge
+
+Experts often use experience or intuition that they cannot easily explain.
+
+For example:
+
+An experienced mechanic may immediately recognize an engine problem from its sound, but may not be able to clearly state the exact rule used.
+
+3. Incomplete Knowledge
+
+The expert may not know all possible situations.
+
+4. Inconsistent Knowledge
+
+Different experts may provide different solutions to the same problem.
+
+5. Changing Knowledge
+
+Knowledge in some domains changes frequently.
+
+For example:
+
+Medical knowledge
+Laws
+Technology
+Financial regulations
+
+Therefore, the knowledge base must be continuously updated.
+
+8. Example: Car Troubleshooting Expert System
+
+Suppose we want to build an expert system for diagnosing car problems.
+
+Knowledge acquisition from mechanic
+
+The mechanic provides:
+
+Observation	Expert Knowledge
+Engine does not start	Check battery
+Battery is weak	Check battery terminals
+Battery is normal but engine does not start	Check fuel system
+Engine overheats	Check coolant
+
+This can be converted into rules:
+
+IF engine_does_not_start AND battery_is_weak
+THEN check_battery_terminals
+
+IF engine_does_not_start AND battery_is_normal
+THEN check_fuel_system
+
+IF engine_overheats
+THEN check_coolant
+
+These rules are then stored in the Knowledge Base.
+
+9. Importance of Knowledge Acquisition
+
+Knowledge acquisition is important because it:
+
+Captures expertise from human experts.
+Builds the knowledge base.
+Converts human knowledge into machine-readable form.
+Preserves expert knowledge.
+Helps expert systems make intelligent decisions.
+Allows knowledge to be updated when the domain changes.
+Reduces dependence on a single human expert.
+Exam Definition
+
+Knowledge Acquisition is the process of collecting, extracting, organizing, validating, and representing knowledge from human experts and other sources for storage in the knowledge base of an expert system.
+
+Short Exam Answer
+
+Role of Expert Systems – Knowledge Acquisition:
+
+Knowledge acquisition is the process of obtaining domain-specific knowledge from experts, documents, databases, observations, and other sources. A knowledge engineer collects and organizes this knowledge and represents it as facts, rules, relationships, and heuristics. The acquired knowledge is validated and stored in the knowledge base, where it can be used by the inference engine to solve problems.

@@ -1,0 +1,544 @@
+Logic concepts:  Resolution lecture
+Resolution in Artificial Intelligence — Lecture
+1. Introduction
+
+Resolution is a fundamental inference rule used in Artificial Intelligence and mathematical logic to derive new conclusions from existing knowledge.
+
+It is especially important in:
+
+Propositional Logic
+First-Order Predicate Logic
+Automated Theorem Proving
+Logic Programming
+Knowledge Representation
+
+The main idea is:
+
+Resolution proves a statement by showing that assuming its negation leads to a contradiction.
+
+Resolution is particularly useful because it provides a single, systematic inference rule that can be implemented by computers.
+
+2. Basic Idea of Resolution
+
+Consider two clauses:
+
+$$ P \lor Q $$
+
+and
+
+$$ \neg Q \lor R $$
+
+Both clauses contain complementary literals:
+
+$$ Q \quad \text{and} \quad \neg Q $$
+
+Resolution eliminates these complementary literals and produces:
+
+$$ P \lor R $$
+
+This is called the resolvent.
+
+Resolution Rule
+$$ \frac{P \lor Q,\quad \neg Q \lor R}{P \lor R} $$
+
+The general form is:
+
+$$ \frac{A \lor B,\quad \neg B \lor C}{A \lor C} $$
+3. What is a Clause?
+
+A clause is a disjunction (OR) of literals.
+
+For example:
+
+$$ P \lor Q \lor R $$
+
+is a clause.
+
+A literal can be:
+
+A positive proposition: \(P\)
+A negated proposition: \(\neg P\)
+
+Examples:
+
+$$ P $$ $$ \neg Q $$ $$ P \lor \neg Q \lor R $$
+
+are all clauses.
+
+4. Conjunction of Clauses
+
+A knowledge base normally consists of several clauses connected using AND.
+
+For example:
+
+$$ (P \lor Q) \land (\neg Q \lor R) \land (\neg R) $$
+
+This is called Conjunctive Normal Form (CNF).
+
+Resolution works directly on clauses in CNF.
+
+5. Conjunctive Normal Form (CNF)
+
+Before applying resolution, the logical expression is generally converted into CNF.
+
+CNF has the form:
+
+$$ C_1 \land C_2 \land C_3 \land \cdots $$
+
+where each \(C_i\) is a disjunction of literals.
+
+Example
+
+Consider:
+
+$$ P \rightarrow Q $$
+
+Remove implication:
+
+$$ \neg P \lor Q $$
+
+This is already in CNF.
+
+Another example:
+
+$$ P \land (Q \lor R) $$
+
+is already in CNF:
+
+$$ P \land (Q \lor R) $$
+6. Resolution in Propositional Logic
+
+Suppose we have:
+
+$$ P \lor Q $$
+
+and
+
+$$ \neg Q \lor R $$
+
+Using resolution:
+
+Step 1: Identify complementary literals
+$$ Q,\quad \neg Q $$
+Step 2: Remove them
+
+Remaining literals:
+
+$$ P,\quad R $$
+Step 3: Combine them using OR
+$$ P \lor R $$
+
+Therefore:
+
+$$ \boxed{P \lor R} $$
+
+is the resolvent.
+
+7. Resolution Refutation
+
+Resolution is commonly used for proof by contradiction, called resolution refutation.
+
+Suppose we want to prove:
+
+$$ KB \models Q $$
+
+where \(KB\) is the knowledge base.
+
+Instead of directly proving \(Q\), we:
+
+Take the knowledge base.
+Negate the statement to be proved.
+Add the negated statement to the knowledge base.
+Convert everything into CNF.
+Apply resolution repeatedly.
+Try to derive the empty clause.
+
+The empty clause is represented as:
+
+$$ \boxed{\Box} $$
+
+or sometimes:
+
+$$ \boxed{\emptyset} $$
+
+The empty clause represents a contradiction.
+
+8. Resolution Refutation Procedure
+Algorithm
+
+Given:
+
+$$ KB \models Q $$
+
+Perform:
+
+Step 1 — Negate the goal
+$$ \neg Q $$
+Step 2 — Add it to the knowledge base
+$$ KB \land \neg Q $$
+Step 3 — Convert to CNF
+
+Convert all expressions into clauses.
+
+Step 4 — Apply resolution
+
+Find pairs of clauses containing complementary literals.
+
+Step 5 — Generate resolvents
+
+Continue applying resolution.
+
+Step 6 — Check for contradiction
+
+If we derive:
+
+$$ \Box $$
+
+then the original statement \(Q\) is proven.
+
+9. Simple Example
+
+Consider the knowledge base:
+
+If it rains, the ground is wet.
+$$ Rain \rightarrow Wet $$
+It rains.
+$$ Rain $$
+
+Prove:
+
+$$ Wet $$
+Step 1: Convert the knowledge base into CNF
+
+The first statement:
+
+$$ Rain \rightarrow Wet $$
+
+Remove implication:
+
+$$ \neg Rain \lor Wet $$
+
+The second statement:
+
+$$ Rain $$
+
+Therefore our clauses are:
+
+$$ C_1 = \neg Rain \lor Wet $$ $$ C_2 = Rain $$
+Step 2: Negate the goal
+
+Goal:
+
+$$ Wet $$
+
+Negated goal:
+
+$$ \neg Wet $$
+
+Add it:
+
+$$ C_3 = \neg Wet $$
+Step 3: Apply resolution
+
+Resolve:
+
+$$ \neg Rain \lor Wet $$
+
+with
+
+$$ \neg Wet $$
+
+The complementary literals are:
+
+$$ Wet,\quad \neg Wet $$
+
+Resolvent:
+
+$$ \neg Rain $$
+
+So:
+
+$$ C_4 = \neg Rain $$
+
+Now resolve:
+
+$$ Rain $$
+
+with
+
+$$ \neg Rain $$
+
+We obtain:
+
+$$ \boxed{\Box} $$
+10. Resolution Proof
+
+The complete proof can be represented as:
+
+$$ \begin{aligned} C_1 &: \neg Rain \lor Wet\\ C_2 &: Rain\\ C_3 &: \neg Wet\\ \hline C_4 &: \neg Rain\\ C_2 &: Rain\\ C_4 &: \neg Rain\\ \hline &\boxed{\Box} \end{aligned} $$
+
+Since the empty clause is obtained:
+
+$$ KB \models Wet $$
+
+Therefore:
+
+$$ \boxed{Wet\text{ is proved}} $$
+11. Another Example
+
+Given:
+
+$$ P \lor Q $$ $$ \neg P \lor R $$ $$ \neg Q $$
+
+Prove:
+
+$$ R $$
+Step 1: Negate the goal
+$$ \neg R $$
+
+Clauses:
+
+$$ C_1=P\lor Q $$ $$ C_2=\neg P\lor R $$ $$ C_3=\neg Q $$ $$ C_4=\neg R $$
+Step 2: Resolve \(C_1\) and \(C_3\)
+$$ P\lor Q $$ $$ \neg Q $$
+
+Resolvent:
+
+$$ P $$
+Step 3: Resolve \(P\) with \(C_2\)
+$$ P $$ $$ \neg P\lor R $$
+
+Resolvent:
+
+$$ R $$
+Step 4: Resolve \(R\) with \(\neg R\)
+$$ R $$ $$ \neg R $$
+
+Result:
+
+$$ \boxed{\Box} $$
+
+Therefore:
+
+$$ \boxed{R} $$
+
+is proved.
+
+12. Resolution in First-Order Logic
+
+Resolution can also be applied to First-Order Logic (FOL).
+
+However, FOL introduces variables and predicates.
+
+For example:
+
+$$ Human(Socrates) $$ $$ Human(x) \rightarrow Mortal(x) $$
+
+Goal:
+
+$$ Mortal(Socrates) $$
+
+The implication becomes:
+
+$$ \neg Human(x) \lor Mortal(x) $$
+
+We also have:
+
+$$ Human(Socrates) $$
+
+Using unification, we substitute:
+
+$$ x = Socrates $$
+
+Then:
+
+$$ \neg Human(Socrates) \lor Mortal(Socrates) $$
+
+and
+
+$$ Human(Socrates) $$
+
+resolve to:
+
+$$ Mortal(Socrates) $$
+
+This shows the relationship between:
+
+Unification + Resolution = powerful inference mechanism for First-Order Logic.
+
+13. Resolution and Unification
+
+In propositional logic, complementary literals must match directly.
+
+For example:
+
+$$ P $$
+
+and
+
+$$ \neg P $$
+
+In First-Order Logic, predicates may contain variables.
+
+Example:
+
+$$ Likes(x, IceCream) $$
+
+and
+
+$$ \neg Likes(John, IceCream) $$
+
+These can be unified using:
+
+$$ x = John $$
+
+Then:
+
+$$ Likes(John, IceCream) $$
+
+and
+
+$$ \neg Likes(John, IceCream) $$
+
+are complementary.
+
+Therefore, they can be resolved.
+
+14. Resolution Rule in First-Order Logic
+
+Consider:
+
+$$ P(x) \lor Q(x) $$
+
+and:
+
+$$ \neg Q(John) \lor R(John) $$
+
+Unify:
+
+$$ x = John $$
+
+First clause becomes:
+
+$$ P(John) \lor Q(John) $$
+
+Now resolve \(Q(John)\) and \(\neg Q(John)\):
+
+$$ P(John) \lor R(John) $$
+
+This is the resolvent.
+
+15. Important Terminology
+Term	Meaning
+Literal	Proposition or its negation
+Clause	OR of literals
+CNF	AND of clauses
+Resolvent	New clause generated by resolution
+Complementary literals	\(P\) and \(\neg P\)
+Resolution	Inference rule that eliminates complementary literals
+Empty clause	Represents contradiction
+Resolution refutation	Proving a statement by deriving contradiction from its negation
+Unification	Finding substitutions that make predicates identical
+16. Resolution vs Modus Ponens
+
+These are different inference mechanisms.
+
+Modus Ponens
+
+Given:
+
+$$ P \rightarrow Q $$
+
+and:
+
+$$ P $$
+
+we conclude:
+
+$$ Q $$
+Resolution
+
+Convert:
+
+$$ P \rightarrow Q $$
+
+to:
+
+$$ \neg P \lor Q $$
+
+Then resolve:
+
+$$ \neg P \lor Q $$
+
+with:
+
+$$ P $$
+
+to obtain:
+
+$$ Q $$
+
+Thus resolution can simulate many logical inference steps after conversion to CNF.
+
+17. Advantages of Resolution
+1. Simple inference rule
+
+Resolution uses a single basic inference mechanism.
+
+2. Suitable for automation
+
+It can be implemented by computers for automated theorem proving.
+
+3. Works with propositional logic
+
+It provides a systematic proof mechanism.
+
+4. Works with First-Order Logic
+
+With unification, resolution becomes a powerful FOL inference technique.
+
+5. Refutation is systematic
+
+The proof continues until either:
+
+Empty clause is found → proved
+No new useful clauses can be generated → cannot prove the statement using the current search
+18. Limitations
+
+Resolution can suffer from combinatorial explosion because many possible pairs of clauses may need to be considered.
+
+Other issues include:
+
+Large number of generated clauses
+High computational cost
+Need to convert expressions into CNF
+Search-space explosion
+First-order resolution requires unification
+
+Therefore, practical systems use strategies such as:
+
+Set of Support
+Unit Preference
+Subsumption
+Ordered Resolution
+Input Resolution
+19. Key Exam Point
+
+Remember this sequence:
+
+$$ \boxed{ \text{Knowledge Base} \rightarrow \text{Negate Goal} \rightarrow \text{CNF} \rightarrow \text{Clauses} \rightarrow \text{Resolution} \rightarrow \Box } $$
+
+If the empty clause is obtained:
+
+$$ \boxed{\Box} $$
+
+then a contradiction has been found, and the original goal is proved.
+
+20. Short Definition for Examination
+
+Resolution is an inference rule used in propositional and first-order logic that derives a new clause by eliminating complementary literals from two clauses. In resolution refutation, the negation of the goal is added to the knowledge base, and resolution is repeatedly applied until the empty clause is derived, proving the original goal.
+
+One-line example
+$$ (P\lor Q),\quad(\neg Q\lor R) $$ $$ \therefore \boxed{P\lor R} $$
+
+This is the resolution principle.

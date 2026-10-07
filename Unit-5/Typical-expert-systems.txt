@@ -1,0 +1,121 @@
+Typical Expert Systems
+Typical Expert Systems
+
+An Expert System is an AI program that imitates the decision-making ability of a human expert in a specific domain. It uses a knowledge base and an inference engine to solve problems and provide recommendations or diagnoses.
+
+4
+1. MYCIN
+
+MYCIN was one of the most famous early expert systems, developed at Stanford University in the 1970s.
+
+Purpose
+
+MYCIN was designed to:
+
+Diagnose bacterial infections
+Recommend appropriate antibiotics
+Determine suitable dosage based on patient information
+How it worked
+
+MYCIN used:
+
+Production rules
+Backward chaining
+Certainty factors to handle uncertainty
+
+Example rule:
+
+IF
+    the patient has a bacterial infection
+    AND the infection is meningitis
+THEN
+    recommend an appropriate antibiotic.
+Importance
+
+MYCIN demonstrated that an expert system could perform complex medical reasoning at a level comparable to specialists for a limited diagnostic domain.
+
+2. DART
+
+DART stands for Dynamic Analysis and Replanning Tool.
+
+It was developed for the U.S. military to assist with logistics and transportation planning.
+
+Purpose
+
+DART was used to:
+
+Plan transportation and logistics
+Allocate resources
+Schedule movements
+Deal with changing situations
+Re-plan when circumstances changed
+Example
+
+Suppose military equipment has to be transported from several locations.
+
+DART can reason about:
+
+Available vehicles
+        ↓
+Available routes
+        ↓
+Equipment requirements
+        ↓
+Transportation schedule
+        ↓
+Optimal logistics plan
+Importance
+
+DART demonstrated the usefulness of AI for large-scale planning, scheduling, and logistics.
+
+3. XCON
+
+XCON was an expert system developed by Digital Equipment Corporation (DEC).
+
+It was also known as R1.
+
+Purpose
+
+XCON was designed to help configure computer systems according to customer requirements.
+
+For example, a customer might order:
+
+Computer system
+    ├── Processor
+    ├── Memory
+    ├── Storage
+    ├── Controllers
+    └── Peripherals
+
+XCON determined:
+
+Which components were required
+Which components were compatible
+How components should be configured
+What additional components were needed
+Importance
+
+XCON became one of the earliest major commercially successful expert systems.
+
+It showed that expert systems could provide significant benefits in an industrial environment.
+
+4. Comparison of Typical Expert Systems
+Expert System	Domain	Main Purpose	Important Technique
+MYCIN	Medicine	Diagnose infections and recommend antibiotics	Rules, backward chaining, certainty factors
+DART	Military logistics	Planning and transportation	Planning and replanning
+XCON	Computer manufacturing	Configure computer systems	Rule-based reasoning
+Key Point for Examination
+
+The three systems illustrate different applications of expert systems:
+
+MYCIN → Medical Diagnosis
+DART → Logistics and Planning
+XCON → Computer Configuration
+
+Simple Memory Trick
+
+MYCIN = Medicine
+DART = Defense/Logistics
+XCON = Configuration
+
+These systems demonstrated that expert systems could capture domain-specific expert knowledge and use it to solve problems that traditionally required human experts.

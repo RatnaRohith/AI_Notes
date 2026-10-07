@@ -1,0 +1,313 @@
+Explanation based learning
+Explanation-Based Learning (EBL)
+
+Explanation-Based Learning (EBL) is a knowledge-based learning method in Artificial Intelligence in which a system learns a general rule or concept from a single or small number of examples by explaining why the example satisfies a given concept.
+
+Instead of simply memorizing examples, EBL uses existing domain knowledge to understand the example and then generalizes the explanation into a reusable rule.
+
+Simple Definition
+
+Explanation-Based Learning is a learning technique in which an AI system analyzes an example using its background knowledge, constructs an explanation for why the example satisfies a concept, and generalizes that explanation into a rule.
+
+1. Basic Idea
+
+Consider a robot learning the concept:
+
+"A cup is safe to pick up."
+
+Suppose the robot observes:
+
+Object = Cup
+Cup is on the table
+Cup is not broken
+Cup is lightweight
+
+The robot already has knowledge:
+
+If an object is lightweight
+AND it is not broken
+THEN the robot can safely pick it up.
+
+From this example, the robot can derive a general rule:
+
+Lightweight(x) AND NotBroken(x)
+        ↓
+SafeToPickUp(x)
+
+The robot has not simply memorized that this particular cup is safe. It has learned the conditions that explain why the cup is safe.
+
+2. Components of EBL
+
+EBL generally requires four important components:
+
+1. Training Example
+
+An example from which the system learns.
+
+Example:
+Cup1 is safe to pick up.
+2. Target Concept
+
+The concept that the system wants to learn.
+
+Target concept:
+SafeToPickUp
+3. Domain Knowledge
+
+Existing knowledge about the problem domain.
+
+For example:
+
+Lightweight(x) ∧ NotBroken(x)
+        → SafeToPickUp(x)
+4. Operationality Criteria
+
+Rules that determine whether the learned concept can actually be used efficiently.
+
+For example:
+
+SafeToPickUp(x)
+
+may be converted into directly testable conditions:
+
+Weight(x) < 2 kg
+AND
+Broken(x) = False
+3. How Explanation-Based Learning Works
+
+The general process is:
+
+             Training Example
+                    ↓
+          Identify Target Concept
+                    ↓
+          Apply Domain Knowledge
+                    ↓
+           Construct Explanation
+                    ↓
+          Generalize Explanation
+                    ↓
+          Generate General Rule
+                    ↓
+             Learned Knowledge
+Step 1: Observe an example
+
+Suppose:
+
+Bird(Tweety)
+CanFly(Tweety)
+
+The system wants to learn:
+
+CanFly(x)
+Step 2: Use existing knowledge
+
+The system knows:
+
+Bird(x) AND Healthy(x) AND NotPenguin(x)
+        → CanFly(x)
+Step 3: Explain the example
+
+For Tweety:
+
+Bird(Tweety)
+Healthy(Tweety)
+NotPenguin(Tweety)
+        ↓
+CanFly(Tweety)
+Step 4: Generalize
+
+Replace the specific individual Tweety with a variable x.
+
+Bird(x) AND Healthy(x) AND NotPenguin(x)
+        → CanFly(x)
+
+This becomes the learned rule.
+
+4. Example of EBL
+
+Suppose a chess-playing AI observes:
+
+Position P is a winning position.
+
+The AI already has chess knowledge:
+
+If the opponent's king is exposed
+AND
+the attacking piece can give a forced checkmate
+THEN
+the position is winning.
+
+The AI explains why position P is winning.
+
+It then generalizes:
+
+ExposedKing(x)
+AND
+ForcedCheckmate(x)
+        →
+WinningPosition(x)
+
+Now the system can recognize other winning positions without seeing them previously.
+
+5. EBL vs. Traditional Learning
+Traditional Learning	Explanation-Based Learning
+Often requires many examples	Can learn from one or few examples
+Learns mainly from observations	Uses observations + existing knowledge
+May identify statistical patterns	Builds logical explanations
+Can require large datasets	Usually requires less training data
+Knowledge may be implicit	Knowledge is explicitly used
+Generalization may be difficult	Generalizes through explanation
+6. Important Characteristics
+1. Knowledge intensive
+
+EBL depends heavily on existing domain knowledge.
+
+2. Learns from few examples
+
+Unlike many machine-learning techniques, EBL can learn from a single training example if sufficient background knowledge is available.
+
+3. Explanation is central
+
+The system asks:
+
+Why is this example an instance of the target concept?
+
+4. Generalization
+
+The explanation is converted into a general rule.
+
+5. Improves efficiency
+
+The learned rule can allow the system to solve similar problems faster in the future.
+
+7. EBL Algorithm
+
+A simplified EBL algorithm can be written as:
+
+Input:
+    Training Example
+    Target Concept
+    Domain Knowledge
+    Operationality Criteria
+
+1. Select a training example.
+2. Determine whether it satisfies the target concept.
+3. Use domain knowledge to explain why it satisfies the concept.
+4. Construct an explanation tree.
+5. Remove unnecessary details.
+6. Generalize the explanation.
+7. Convert it into an operational rule.
+8. Store the learned rule.
+8. Explanation Tree
+
+Suppose:
+
+Target:
+SafeToPickUp(Cup1)
+
+Domain knowledge:
+
+Lightweight(x) AND NotBroken(x)
+        → SafeToPickUp(x)
+
+Weight(x) < 2kg
+        → Lightweight(x)
+
+Explanation:
+
+                 SafeToPickUp(Cup1)
+                         ↑
+             ┌───────────┴───────────┐
+             │                       │
+       Lightweight(Cup1)       NotBroken(Cup1)
+             ↑
+       Weight(Cup1) < 2kg
+
+EBL analyzes this explanation and extracts the relevant conditions.
+
+The resulting rule might be:
+
+Weight(x) < 2kg
+AND
+NotBroken(x)
+        →
+SafeToPickUp(x)
+9. Advantages of EBL
+Requires few training examples.
+Makes use of existing knowledge.
+Produces understandable rules.
+Can improve problem-solving efficiency.
+Reduces unnecessary search.
+Provides a logical explanation for the learned concept.
+Useful when domain knowledge is strong.
+10. Limitations of EBL
+Requires accurate background/domain knowledge.
+Poor domain knowledge can produce poor rules.
+Building explanations can be computationally expensive.
+It is not ideal when little prior knowledge is available.
+The learned rules depend heavily on the quality of the existing knowledge.
+11. EBL in One Example
+
+Suppose the system sees:
+
+Example:
+Object A is a bird.
+Object A has wings.
+Object A is healthy.
+Object A can fly.
+
+Background knowledge:
+
+Bird + Wings + Healthy → CanFly
+
+EBL explains:
+
+Bird(A)
+    +
+Wings(A)
+    +
+Healthy(A)
+    ↓
+CanFly(A)
+
+Then generalizes:
+
+Bird(x) AND Wings(x) AND Healthy(x)
+        → CanFly(x)
+
+Thus:
+
+Example → Explanation → Generalization → Rule
+
+12. EBL vs Inductive Learning
+
+This distinction is particularly important in AI learning.
+
+Inductive Learning
+
+Learns a general rule from multiple examples.
+
+Examples
+  ↓
+Observe patterns
+  ↓
+General Rule
+Explanation-Based Learning
+
+Uses one or a few examples + background knowledge.
+
+Example
+   +
+Background Knowledge
+   ↓
+Explanation
+   ↓
+General Rule
+Key Difference
+
+Inductive learning discovers a generalization from examples, whereas Explanation-Based Learning derives a generalization by explaining an example using existing knowledge.
+
+Exam Point
+
+EBL = Learning by explaining why an example works, then generalizing that explanation into a reusable rule.

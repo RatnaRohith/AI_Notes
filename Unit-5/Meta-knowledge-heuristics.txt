@@ -1,0 +1,154 @@
+Meta Knowledge Heuristics
+Meta-Knowledge and Heuristics in AI
+1. Meta-Knowledge
+
+Meta-knowledge means knowledge about knowledge.
+
+In Artificial Intelligence, an AI system does not only store facts and rules about a problem. It can also store information about:
+
+Which knowledge is available
+Which rule should be used
+Which rule is more reliable
+When a particular rule should be applied
+Which reasoning strategy is appropriate
+How certain a piece of knowledge is
+Example
+
+Suppose an expert system has these rules:
+
+Rule 1: IF fever AND cough → flu
+Rule 2: IF fever AND rash → measles
+
+Meta-knowledge can tell the system:
+
+Rule 1 is more reliable than Rule 2.
+Check Rule 1 before Rule 2.
+
+So, ordinary knowledge describes the problem, while meta-knowledge describes how to use that knowledge.
+
+Knowledge vs Meta-Knowledge
+Knowledge	Meta-Knowledge
+Knowledge about the problem	Knowledge about the knowledge
+Describes facts and rules	Describes how facts/rules should be used
+"Fever may indicate flu"	"Use medical rules before general rules"
+Object-level knowledge	Higher-level knowledge
+2. Why Meta-Knowledge is Important
+
+Meta-knowledge helps an AI system:
+
+Select appropriate rules
+Control the reasoning process
+Resolve conflicts between rules
+Choose an appropriate search strategy
+Determine the reliability of knowledge
+Improve reasoning efficiency
+Explain why a particular rule was selected
+Example
+
+If several rules can be applied:
+
+Rule A
+Rule B
+Rule C
+Rule D
+
+Meta-knowledge can specify:
+
+Use the most specific rule first.
+
+The system can therefore avoid trying every rule randomly.
+
+3. Heuristics
+
+A heuristic is a rule of thumb or strategy used to solve a problem efficiently.
+
+A heuristic does not necessarily guarantee the optimal solution, but it can significantly reduce the amount of search required.
+
+Simple example
+
+When searching for a route from City A to City B, an AI system may prefer roads that appear to move closer to City B.
+
+This is a heuristic:
+
+Prefer the path that appears to be closer to the goal.
+
+4. Heuristic Knowledge
+
+Heuristic knowledge is practical knowledge gained from experience that helps guide problem solving.
+
+For example, in chess:
+
+"Control the center of the board early in the game."
+
+This is not an absolute rule. But it is a useful strategy based on experience.
+
+Other examples:
+
+In medical diagnosis, check common diseases first.
+In chess, protect the king.
+In route finding, explore paths closer to the destination.
+In troubleshooting, check the most common causes first.
+5. Meta-Knowledge and Heuristics
+
+Meta-knowledge can be used to control and select heuristics.
+
+For example:
+
+Problem
+   ↓
+Identify available heuristics
+   ↓
+Meta-knowledge selects suitable heuristic
+   ↓
+Apply heuristic
+   ↓
+Search for solution
+Example
+
+An AI search system has three heuristics:
+
+H1 → fastest path
+H2 → cheapest path
+H3 → safest path
+
+Meta-knowledge may specify:
+
+If the problem is emergency transportation,
+use the safest-path heuristic.
+
+Here:
+
+H1, H2, H3 = heuristic knowledge
+"Choose H3 for emergency transportation" = meta-knowledge
+6. Meta-Heuristics
+
+A meta-heuristic is a higher-level strategy used to guide or control other heuristics or the search process.
+
+Examples include:
+
+Genetic Algorithms
+Simulated Annealing
+Tabu Search
+Ant Colony Optimization
+Particle Swarm Optimization
+
+These methods do not directly encode a solution to one particular problem. Instead, they provide a general strategy for searching a large solution space.
+
+7. Difference Between Knowledge, Heuristic and Meta-Knowledge
+Concept	Meaning	Example
+Knowledge	Facts about the problem	"A fever is a symptom of flu."
+Rule	Relationship between facts	"IF fever AND cough THEN flu."
+Heuristic	Rule of thumb for solving a problem	"Check common diseases first."
+Meta-Knowledge	Knowledge about how knowledge/rules should be used	"Use medical rules with higher reliability first."
+Meta-Heuristic	General strategy for controlling search/heuristics	"Explore promising solutions and escape local optima."
+8. Key Point for Exams
+
+Meta-knowledge is knowledge about the use, organization, reliability, and selection of other knowledge, whereas heuristic knowledge consists of practical rules of thumb that guide problem solving and search.
+
+Easy way to remember
+
+Knowledge → What do I know?
+
+Heuristic → What rule of thumb can I use?
+
+Meta-knowledge → Which knowledge or rule should I use, and when?

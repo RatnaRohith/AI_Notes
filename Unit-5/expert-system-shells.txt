@@ -1,0 +1,198 @@
+Expert-system shells
+Expert-System Shells
+
+An Expert-System Shell is a software framework used to develop an expert system without building the inference engine and other basic components from scratch.
+
+In simple terms:
+
+Expert-system shell = Expert system framework + Knowledge supplied by the developer
+
+The shell provides the reasoning mechanism, while the developer supplies the domain-specific knowledge.
+
+1. Basic Idea
+
+A traditional expert system contains:
+
+Expert System
+│
+├── Knowledge Base
+│   └── Domain-specific facts and rules
+│
+├── Inference Engine
+│   └── Reasoning mechanism
+│
+├── Working Memory
+│   └── Current facts
+│
+├── Explanation Facility
+│   └── WHY / HOW explanations
+│
+└── User Interface
+
+An expert-system shell already provides most of these components:
+
+              Expert-System Shell
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+ Inference Engine  Explanation    User Interface
+        │           Facility
+        │
+        ▼
+ Knowledge Base
+ (added by developer)
+2. Why Are Shells Used?
+
+Developing an expert system completely from scratch is time-consuming. A shell allows developers to concentrate mainly on knowledge acquisition.
+
+For example, suppose we want to build:
+
+Medical diagnosis system
+Car troubleshooting system
+Loan approval system
+Computer fault diagnosis system
+
+The same inference engine can often be reused. Only the knowledge base needs to be changed.
+
+3. Main Components of an Expert-System Shell
+1. Knowledge Representation
+
+Provides a way to represent expert knowledge, commonly using:
+
+IF–THEN rules
+Facts
+Frames
+Objects
+Decision structures
+
+Example:
+
+IF
+   engine_will_not_start
+   AND battery_is_dead
+THEN
+   problem = "Battery failure"
+2. Inference Engine
+
+The inference engine applies rules to known facts to derive conclusions.
+
+Common reasoning methods include:
+
+Forward chaining
+Backward chaining
+
+Example:
+
+Fact:
+Battery is dead.
+
+Rule:
+IF battery is dead
+THEN engine will not start.
+
+Conclusion:
+Engine will not start.
+3. Working Memory
+
+Stores facts about the current problem or situation.
+
+Example:
+
+battery = dead
+engine = does_not_start
+fuel = available
+4. Explanation Facility
+
+Explains the reasoning process.
+
+Typical questions:
+
+WHY was this question asked?
+HOW was this conclusion reached?
+
+For example:
+
+Conclusion: Battery failure
+
+Because:
+Battery is dead
+AND
+engine does not start.
+5. User Interface
+
+Allows the user to interact with the expert system.
+
+For example:
+
+Is the engine starting?  → No
+Is the battery charged?  → No
+
+Diagnosis: Battery failure
+4. Examples of Expert-System Shells
+
+Some well-known expert-system shells include:
+
+Shell	Description
+EMYCIN	General-purpose shell derived from MYCIN
+CLIPS	Rule-based expert-system development tool
+Jess	Java-based rule engine/expert-system shell
+OPS5	Production-rule-based expert-system tool
+ART	Expert-system development environment
+KEE	Knowledge Engineering Environment supporting object-oriented knowledge representation
+EXSYS	Commercial expert-system development tool
+5. Shell vs. Complete Expert System
+
+This distinction is important for exams.
+
+Expert-System Shell	Complete Expert System
+Provides general reasoning mechanisms	Contains domain-specific knowledge
+Knowledge base is usually empty or generic	Knowledge base contains expert knowledge
+Reusable for different domains	Designed for a particular problem
+Developer adds rules and facts	Rules and facts are already developed
+Example: CLIPS	Example: MYCIN
+6. Advantages
+Reduces development time
+Reduces development cost
+Reusable across different domains
+Provides ready-made inference mechanisms
+Makes knowledge acquisition easier
+Often includes explanation facilities
+Allows rapid prototyping
+Separates knowledge from reasoning mechanism
+7. Limitations
+May restrict the type of knowledge that can be represented
+Some shells are difficult to customize
+Performance may be lower for specialized applications
+Knowledge acquisition is still difficult
+Domain experts must still provide accurate knowledge
+Some shells may become outdated or difficult to maintain
+8. Simple Example
+
+Suppose we use an expert-system shell to build a plant-disease diagnosis system.
+
+The shell provides:
+
+Inference Engine
+Working Memory
+Rule Processing
+Explanation Facility
+User Interface
+
+We provide the domain knowledge:
+
+IF leaves_are_yellow
+AND soil_is_wet
+THEN disease = root_rot
+
+IF leaves_have_white_spots
+THEN disease = powdery_mildew
+
+The shell applies these rules and produces the diagnosis.
+
+Exam Definition
+
+An expert-system shell is a software framework that provides the general components of an expert system, such as the inference engine, working memory, explanation facility, and user interface, while allowing domain-specific knowledge to be added separately.
+
+Key point to remember:
+
+Shell provides the reasoning; the developer provides the knowledge.

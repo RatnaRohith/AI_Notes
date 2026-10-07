@@ -1,0 +1,532 @@
+Expert Systems
+Expert Systems in Artificial Intelligence
+1. What is an Expert System?
+
+An Expert System is an AI system that attempts to solve problems or make decisions in a specific domain by using the knowledge and reasoning techniques of a human expert.
+
+Simple Definition
+
+An expert system is a computer program that uses a knowledge base and an inference engine to provide solutions or advice similar to a human expert.
+
+Examples
+Medical diagnosis system
+Car fault diagnosis system
+Loan approval system
+Mineral exploration system
+Computer troubleshooting system
+Legal advisory system
+2. Basic Structure of an Expert System
+
+The major components are:
+
+             ┌─────────────────────┐
+             │     User            │
+             └─────────┬───────────┘
+                       │
+                       ▼
+             ┌─────────────────────┐
+             │   User Interface    │
+             └─────────┬───────────┘
+                       │
+                       ▼
+        ┌──────────────────────────────┐
+        │      Inference Engine       │
+        └───────┬──────────────┬───────┘
+                │              │
+                ▼              ▼
+      ┌────────────────┐  ┌───────────────┐
+      │ Knowledge Base │  │ Working Memory │
+      └────────────────┘  └───────────────┘
+                ▲
+                │
+      ┌─────────────────────┐
+      │ Knowledge Acquisition│
+      └─────────────────────┘
+
+      Explanation Facility
+3. Components of an Expert System
+3.1 Knowledge Base
+
+The knowledge base contains domain-specific knowledge.
+
+It generally contains:
+
+Facts
+Rules
+Relationships
+Heuristics
+
+For example, in a medical expert system:
+
+Fact:
+Patient has fever.
+
+Fact:
+Patient has cough.
+
+Rule:
+IF patient has fever AND cough
+THEN patient may have flu.
+
+The knowledge base represents what the system knows.
+
+3.2 Inference Engine
+
+The inference engine is the reasoning mechanism of an expert system.
+
+It applies rules to known facts to derive new conclusions.
+
+For example:
+
+Fact:
+Fever = Yes
+Cough = Yes
+
+Rule:
+IF Fever = Yes AND Cough = Yes
+THEN Flu = Possible
+
+Conclusion:
+Flu = Possible
+
+The inference engine determines what can be concluded from the available knowledge.
+
+4. Working Memory
+
+Working memory contains information about the current problem.
+
+For example:
+
+Patient:
+Age = 25
+Fever = Yes
+Cough = Yes
+Body Pain = Yes
+
+The inference engine uses these facts together with the knowledge base.
+
+Knowledge Base
+IF Fever AND Cough
+THEN Flu
+
+IF Fever AND BodyPain
+THEN Infection
+Working Memory
+Fever = True
+Cough = True
+BodyPain = True
+Derived Knowledge
+Flu = True
+Infection = True
+5. User Interface
+
+The user interface allows the user to communicate with the expert system.
+
+It can:
+
+Ask questions
+Accept user input
+Display conclusions
+Display recommendations
+Explain results
+
+Example:
+
+System: Do you have fever?
+User: Yes
+
+System: Do you have cough?
+User: Yes
+
+System:
+Possible diagnosis: Flu
+6. Explanation Facility
+
+One important feature of an expert system is the ability to explain its reasoning.
+
+The system should be able to answer:
+
+"Why are you asking this question?"
+
+and
+
+"How did you reach this conclusion?"
+
+Example:
+
+Conclusion:
+Patient may have Flu.
+
+Reason:
+Fever = Yes
+Cough = Yes
+
+Rule Used:
+IF Fever AND Cough
+THEN Flu
+
+This increases user confidence in the system.
+
+7. Knowledge Acquisition
+
+Knowledge acquisition is the process of obtaining knowledge from:
+
+Human experts
+Books
+Documents
+Databases
+Previous cases
+Sensors
+Other information sources
+
+The acquired knowledge is then converted into a form that the expert system can use.
+
+Human Expert
+     ↓
+Knowledge Engineer
+     ↓
+Knowledge Representation
+     ↓
+Knowledge Base
+8. Knowledge Engineer
+
+A knowledge engineer is responsible for acquiring and representing expert knowledge in the expert system.
+
+The knowledge engineer:
+
+Interviews domain experts
+Identifies important facts
+Identifies rules
+Represents knowledge
+Tests the knowledge base
+Updates the system
+Example
+
+For a medical system:
+
+Doctor → Provides medical knowledge
+             ↓
+Knowledge Engineer
+             ↓
+Rules + Facts
+             ↓
+Medical Expert System
+9. Rule-Based Expert Systems
+
+Many traditional expert systems use IF–THEN rules.
+
+General form
+IF condition
+THEN conclusion/action
+
+Example:
+
+IF engine_temperature > 100°C
+THEN engine_overheating = TRUE
+
+Multiple conditions can be combined:
+
+IF engine_temperature > 100°C
+AND coolant_level = LOW
+THEN engine_overheating = TRUE
+10. Inference in Expert Systems
+
+Two important inference techniques are:
+
+Forward Chaining
+Backward Chaining
+10.1 Forward Chaining
+
+Forward chaining starts with known facts and applies rules to reach conclusions.
+
+It is also called data-driven reasoning.
+
+Example
+
+Rules:
+
+R1: IF Fever AND Cough THEN Flu
+R2: IF Flu THEN Rest
+
+Facts:
+
+Fever = True
+Cough = True
+
+Reasoning:
+
+Fever + Cough
+      ↓
+     Flu
+      ↓
+     Rest
+
+So:
+
+Conclusion: Patient should rest.
+Flow
+Facts
+ ↓
+Check Rules
+ ↓
+Fire Applicable Rule
+ ↓
+New Fact
+ ↓
+Check Rules Again
+ ↓
+Conclusion
+11. Backward Chaining
+
+Backward chaining starts with a goal or hypothesis and works backward to determine whether the necessary facts are available.
+
+It is also called goal-driven reasoning.
+
+Suppose the goal is:
+
+Flu?
+
+Rule:
+
+IF Fever AND Cough
+THEN Flu
+
+The system asks:
+
+Is Fever true?
+Is Cough true?
+
+If both are true:
+
+Fever + Cough
+      ↓
+     Flu
+Flow
+Goal
+ ↓
+Find Rule
+ ↓
+Find Required Conditions
+ ↓
+Check Facts
+ ↓
+Prove/Disprove Goal
+12. Forward vs Backward Chaining
+Feature	Forward Chaining	Backward Chaining
+Approach	Data-driven	Goal-driven
+Starts with	Facts	Goal
+Direction	Facts → Conclusion	Goal → Facts
+Suitable for	Prediction, monitoring	Diagnosis, query answering
+Example	Detect machine failure	Find cause of failure
+Easy way to remember
+
+Forward:
+
+"I know these facts. What can I conclude?"
+
+Backward:
+
+"I want to prove this conclusion. What facts do I need?"
+
+13. Example Expert System
+
+Consider a simple car troubleshooting expert system.
+
+Rules
+R1:
+IF battery_dead
+THEN engine_will_not_start
+
+R2:
+IF engine_will_not_start AND fuel_empty
+THEN car_problem = fuel_problem
+
+R3:
+IF engine_will_not_start AND battery_dead
+THEN car_problem = battery_problem
+Facts
+battery_dead = TRUE
+engine_will_not_start = TRUE
+
+The inference engine applies R3:
+
+engine_will_not_start
+        +
+battery_dead
+        ↓
+battery_problem
+Final conclusion
+Problem: Battery problem
+Recommendation: Check or replace the battery.
+14. Characteristics of Expert Systems
+
+An expert system generally has:
+
+1. Domain-specific knowledge
+
+It focuses on a particular problem domain.
+
+2. Reasoning capability
+
+It can derive conclusions from available knowledge.
+
+3. Explanation capability
+
+It can explain how it reached a conclusion.
+
+4. Knowledge representation
+
+Knowledge is represented using rules, frames, semantic networks, cases, etc.
+
+5. Uncertainty handling
+
+Some systems can handle uncertain or incomplete information.
+
+6. User interaction
+
+The system can communicate with users through an interface.
+
+7. Consistency
+
+The same knowledge and reasoning process can produce consistent results.
+
+15. Advantages of Expert Systems
+1. Availability
+
+An expert system can be available 24/7.
+
+2. Consistency
+
+It does not become tired or distracted.
+
+3. Knowledge preservation
+
+Expert knowledge can be stored and preserved.
+
+4. Faster decision-making
+
+It can process large numbers of rules quickly.
+
+5. Training
+
+It can be used as a training tool for students and new employees.
+
+6. Reduced dependency on experts
+
+Organizations can use the stored knowledge even when a human expert is unavailable.
+
+16. Limitations of Expert Systems
+1. Limited domain
+
+An expert system normally works only within its designed domain.
+
+2. Knowledge acquisition problem
+
+Obtaining expert knowledge can be difficult.
+
+3. Lack of common sense
+
+Traditional expert systems may not possess human-like common sense.
+
+4. Maintenance
+
+Rules and knowledge must be updated.
+
+5. No true understanding
+
+The system manipulates represented knowledge rather than understanding the world like a human.
+
+6. Incorrect knowledge produces incorrect results
+
+If the knowledge base is wrong:
+
+Wrong Knowledge
+      ↓
+Wrong Reasoning
+      ↓
+Wrong Conclusion
+17. Expert System Development Process
+
+A typical development process is:
+
+Identify Problem
+      ↓
+Select Domain
+      ↓
+Acquire Knowledge
+      ↓
+Represent Knowledge
+      ↓
+Build Knowledge Base
+      ↓
+Develop Inference Engine
+      ↓
+Develop User Interface
+      ↓
+Test and Validate
+      ↓
+Deploy
+      ↓
+Maintain and Update
+18. Famous Expert Systems
+Expert System	Domain
+DENDRAL	Chemical analysis
+MYCIN	Medical diagnosis
+XCON	Computer-system configuration
+PROSPECTOR	Mineral exploration
+CADUCEUS	Medical diagnosis
+ELIZA	Natural-language conversation
+MYCIN
+
+MYCIN is one of the most famous early medical expert systems. It was designed to help diagnose certain bacterial infections and recommend antibiotics.
+
+DENDRAL
+
+DENDRAL was developed for analyzing chemical compounds and determining molecular structures.
+
+XCON
+
+XCON was designed to help configure computer systems.
+
+19. Expert System vs Conventional Program
+Expert System	Conventional Program
+Knowledge-based	Algorithm-based
+Uses rules/knowledge	Uses predefined procedures
+Contains inference engine	Usually follows program logic
+Can explain reasoning	Usually limited explanation
+Knowledge can be separated from reasoning	Logic and data often tightly integrated
+Good for complex decision-making	Good for well-defined computational tasks
+20. Expert System vs Human Expert
+Expert System	Human Expert
+Fast processing	May take more time
+Available continuously	Limited availability
+Consistent	May vary with experience/fatigue
+Limited domain	Can use broader knowledge
+No emotions	Has emotions and intuition
+Limited common sense	Strong common-sense reasoning
+Requires programmed knowledge	Can learn from experience
+21. Important Exam Definition
+
+An expert system is an AI-based computer system that uses a knowledge base and an inference engine to solve problems and make decisions in a specific domain in a manner similar to a human expert.
+
+Key components to remember
+Expert System
+│
+├── Knowledge Base
+│   ├── Facts
+│   ├── Rules
+│   └── Heuristics
+│
+├── Inference Engine
+│   ├── Forward Chaining
+│   └── Backward Chaining
+│
+├── Working Memory
+├── User Interface
+├── Explanation Facility
+└── Knowledge Acquisition
+One-line summary
+
+Expert System = Domain Knowledge + Inference Engine + User Interface + Explanation
+
+This is a useful topic to connect with your earlier knowledge representation, rules-based deduction, predicate logic, and reasoning under uncertainty topics: expert systems are essentially an application of these AI knowledge-and-reasoning techniques.

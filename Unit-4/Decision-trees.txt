@@ -1,0 +1,571 @@
+Decision Trees 
+Decision Trees in Artificial Intelligence
+1. Introduction
+
+A Decision Tree is a supervised learning technique used for classification and regression. It represents decisions in the form of a tree structure, where:
+
+Root node → first decision/test
+Internal nodes → tests on attributes/features
+Branches → outcomes of tests
+Leaf nodes → final prediction/class
+
+The basic idea is:
+
+Start with a question → follow the branch corresponding to the answer → continue until reaching a final decision.
+
+Example
+
+Suppose an AI system must decide whether a person should play tennis based on weather.
+
+                    Outlook
+                  /    |      \
+              Sunny  Overcast  Rain
+                |       |        |
+             Humidity   Yes     Wind
+             /    \            /    \
+           High  Normal      Strong  Weak
+            |      |           |       |
+            No     Yes         No      Yes
+
+The tree can be used to classify a new example by following the appropriate path from the root to a leaf.
+
+2. Structure of a Decision Tree
+
+A decision tree contains four main elements.
+
+1. Root Node
+
+The root is the first and most important decision.
+
+Example:
+
+        Outlook
+       /   |    \
+    Sunny Overcast Rain
+
+The algorithm chooses the attribute that provides the best separation of the training data.
+
+2. Internal Node
+
+An internal node represents a test on an attribute.
+
+Example:
+
+Humidity
+ /     \
+High   Normal
+3. Branch
+
+A branch represents the result of a test.
+
+For example:
+
+Humidity = High
+Humidity = Normal
+4. Leaf Node
+
+A leaf represents the final class/prediction.
+
+Humidity
+ /      \
+High    Normal
+ |        |
+ No      Yes
+3. How Decision Trees Work
+
+The general process is:
+
+Training Data
+      ↓
+Select Best Attribute
+      ↓
+Create Root Node
+      ↓
+Split Data
+      ↓
+Select Best Attribute
+      ↓
+Create Child Nodes
+      ↓
+Repeat Recursively
+      ↓
+Stopping Condition
+      ↓
+Final Decision Tree
+
+For a new input:
+
+New Data
+   ↓
+Root Test
+   ↓
+Follow Appropriate Branch
+   ↓
+Next Test
+   ↓
+Follow Branch
+   ↓
+Leaf Node
+   ↓
+Prediction
+4. Example
+
+Consider the following training data.
+
+Outlook	Temperature	Humidity	Wind	Play
+Sunny	Hot	High	Weak	No
+Sunny	Hot	High	Strong	No
+Overcast	Hot	High	Weak	Yes
+Rain	Mild	High	Weak	Yes
+Rain	Cool	Normal	Weak	Yes
+Rain	Cool	Normal	Strong	No
+Overcast	Cool	Normal	Strong	Yes
+Sunny	Mild	High	Weak	No
+Sunny	Cool	Normal	Weak	Yes
+Rain	Mild	Normal	Weak	Yes
+
+The objective is to learn:
+
+Should we play tennis?
+
+A possible decision tree is:
+
+                 Outlook
+              /     |       \
+           Sunny  Overcast   Rain
+             |       |         |
+          Humidity   Yes       Wind
+          /    \             /     \
+       High   Normal      Strong   Weak
+        |        |           |       |
+        No       Yes         No      Yes
+
+For a new example:
+
+Outlook = Rain
+Wind = Weak
+
+Traversal:
+
+Outlook = Rain
+      ↓
+Wind
+      ↓
+Wind = Weak
+      ↓
+Play = Yes
+
+Therefore:
+
+Prediction = Yes
+
+5. Decision Tree Learning
+
+The major problem in decision-tree learning is:
+
+Which attribute should be selected at each node?
+
+The algorithm evaluates the available attributes and selects the one that produces the best split.
+
+Common measures are:
+
+Information Gain
+Gain Ratio
+Gini Index
+Variance Reduction — commonly used for regression
+6. Entropy
+
+Entropy measures the amount of impurity or uncertainty in a dataset.
+
+For a binary classification problem:
+
+$$ Entropy(S)=-p_+\log_2(p_+)-p_-\log_2(p_-) $$
+
+where:
+
+\(p_+\) = probability of positive examples
+\(p_-\) = probability of negative examples
+Case 1: Completely pure dataset
+
+Suppose:
+
+Yes = 10
+No = 0
+
+Then:
+
+$$ Entropy(S)=0 $$
+
+There is no uncertainty.
+
+Case 2: Equal classes
+Yes = 5
+No = 5
+
+Then:
+
+$$ Entropy(S)=1 $$
+
+This represents maximum uncertainty for a binary classification problem.
+
+Interpretation
+Entropy	Meaning
+0	Completely pure
+Low	Low uncertainty
+High	High uncertainty
+1	Maximum uncertainty for binary classes
+7. Information Gain
+
+Information Gain measures how much uncertainty is reduced after splitting the data using an attribute.
+
+$$ IG(S,A)=Entropy(S)- \sum_{v\in Values(A)} \frac{|S_v|}{|S|} Entropy(S_v) $$
+
+where:
+
+\(S\) = original dataset
+\(A\) = attribute
+\(S_v\) = subset produced by value \(v\)
+Basic idea
+Before Split
+     ↓
+High Entropy
+     ↓
+Split using Attribute
+     ↓
+Lower Entropy
+
+The attribute with the highest Information Gain is generally selected.
+
+8. Gain Ratio
+
+Information Gain has a problem: it can favor attributes having many distinct values.
+
+For example:
+
+Student ID
+
+could create one branch per student, producing very pure subsets but a poor generalization.
+
+Gain Ratio addresses this problem.
+
+$$ GainRatio(A)= \frac{InformationGain(A)} {SplitInformation(A)} $$
+
+The C4.5 algorithm uses Gain Ratio for attribute selection.
+
+9. Gini Index
+
+The Gini Index measures impurity.
+
+$$ Gini(S)=1-\sum_{i=1}^{n}p_i^2 $$
+
+For two classes:
+
+$$ Gini(S)=1-p_1^2-p_2^2 $$
+
+A lower Gini value indicates a purer node.
+
+For example:
+
+10 Yes, 0 No
+$$ Gini=1-(1)^2-(0)^2=0 $$
+
+So the node is completely pure.
+
+The CART decision-tree algorithm commonly uses the Gini criterion for classification.
+
+10. Decision Tree Algorithms
+ID3
+
+Developed by J. Ross Quinlan.
+
+Characteristics:
+
+Uses Information Gain
+Primarily classification
+Works mainly with categorical attributes
+Does not originally include sophisticated pruning
+ID3
+ ↓
+Information Gain
+ ↓
+Best Attribute
+C4.5
+
+An improvement over ID3.
+
+Features:
+
+Uses Gain Ratio
+Handles continuous attributes
+Handles missing values
+Supports pruning
+Produces decision trees
+CART
+
+Classification and Regression Trees
+
+Features:
+
+Used for classification and regression
+Commonly uses Gini Index for classification
+Uses binary splits
+Uses a regression criterion such as squared error for regression
+11. Stopping Conditions
+
+Tree construction should not continue indefinitely.
+
+Common stopping conditions include:
+
+1. All examples belong to the same class
+Yes
+Yes
+Yes
+Yes
+
+Create a leaf:
+
+        Yes
+2. No attributes remain
+
+The algorithm assigns the majority class.
+
+3. Dataset becomes too small
+
+Stop splitting when there are too few examples.
+
+4. Maximum tree depth reached
+
+Example:
+
+max_depth = 5
+5. Minimum number of samples
+
+Require a minimum number of samples before splitting.
+
+12. Overfitting
+
+A major problem with decision trees is overfitting.
+
+An overly complex tree may memorize the training data rather than learn general patterns.
+
+Training Accuracy
+       ↑
+       │             *
+       │          *     *
+       │       *
+       │    *
+       │ *
+       └──────────────────→ Tree Complexity
+
+A very deep tree may have:
+
+Very high training accuracy
+Poor test accuracy
+Poor generalization
+13. Pruning
+
+Pruning removes unnecessary branches from a decision tree.
+
+Before pruning
+             Outlook
+            /       \
+         Sunny      Rain
+           |          |
+        Humidity     Wind
+        /     \      /   \
+      High Normal Strong Weak
+       |      |      |     |
+      No     Yes     No    Yes
+                    ...
+                   ...
+                  ...
+After pruning
+             Outlook
+            /       \
+         Sunny      Rain
+           |          |
+          No         Yes
+
+Pruning produces a simpler tree and can improve generalization.
+
+Types of pruning
+
+Pre-pruning
+
+Stop tree growth early.
+
+Post-pruning
+
+Build the tree first, then remove unnecessary branches.
+
+14. Advantages
+
+Decision trees have several advantages:
+
+Easy to understand
+Easy to visualize
+Easy to interpret
+Requires relatively little data preprocessing
+Can handle categorical and numerical features
+Useful for classification and regression
+Can identify important features
+Produces human-readable rules
+
+For example:
+
+IF Outlook = Sunny
+AND Humidity = High
+THEN Play = No
+15. Disadvantages
+
+Some limitations are:
+
+Can easily overfit
+Large trees become difficult to interpret
+Small changes in training data can produce different trees
+Greedy splitting does not necessarily produce the globally optimal tree
+Some algorithms can be biased toward attributes with many values
+Single decision trees may have lower predictive performance than ensemble methods
+16. Decision Tree as IF–THEN Rules
+
+One of the useful properties of a decision tree is that it can be converted into rules.
+
+For example:
+
+             Weather
+            /       \
+         Sunny      Rain
+           |          |
+       Humidity      Wind
+       /     \       /   \
+    High   Normal Strong Weak
+     |       |       |     |
+    No      Yes      No    Yes
+
+Rules:
+
+IF Weather = Sunny
+AND Humidity = High
+THEN Play = No
+
+IF Weather = Sunny
+AND Humidity = Normal
+THEN Play = Yes
+
+IF Weather = Rain
+AND Wind = Strong
+THEN Play = No
+
+IF Weather = Rain
+AND Wind = Weak
+THEN Play = Yes
+
+Thus, a decision tree can also be viewed as a set of classification rules.
+
+17. Decision Tree for Classification vs Regression
+Feature	Classification Tree	Regression Tree
+Output	Class/category	Numerical value
+Example	Spam / Not Spam	House price
+Common criterion	Gini, Entropy	MSE/variance reduction
+Leaf	Class prediction	Numerical prediction
+Classification
+Email
+ ↓
+Contains suspicious words?
+ /              \
+Yes              No
+ ↓                ↓
+Spam           Not Spam
+Regression
+House
+ ↓
+Area > 1500 sq.ft?
+ /              \
+Yes              No
+ ↓                ↓
+₹80 lakh       ₹50 lakh
+18. Decision Tree Learning Algorithm
+
+A simplified algorithm is:
+
+DecisionTree(Data, Attributes):
+
+    if all examples have the same class:
+        return Leaf(class)
+
+    if Attributes is empty:
+        return Leaf(majority class)
+
+    select the best attribute A
+
+    create a decision node for A
+
+    for each possible value v of A:
+        create subset Sv
+
+        if Sv is empty:
+            attach majority-class leaf
+        else:
+            attach DecisionTree(Sv, remaining attributes)
+
+    return decision node
+19. Important Exam Points
+Definition
+
+A decision tree is a supervised machine-learning model that represents decisions as a tree structure, where internal nodes represent attribute tests, branches represent test outcomes, and leaf nodes represent predictions.
+
+Important terms
+Decision Tree
+ ├── Root Node
+ ├── Internal Nodes
+ ├── Branches
+ └── Leaf Nodes
+Attribute-selection measures
+ID3   → Information Gain
+C4.5  → Gain Ratio
+CART  → Gini Index
+Important concepts
+Entropy
+Information Gain
+Gain Ratio
+Gini Index
+Tree construction
+Stopping criteria
+Overfitting
+Pruning
+Classification
+Regression
+20. Overall Concept
+                  Training Data
+                       │
+                       ▼
+              Measure Impurity
+             (Entropy / Gini)
+                       │
+                       ▼
+             Select Best Attribute
+                       │
+                       ▼
+                 Split Dataset
+                  /    |    \
+                 /     |     \
+                ▼      ▼      ▼
+              Subset  Subset  Subset
+                │      │       │
+                └──────┼───────┘
+                       ▼
+                Repeat Recursively
+                       │
+                       ▼
+                 Stopping Condition
+                       │
+                       ▼
+                  Decision Tree
+                       │
+                       ▼
+                    Pruning
+                       │
+                       ▼
+                Final Prediction
+
+Key idea: A decision tree repeatedly selects the feature that best separates the training examples into their target classes, creating a tree that can then be used to make predictions for new data.

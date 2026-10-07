@@ -1,0 +1,292 @@
+Typical Expert System – DART
+1. What is DART?
+
+DART (Dynamic Analysis and Replanning Tool) is a well-known expert system/planning system developed for the U.S. military.
+
+It was designed to help with logistics planning and transportation scheduling, particularly the movement of military personnel, equipment, and resources.
+
+DART is an important example of how AI can be used for planning, scheduling, resource allocation, and decision support.
+
+2. Purpose of DART
+
+The main purpose of DART was to help military planners answer questions such as:
+
+Which resources should be transported?
+Where should they be transported?
+Which transportation routes should be used?
+How should personnel and equipment be scheduled?
+How can transportation plans be changed when circumstances change?
+
+In simple terms:
+
+Military Requirements
+        ↓
+Available Resources
+        ↓
+Transportation Constraints
+        ↓
+DART
+        ↓
+Plan / Schedule
+        ↓
+Movement of Personnel & Equipment
+3. Why is DART an Expert System?
+
+DART uses domain knowledge, constraints, planning techniques, and reasoning to produce useful transportation plans.
+
+Instead of simply storing information, the system reasons about:
+
+Resources
+Locations
+Transportation capacity
+Time
+Routes
+Constraints
+Priorities
+Changes in the situation
+
+Therefore, it represents a practical application of AI-based planning and decision support.
+
+4. Major Functions of DART
+1. Logistics Planning
+
+DART helps determine how military resources can be moved efficiently.
+
+For example:
+
+Equipment A → Location X
+Personnel B → Location Y
+Supplies C → Location Z
+
+The system determines an appropriate transportation plan.
+
+2. Scheduling
+
+DART determines when different transportation activities should occur.
+
+Vehicle 1 → 08:00
+Vehicle 2 → 09:30
+Aircraft 1 → 11:00
+
+The schedule must satisfy resource and time constraints.
+
+3. Resource Allocation
+
+Available transportation resources are assigned to different requirements.
+
+For example:
+
+Available:
+    10 trucks
+    5 aircraft
+    20 transport units
+
+Requirements:
+    Personnel
+    Vehicles
+    Supplies
+
+DART determines how these resources should be allocated.
+
+4. Constraint Handling
+
+Real-world military logistics involves many constraints.
+
+Examples:
+
+Limited transportation capacity
+Limited time
+Route restrictions
+Availability of vehicles
+Personnel requirements
+Priority of missions
+
+DART attempts to produce plans that satisfy these constraints.
+
+5. Dynamic Replanning
+
+One of DART's important capabilities was its ability to modify plans when circumstances changed.
+
+For example:
+
+Original Plan
+     ↓
+Transportation route blocked
+     ↓
+Situation changes
+     ↓
+DART analyzes the problem
+     ↓
+New plan generated
+
+This is why Dynamic Analysis and Replanning Tool is an appropriate description of the system.
+
+5. Basic Architecture
+
+A simplified representation is:
+
+             USER / MILITARY PLANNER
+                       │
+                       ▼
+              ┌─────────────────┐
+              │  User Interface │
+              └────────┬────────┘
+                       │
+                       ▼
+              ┌─────────────────┐
+              │ Planning /      │
+              │ Reasoning       │
+              │ Engine          │
+              └───────┬─────────┘
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+    ┌──────────┐ ┌──────────┐ ┌───────────┐
+    │Knowledge │ │ Current  │ │Constraints│
+    │ / Rules  │ │ Situation│ │           │
+    └──────────┘ └──────────┘ └───────────┘
+                      │
+                      ▼
+               ┌─────────────┐
+               │ Plan /      │
+               │ Schedule    │
+               └──────┬──────┘
+                      │
+                      ▼
+                Military Planner
+6. Knowledge Used by DART
+
+DART works with knowledge about:
+
+Resources
+Vehicles
+Aircraft
+Personnel
+Equipment
+Supplies
+Locations
+Bases
+Airports
+Ports
+Deployment locations
+Transportation
+Routes
+Capacity
+Travel time
+Availability
+Constraints
+Time
+Capacity
+Priority
+Availability
+Operational restrictions
+
+This information is used to construct feasible plans.
+
+7. Example
+
+Suppose a military organization needs to move:
+
+100 soldiers
+20 vehicles
+500 supply units
+
+from Location A to Location B.
+
+Available resources:
+
+5 transport aircraft
+10 trucks
+
+The system must consider:
+
+Number of personnel
+Amount of equipment
+Vehicle capacity
+Travel time
+Available transportation
+Priority
+
+It can then produce a transportation schedule.
+
+If one aircraft becomes unavailable:
+
+Original Plan
+     ↓
+Aircraft unavailable
+     ↓
+Recalculate resources
+     ↓
+Change assignments
+     ↓
+Generate revised plan
+
+This illustrates dynamic replanning.
+
+8. DART and Expert-System Concepts
+
+DART demonstrates several important AI concepts:
+
+AI Concept	Application in DART
+Knowledge representation	Logistics and transportation knowledge
+Planning	Creation of movement plans
+Scheduling	Timing of transportation activities
+Constraint satisfaction	Handling resource and operational constraints
+Reasoning	Selecting feasible plans
+Resource allocation	Assigning transportation resources
+Replanning	Modifying plans when situations change
+Decision support	Helping military planners
+9. Advantages of DART
+1. Handles complex planning
+
+Military logistics can involve thousands of resources and constraints.
+
+2. Saves planning time
+
+Computer-assisted planning can significantly reduce the effort required from human planners.
+
+3. Handles changing situations
+
+Plans can be modified when resources or circumstances change.
+
+4. Supports decision making
+
+DART assists human planners rather than simply presenting raw data.
+
+5. Practical AI application
+
+It demonstrated that AI planning techniques could be applied to large-scale real-world logistics problems.
+
+10. Limitations
+1. Domain-specific
+
+DART was designed primarily for military logistics and transportation.
+
+2. Complex knowledge requirements
+
+Accurate planning requires extensive information about resources, locations, transportation, and constraints.
+
+3. Dependent on available information
+
+Incorrect or outdated information can result in poor plans.
+
+4. Human supervision
+
+Military decisions still require human judgment and authorization.
+
+11. MYCIN vs DART
+Feature	MYCIN	DART
+Domain	Medical diagnosis	Military logistics
+Main purpose	Diagnose infections and recommend treatment	Plan and manage transportation
+Knowledge	Medical knowledge	Logistics knowledge
+Main AI technique	Rule-based reasoning	Planning, scheduling, constraint reasoning
+Uncertainty	Certainty factors	Constraints and changing conditions
+Output	Diagnosis/treatment	Plans and schedules
+Important feature	Explanation facility	Dynamic replanning
+12. Exam Answer
+
+DART (Dynamic Analysis and Replanning Tool) is an AI-based planning and decision-support system developed for military logistics. It assists military planners in transportation planning, scheduling, and resource allocation. DART considers resources, locations, transportation capacities, priorities, and constraints to generate feasible plans. An important feature of DART is dynamic replanning, which allows plans to be modified when the situation or available resources change. It is a significant example of the application of AI to large-scale logistics and planning problems.
+
+Key points to remember
+
+DART → Dynamic Analysis and Replanning Tool → Military → Logistics → Transportation → Planning → Scheduling → Resource Allocation → Constraints → Dynamic Replanning.

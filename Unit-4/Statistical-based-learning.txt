@@ -1,0 +1,382 @@
+Statistical Learning methods
+Statistical Learning Methods in AI
+
+Statistical Learning is an approach to machine learning in which an AI system learns patterns, relationships, and predictions from statistical data.
+
+Instead of explicitly programming every rule, we use data to estimate the relationship between input variables and an output.
+
+1. Basic idea
+
+Suppose we want to predict whether a student will pass an examination.
+
+Study Hours	Attendance	Result
+2	60%	Fail
+4	70%	Fail
+6	80%	Pass
+8	90%	Pass
+
+A statistical learning algorithm analyzes these observations and learns a relationship:
+
+Study Hours + Attendance → Probability of Passing
+
+For a new student, it can estimate the probability of passing.
+
+Major Statistical Learning Methods
+
+Statistical learning methods can broadly be divided into the following categories.
+
+1. Regression
+
+Regression is used when the output is a continuous numerical value.
+
+Examples:
+
+Predict house price
+Predict temperature
+Predict salary
+Predict sales
+
+Common methods:
+
+Linear Regression
+Multiple Linear Regression
+Polynomial Regression
+Logistic Regression (despite its name, mainly used for classification)
+
+Example:
+
+$$ y = \beta_0 + \beta_1x $$
+
+where:
+
+\(x\) = input variable
+\(y\) = predicted output
+\(\beta_0\) = intercept
+\(\beta_1\) = coefficient
+2. Classification
+
+Classification predicts a category or class.
+
+Examples:
+
+Spam / Not Spam
+Disease / No Disease
+Pass / Fail
+Cat / Dog
+
+Common statistical learning methods include:
+
+Logistic Regression
+Naive Bayes
+Linear Discriminant Analysis
+Quadratic Discriminant Analysis
+3. Clustering
+
+Clustering is an unsupervised learning method.
+
+The algorithm groups similar data points without being given predefined class labels.
+
+Example:
+
+Customer data can be grouped into:
+
+Low-value customers
+Medium-value customers
+High-value customers
+
+Common methods:
+
+K-Means
+Hierarchical Clustering
+Gaussian Mixture Models
+4. Bayesian Learning
+
+Bayesian methods use probability and prior knowledge to make predictions.
+
+The fundamental equation is Bayes' theorem:
+
+$$ P(H|D)=\frac{P(D|H)P(H)}{P(D)} $$
+
+where:
+
+\(H\) = hypothesis
+\(D\) = observed data
+\(P(H)\) = prior probability
+\(P(D|H)\) = likelihood
+\(P(H|D)\) = posterior probability
+
+Examples:
+
+Naive Bayes
+Bayesian Networks
+Bayesian Regression
+5. Nearest Neighbor Methods
+
+These methods make predictions based on similar examples in the training data.
+
+The most common example is K-Nearest Neighbors (KNN).
+
+For a new data point:
+
+Calculate its distance from existing examples.
+Select the \(K\) nearest examples.
+Use their classes or values to make a prediction.
+
+For example, if 3 of the 5 nearest students belong to the "Pass" class, the new student may be classified as Pass.
+
+6. Decision Trees
+
+A decision tree learns a sequence of decisions from data.
+
+Example:
+
+             Attendance > 75%?
+                /          \
+              Yes           No
+              /              \
+      Study Hours > 4?       Fail
+          /      \
+        Yes       No
+        /          \
+      Pass         Fail
+
+Decision trees can be used for:
+
+Classification
+Regression
+7. Ensemble Learning
+
+Ensemble methods combine multiple models to produce a stronger prediction.
+
+Important methods include:
+
+Random Forest
+Bagging
+Boosting
+AdaBoost
+Gradient Boosting
+
+For example:
+
+Random Forest = Multiple Decision Trees + Combined Prediction
+
+Statistical Learning: Supervised vs Unsupervised
+Type	Training Data	Main Purpose	Examples
+Supervised Learning	Input + Output	Prediction	Regression, Classification
+Unsupervised Learning	Input only	Find patterns	Clustering
+Semi-supervised Learning	Small labeled + large unlabeled data	Prediction	Classification
+Reinforcement Learning	Rewards/Penalties	Decision making	Game playing, robotics
+Statistical Learning Process
+
+A typical statistical learning system follows:
+
+              Data
+                ↓
+        Data Preprocessing
+                ↓
+       Feature Selection
+                ↓
+        Choose a Model
+                ↓
+          Train Model
+                ↓
+       Evaluate Model
+                ↓
+       Make Predictions
+Important concepts
+
+Training set
+Data used to learn the model.
+
+Test set
+Data used to evaluate how well the model performs on unseen data.
+
+Validation set
+Data used to select or tune the model.
+
+Model
+A mathematical representation learned from data.
+
+Parameter
+A value learned by the model during training.
+
+Hyperparameter
+A value chosen before or during training, such as \(K\) in KNN.
+
+Statistical Learning vs Traditional Rule-Based AI
+Traditional AI	Statistical Learning
+Rules are explicitly provided	Rules/patterns are learned from data
+Knowledge is manually encoded	Knowledge is inferred statistically
+Often deterministic	Often probabilistic
+Difficult to handle noisy data	Can handle noisy data
+Less dependent on large datasets	Usually benefits from more data
+Example: Expert system	Example: Naive Bayes, regression
+Simple definition for examination
+
+Statistical learning is a machine learning approach that uses statistical techniques to learn patterns and relationships from data and use them to make predictions or decisions on new data.
+
+Key methods to remember
+
+Regression → Classification → Clustering → Bayesian Learning → KNN → Decision Trees → Ensemble Methods
+
+These methods form an important bridge between statistics, machine learning, and AI.
+
+Statistical learning methods
+Statistical Learning Methods
+Definition
+
+Statistical learning methods are techniques in Artificial Intelligence and Machine Learning that use statistical principles to learn patterns and relationships from data and use the learned patterns to make predictions, classifications, or decisions.
+
+Instead of explicitly programming rules, the system learns from examples.
+
+Basic idea
+Training Data
+     ↓
+Statistical Analysis
+     ↓
+Learn Patterns / Relationships
+     ↓
+Build Model
+     ↓
+New Data
+     ↓
+Prediction / Decision
+Major Statistical Learning Methods
+1. Regression
+
+Regression predicts a continuous numerical value.
+
+Examples:
+
+Predict house price
+Predict temperature
+Predict student's marks
+Predict sales
+
+Common methods:
+
+Linear Regression
+Multiple Linear Regression
+Polynomial Regression
+
+Example:
+
+$$ y = \beta_0 + \beta_1x $$
+2. Classification
+
+Classification assigns an input to one of several predefined classes.
+
+Examples:
+
+Email → Spam / Not Spam
+Student → Pass / Fail
+Image → Cat / Dog
+
+Common methods:
+
+Logistic Regression
+Naive Bayes
+Linear Discriminant Analysis
+Decision Trees
+3. Clustering
+
+Clustering groups similar data objects without predefined class labels.
+
+Examples:
+
+Grouping customers based on purchasing behavior
+Grouping documents by topic
+Grouping images based on similarity
+
+Common methods:
+
+K-Means Clustering
+Hierarchical Clustering
+Gaussian Mixture Models
+4. Bayesian Learning
+
+Bayesian learning uses probability theory to update beliefs when new evidence becomes available.
+
+It is based on Bayes' theorem:
+
+$$ P(H|D)=\frac{P(D|H)P(H)}{P(D)} $$
+
+where:
+
+\(H\) = hypothesis
+\(D\) = observed data
+\(P(H)\) = prior probability
+\(P(D|H)\) = likelihood
+\(P(H|D)\) = posterior probability
+
+Example:
+Determining whether an email is spam based on the words appearing in the email.
+
+5. Nearest Neighbor Learning
+
+The system predicts a new instance by comparing it with similar previously observed instances.
+
+The most common method is K-Nearest Neighbors (KNN).
+
+Steps:
+
+Take a new data point.
+Calculate its distance from existing data points.
+Select the \(K\) closest points.
+Use their values/classes to make the prediction.
+6. Decision Tree Learning
+
+A decision tree represents decisions using a tree structure.
+
+             Attendance > 75?
+              /            \
+            Yes             No
+            /                \
+     Study > 4 hours?       Fail
+        /       \
+      Yes        No
+      /           \
+    Pass          Fail
+
+Decision trees can perform both:
+
+Classification
+Regression
+7. Ensemble Learning
+
+Ensemble learning combines multiple models to obtain a more reliable prediction.
+
+Examples:
+
+Random Forest
+Bagging
+AdaBoost
+Gradient Boosting
+
+For example:
+
+Random Forest = Multiple Decision Trees + Combined Prediction
+
+Supervised and Unsupervised Statistical Learning
+Type	Data	Purpose	Examples
+Supervised Learning	Labeled data	Predict output	Regression, Classification
+Unsupervised Learning	Unlabeled data	Discover patterns	Clustering
+Semi-supervised Learning	Partially labeled data	Improve prediction	Classification
+Reinforcement Learning	Rewards/penalties	Learn actions	Game playing, robotics
+Important Characteristics
+
+Statistical learning methods:
+
+Learn from observed data.
+Identify patterns and relationships.
+Can deal with uncertainty and noise.
+Make predictions about unseen data.
+Use mathematical and statistical models.
+Can improve when more relevant data becomes available.
+Require evaluation using measures such as accuracy, error, precision, recall, or likelihood.
+Simple examination definition
+
+Statistical learning methods are techniques that use statistical models and data-driven algorithms to learn patterns and relationships from observed data and use them to make predictions or decisions about new data.
+
+Major methods:
+Regression → Classification → Bayesian Learning → Nearest Neighbor → Decision Trees → Clustering → Ensemble Methods
