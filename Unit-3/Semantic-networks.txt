@@ -1,0 +1,631 @@
+Semantic Networks in Artificial Intelligence
+
+A Semantic Network is a knowledge representation technique used in AI to represent knowledge as a graph of concepts and relationships.
+
+It represents:
+
+Objects/concepts → as nodes
+Relationships between concepts → as links/edges
+1. Basic Structure
+
+For example:
+
+Bird → is-a → Animal
+
+Bird → has → Wings
+
+Bird → can → Fly
+
+This can be represented as:
+
+             Animal
+                ↑
+              is-a
+                |
+              Bird
+            /  |  \
+         has  can  has
+          ↓    ↓    ↓
+       Wings  Fly  Feathers
+
+Here:
+
+Bird, Animal, Wings, Fly, Feathers are nodes
+is-a, has, and can are relationships
+2. Components of a Semantic Network
+A. Nodes
+
+Nodes represent entities, objects, concepts, or properties.
+
+Examples:
+
+Student
+Teacher
+College
+Book
+Car
+Animal
+B. Links / Edges
+
+Links represent relationships between nodes.
+
+Common relationships are:
+
+Relationship	Meaning	Example
+is-a	Class/category relationship	Dog → is-a → Animal
+instance-of	Particular object belongs to class	Tommy → instance-of → Dog
+has-a	Possession	Car → has-a → Engine
+part-of	Component relationship	Engine → part-of → Car
+can	Ability	Bird → can → Fly
+likes	Preference	John → likes → Music
+3. Example of a Semantic Network
+
+Consider the following knowledge:
+
+A Dog is an Animal.
+A Dog has four legs.
+A Dog has a tail.
+Tommy is a Dog.
+Dogs can bark.
+
+Semantic network:
+
+                    Animal
+                       ↑
+                      is-a
+                       |
+                      Dog
+                 /      |      \
+              has      has      can
+               ↓        ↓        ↓
+           Four Legs   Tail     Bark
+                       ↑
+                    instance-of
+                       |
+                     Tommy
+
+The network allows AI to organize related knowledge.
+
+4. Inheritance in Semantic Networks
+
+One of the most important features of semantic networks is inheritance.
+
+Suppose:
+
+Animal
+  ↑
+ is-a
+  |
+Bird
+  ↑
+ is-a
+  |
+Parrot
+
+If we know:
+
+Animal → needs → Food
+Bird → has → Wings
+Bird → can → Fly
+
+Then a Parrot can inherit properties from Bird and Animal:
+
+Parrot
+  ↓
+has Wings
+can Fly
+needs Food
+
+This avoids storing the same information repeatedly.
+
+Example
+Animal
+  |
+  | needs
+  ↓
+ Food
+
+Bird
+  |
+  | is-a
+  ↓
+Animal
+
+Therefore:
+
+Bird → needs → Food
+
+This is called property inheritance.
+
+5. Types of Relationships
+
+Semantic networks can contain different types of relationships.
+
+IS-A
+
+Represents hierarchy.
+
+Dog → is-a → Animal
+Cat → is-a → Animal
+INSTANCE-OF
+
+Represents membership of an individual in a class.
+
+Tommy → instance-of → Dog
+PART-OF
+
+Represents composition.
+
+Wheel → part-of → Car
+Engine → part-of → Car
+HAS-A
+
+The reverse type of relationship.
+
+Car → has-a → Engine
+Car → has-a → Wheel
+6. Semantic Network with Multiple Levels
+
+A more complete example:
+
+                         Living Thing
+                              ↑
+                            is-a
+                              |
+                           Animal
+                         /        \
+                      is-a        is-a
+                       ↓            ↓
+                      Bird        Mammal
+                       ↑            ↑
+                     is-a         is-a
+                       |            |
+                    Parrot         Dog
+                       ↑            ↑
+                 instance-of   instance-of
+                       |            |
+                     Polly        Tommy
+
+Knowledge can be inherited through the hierarchy.
+
+For example:
+
+Living Thing
+     ↑
+   Animal
+     ↑
+    Bird
+     ↑
+   Parrot
+
+If Living Thing has a property:
+
+Living Thing → needs → Energy
+
+then Parrot can inherit:
+
+Parrot → needs → Energy
+7. Reasoning Using Semantic Networks
+
+Semantic networks can be used for inference.
+
+Suppose the knowledge base contains:
+
+Dog → is-a → Animal
+Animal → needs → Food
+
+Question:
+
+Does a Dog need Food?
+
+Reasoning:
+
+Dog
+ ↓ is-a
+Animal
+ ↓ needs
+Food
+
+Therefore:
+
+Dog needs Food.
+
+This is an example of inheritance-based reasoning.
+
+8. Advantages
+Easy to understand because knowledge is represented graphically.
+Supports inheritance of properties.
+Helps represent relationships between concepts.
+Supports reasoning and inference.
+Reduces duplication of knowledge.
+Useful for representing hierarchical knowledge.
+9. Limitations
+There is no single standard representation for all semantic networks.
+Complex knowledge can produce very large graphs.
+Handling exceptions can be difficult.
+
+For example:
+
+Bird → can → Fly
+
+But:
+
+Penguin → is-a → Bird
+Penguin → cannot → Fly
+
+The system must handle this exception correctly.
+
+Uncertainty is not naturally represented in a basic semantic network.
+Complex logical relationships may be difficult to express.
+10. Semantic Network vs Predicate Logic
+Semantic Network	Predicate Logic
+Graph-based representation	Symbolic/logical representation
+Nodes and links	Predicates and variables
+Easy to visualize	More mathematically precise
+Good for hierarchical knowledge	Good for complex logical statements
+Supports inheritance naturally	Uses formal inference rules
+Example: Dog → is-a → Animal	Dog(x) → Animal(x)
+Exam Definition
+
+A Semantic Network is a graphical knowledge representation technique in Artificial Intelligence in which concepts or entities are represented as nodes and the relationships between them are represented as labeled links or edges. It supports knowledge organization, inheritance, and inference.
+
+Key points to remember
+
+Semantic Network = Nodes + Relationships + Inheritance + Reasoning
+
+       Concept
+          |
+      Relationship
+          |
+       Concept
+
+For an AI lecture, the next closely related topic is Frames, because Semantic Networks and Frames are both important knowledge-representation techniques and are often taught together.
+
+frames and inheritance  
+Frames and Inheritance in Artificial Intelligence
+1. What is a Frame?
+
+A Frame is a knowledge representation technique used in AI to represent knowledge about an object, concept, situation, or event in a structured way.
+
+A frame consists of:
+
+Frame name – identifies the concept
+Slots – attributes or properties
+Values – information stored in the slots
+Default values – values assumed when specific information is unavailable
+Simple Example: Car Frame
+FRAME: CAR
+
+    Slots:
+        Type        → Vehicle
+        Color       → Red
+        Wheels      → 4
+        Engine      → Petrol
+        Speed       → 120 km/h
+
+We can visualize it as:
+
+             CAR FRAME
+          ┌───────────────┐
+          │ Type          │ → Vehicle
+          │ Color         │ → Red
+          │ Wheels        │ → 4
+          │ Engine        │ → Petrol
+          │ Speed         │ → 120 km/h
+          └───────────────┘
+
+So, a frame is similar to a structured record containing knowledge about an entity.
+
+2. Components of a Frame
+1. Frame Name
+
+The name identifies the frame.
+
+FRAME: STUDENT
+2. Slots
+
+Slots represent properties or attributes.
+
+Name
+Age
+Roll_No
+Branch
+College
+3. Slot Values
+
+Values provide information for the slots.
+
+Name    → Ravi
+Age     → 20
+Branch  → AIML
+4. Default Values
+
+A frame can contain a value that is assumed unless specific information is provided.
+
+Example:
+
+FRAME: BIRD
+
+    Color       → Unknown
+    Wings       → 2
+    Can_Fly     → Yes
+
+If we create a particular bird and do not specify its color, the system may use the default value.
+
+3. Example of a Student Frame
+FRAME: STUDENT
+
+    Name       → Ravi
+    Age        → 20
+    Branch     → AIML
+    Year       → 4
+    College    → ABC Engineering College
+
+Another student can have a different frame:
+
+FRAME: STUDENT
+
+    Name       → Anu
+    Age        → 21
+    Branch     → CSE
+    Year       → 4
+    College    → XYZ Engineering College
+
+The frame structure remains the same, while the slot values change.
+
+4. Frames and Inheritance
+
+Inheritance is an important feature of frame-based knowledge representation.
+
+A frame can inherit properties from another frame.
+
+For example:
+
+                    ANIMAL
+                      ↑
+                  inherits
+                      |
+                     BIRD
+                      ↑
+                  inherits
+                      |
+                    PARROT
+
+Suppose:
+
+FRAME: ANIMAL
+
+    Needs_Food → Yes
+    Has_Life   → Yes
+
+And:
+
+FRAME: BIRD
+
+    Parent → ANIMAL
+    Has_Wings → Yes
+    Number_of_Legs → 2
+
+Then BIRD automatically inherits:
+
+Needs_Food → Yes
+Has_Life   → Yes
+
+from ANIMAL.
+
+5. Frame Inheritance Example
+
+Consider:
+
+FRAME: ANIMAL
+    Has_Life     → Yes
+    Needs_Food   → Yes
+    Can_Move     → Yes
+
+Now create:
+
+FRAME: BIRD
+    IS-A         → ANIMAL
+    Has_Wings    → Yes
+    Legs         → 2
+    Can_Fly      → Yes
+
+Because Bird is an Animal:
+
+BIRD
+ ├── Has_Wings    → Yes
+ ├── Legs         → 2
+ ├── Can_Fly      → Yes
+ ├── Has_Life     → Yes       ← inherited
+ ├── Needs_Food   → Yes       ← inherited
+ └── Can_Move     → Yes       ← inherited
+6. Multi-Level Inheritance
+
+Inheritance can occur through multiple levels.
+
+                         LIVING THING
+                              ↑
+                            is-a
+                              |
+                           ANIMAL
+                              ↑
+                            is-a
+                              |
+                            BIRD
+                              ↑
+                            is-a
+                              |
+                           PARROT
+
+Suppose:
+
+LIVING THING
+    Needs_Energy → Yes
+
+ANIMAL
+    Can_Move → Yes
+
+BIRD
+    Has_Wings → Yes
+
+PARROT
+    Can_Talk → Yes
+
+Then Parrot can inherit properties from all its parent frames:
+
+PARROT
+
+    Can_Talk       → Yes
+    Has_Wings      → Yes       ← from BIRD
+    Can_Move       → Yes       ← from ANIMAL
+    Needs_Energy   → Yes       ← from LIVING THING
+
+This is called multi-level inheritance.
+
+7. Default Values and Inheritance
+
+Frames can also use default values.
+
+Example:
+
+FRAME: BIRD
+
+    Has_Wings → Yes
+    Legs      → 2
+    Can_Fly   → Yes   [Default]
+
+Now create:
+
+FRAME: PENGUIN
+
+    IS-A → BIRD
+    Can_Fly → No
+
+Normally, Penguin would inherit:
+
+Can_Fly → Yes
+
+But Penguin provides a specific value:
+
+Can_Fly → No
+
+Therefore, the specific value overrides the inherited/default value.
+
+Important principle
+
+Specific knowledge generally takes precedence over inherited or default knowledge.
+
+This is useful for representing exceptions.
+
+8. Frame Hierarchy
+
+A frame system can be represented as a hierarchy:
+
+                         VEHICLE
+                            |
+             ┌──────────────┴──────────────┐
+             ↓                             ↓
+                           CAR           BIKE
+             |                             |
+       ┌─────┴─────┐                 ┌─────┴─────┐
+       ↓           ↓                 ↓           ↓
+    SEDAN        SUV              SPORTS      ELECTRIC
+
+For example:
+
+FRAME: VEHICLE
+
+    Has_Engine → Yes
+    Has_Wheels → Yes
+FRAME: CAR
+
+    IS-A → VEHICLE
+    Wheels → 4
+FRAME: SEDAN
+
+    IS-A → CAR
+    Doors → 4
+
+Therefore:
+
+SEDAN
+ ├── Doors       → 4
+ ├── Wheels      → 4          ← inherited from CAR
+ ├── Has_Engine  → Yes       ← inherited from VEHICLE
+ └── Has_Wheels  → Yes       ← inherited from VEHICLE
+9. Advantages of Frames
+1. Structured representation
+
+Frames organize knowledge into a clear structure.
+
+2. Supports inheritance
+
+Common properties need not be stored repeatedly.
+
+3. Supports default reasoning
+
+Default values can be specified.
+
+4. Easy to understand
+
+Frames resemble objects or records in programming.
+
+5. Efficient knowledge representation
+
+Common information can be stored at higher levels and inherited by lower-level frames.
+
+10. Limitations of Frames
+Difficult to represent highly complex logical relationships.
+Handling exceptions can become complicated.
+No single universal frame representation exists.
+Dynamic knowledge may require additional mechanisms.
+Uncertain knowledge is not naturally represented in basic frames.
+11. Frames vs Semantic Networks
+Feature	Semantic Network	Frames
+Representation	Graph	Structured record
+Main elements	Nodes and links	Frames and slots
+Represents	Concepts and relationships	Objects/concepts and properties
+Inheritance	Yes	Yes
+Default values	Limited/basic	Strong support
+Structure	Network/hierarchy	Slot-value structure
+Example	Dog → is-a → Animal	DOG: Legs → 4
+Best suited for	Relationships	Detailed object descriptions
+Relationship between them
+
+They are closely related:
+
+Semantic Network
+      ↓
+Concepts + Relationships
+      ↓
+Frames
+      ↓
+Concept + Properties + Values + Defaults
+12. Exam Definition
+
+A frame is a structured knowledge representation technique in AI that represents an object, concept, or situation using a collection of slots and their values. Frames support inheritance, default values, and hierarchical organization of knowledge.
+
+One-line explanation of inheritance
+
+Inheritance is the mechanism by which a child frame automatically obtains properties and values from its parent frame unless they are specifically overridden.
+
+Easy example to remember
+ANIMAL
+  ↓
+BIRD
+  ↓
+PARROT
+
+Animal → Needs_Food = Yes
+Bird   → Has_Wings = Yes
+Parrot → Can_Talk = Yes
+
+Therefore:
+
+PARROT
+ ├── Can_Talk     = Yes
+ ├── Has_Wings    = Yes       ← inherited
+ └── Needs_Food   = Yes       ← inherited
+
+Key formula:
+Frame = Object/Concept + Slots + Values + Defaults + Inheritance

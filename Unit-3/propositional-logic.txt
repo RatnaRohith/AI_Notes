@@ -1,0 +1,436 @@
+Tue, Sep 22 at 1:33 PM
+proportional logic 
+Propositional Logic in Artificial Intelligence
+
+Propositional Logic (PL) is a formal system used in AI to represent knowledge and reason about facts using propositions that can be either True (T) or False (F).
+
+Note: The correct term is Propositional Logic, not "proportional logic."
+
+1. What is a Proposition?
+
+A proposition is a declarative statement that has exactly one truth value: True or False.
+
+Examples
+Statement	Proposition?	Truth value
+The Earth is round.	Yes	True
+2 + 2 = 5	Yes	False
+It is raining.	Yes	T or F
+Close the door.	No	—
+What is your name?	No	—
+
+A proposition is usually represented using a symbol such as:
+
+P = It is raining.
+Q = The ground is wet.
+2. Basic Components
+
+Propositional logic consists of:
+
+1. Propositional variables
+
+Symbols representing propositions:
+
+P, Q, R, S
+
+Example:
+
+P = It is raining.
+Q = The ground is wet.
+2. Logical connectives
+
+Connectives are used to combine propositions.
+
+Symbol	Name	Meaning
+¬	NOT	Negation
+∧	AND	Conjunction
+∨	OR	Disjunction
+→	IMPLIES	Implication
+↔	IFF	Biconditional
+3. NOT (¬)
+
+The NOT operator reverses the truth value.
+
+¬P
+
+Read as:
+
+"Not P"
+
+If:
+
+P = It is raining.
+
+Then:
+
+¬P = It is not raining.
+Truth Table
+P	¬P
+T	F
+F	T
+4. AND (∧)
+
+AND is true only when both propositions are true.
+
+P ∧ Q
+
+Read as:
+
+"P AND Q"
+
+Example:
+
+P = It is raining.
+Q = The ground is wet.
+
+P ∧ Q
+
+means:
+
+It is raining AND the ground is wet.
+
+Truth Table
+P	Q	P ∧ Q
+T	T	T
+T	F	F
+F	T	F
+F	F	F
+5. OR (∨)
+
+OR is true when at least one proposition is true.
+
+P ∨ Q
+
+Example:
+
+It is raining OR it is cloudy.
+
+Truth Table
+P	Q	P ∨ Q
+T	T	T
+T	F	T
+F	T	T
+F	F	F
+
+In propositional logic, this is normally inclusive OR.
+
+6. Implication (→)
+
+Implication represents an IF–THEN relationship.
+
+P → Q
+
+Read as:
+
+If P, then Q.
+
+Example:
+
+P = It is raining.
+Q = The ground is wet.
+
+P → Q
+
+means:
+
+If it is raining, then the ground is wet.
+
+Truth Table
+P	Q	P → Q
+T	T	T
+T	F	F
+F	T	T
+F	F	T
+Important point
+
+The implication is false only when P is true and Q is false.
+
+7. Biconditional (↔)
+
+Biconditional means:
+
+P if and only if Q.
+
+P ↔ Q
+
+It is equivalent to:
+
+(P → Q) ∧ (Q → P)
+Truth Table
+P	Q	P ↔ Q
+T	T	T
+T	F	F
+F	T	F
+F	F	T
+8. Compound Propositions
+
+Multiple propositions can be combined.
+
+Example:
+
+P = It is raining.
+Q = The ground is wet.
+R = The road is slippery.
+
+We can write:
+
+(P ∧ Q) → R
+
+Meaning:
+
+If it is raining AND the ground is wet, then the road is slippery.
+
+9. Operator Precedence
+
+When multiple operators occur, the usual order is:
+
+¬ NOT
+∧ AND
+∨ OR
+→ Implication
+↔ Biconditional
+
+For example:
+
+¬P ∨ Q ∧ R
+
+is interpreted as:
+
+(¬P) ∨ (Q ∧ R)
+
+Using parentheses is recommended for clarity.
+
+10. Syntax of Propositional Logic
+
+The syntax specifies how valid logical expressions are constructed.
+
+Basic formulas
+P
+Q
+R
+Compound formulas
+¬P
+P ∧ Q
+P ∨ Q
+P → Q
+P ↔ Q
+
+Example:
+
+(P ∧ Q) → (R ∨ S)
+
+is a well-formed formula.
+
+11. Semantics
+
+Semantics deals with the meaning and truth value of propositions.
+
+For example:
+
+P = The patient has fever.
+Q = The patient has infection.
+
+Knowledge:
+
+P → Q
+
+Fact:
+
+P
+
+From these, we can infer:
+
+Q
+
+This is an example of reasoning using propositional logic.
+
+12. Propositional Logic in AI
+
+Propositional logic can be used for knowledge representation.
+
+Consider a simple AI system for a robot.
+
+Facts
+P = Battery is charged.
+Q = Robot can move.
+Rule
+P → Q
+
+Meaning:
+
+If the battery is charged, then the robot can move.
+
+Given
+P = True
+
+Therefore:
+
+Q = True
+
+The AI can conclude:
+
+The robot can move.
+
+13. Inference in Propositional Logic
+
+Inference is the process of deriving new knowledge from existing knowledge.
+
+One important inference rule is Modus Ponens.
+
+Modus Ponens
+
+Given:
+
+P → Q
+P
+
+we can conclude:
+
+Q
+Example
+If it rains, the ground gets wet.
+It is raining.
+Therefore, the ground is wet.
+
+Represented as:
+
+P → Q
+P
+────
+Q
+14. Knowledge Base
+
+A Knowledge Base (KB) contains propositions and rules.
+
+Example:
+
+P = It is raining.
+Q = The ground is wet.
+R = The road is slippery.
+
+Knowledge base:
+
+P
+P → Q
+Q → R
+
+From:
+
+P
+
+we infer:
+
+Q
+
+Then:
+
+R
+
+So:
+
+P → Q
+Q → R
+P
+
+allows the AI to derive:
+
+R
+15. Important Concepts
+Tautology
+
+A proposition that is always true.
+
+Example:
+
+P ∨ ¬P
+
+This is always true.
+
+Contradiction
+
+A proposition that is always false.
+
+Example:
+
+P ∧ ¬P
+
+A proposition cannot simultaneously be true and false.
+
+Contingency
+
+A proposition that can be either true or false depending on the situation.
+
+Example:
+
+P ∧ Q
+16. Advantages of Propositional Logic
+Simple and easy to understand.
+Has precise mathematical semantics.
+Useful for representing simple facts.
+Supports automated reasoning.
+Can be implemented using algorithms such as truth-table reasoning, resolution, and SAT solving.
+17. Limitations
+
+Propositional logic has limited expressive power.
+
+For example, it cannot naturally represent:
+
+"All students who study AI can solve AI problems."
+
+We would need a separate proposition for every possible student.
+
+It also cannot directly represent:
+
+Objects
+Properties of objects
+Relations between objects
+Variables
+Quantifiers such as ∀ and ∃
+
+For these situations, First-Order Predicate Logic is more powerful.
+
+Propositional Logic vs Predicate Logic
+Feature	Propositional Logic	Predicate Logic
+Basic unit	Proposition	Predicate
+Variables	No	Yes
+Objects	Limited	Yes
+Relations	No direct representation	Yes
+Quantifiers	No	Yes
+∀, ∃	No	Yes
+Expressive power	Lower	Higher
+Example	P → Q	Human(x) → Mortal(x)
+Simple way to remember
+
+Propositional Logic:
+
+"It is raining."
+
+Predicate Logic:
+
+"All humans are mortal."
+
+Key Formula Summary
+NOT          ¬P
+AND          P ∧ Q
+OR           P ∨ Q
+IMPLIES      P → Q
+BICONDITIONAL P ↔ Q
+Most important inference
+P → Q
+P
+─────
+Q
+
+Modus Ponens
+
+AI perspective
+Real-world facts
+       ↓
+Propositions
+       ↓
+Knowledge Base
+       ↓
+Inference
+       ↓
+New Knowledge / Conclusion
+
+This makes propositional logic one of the fundamental foundations of knowledge representation and reasoning in AI.

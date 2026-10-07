@@ -1,0 +1,1425 @@
+Representation of Knowledge – Knowledge Representation Issues
+1. Introduction
+
+Knowledge Representation (KR) is the process of representing real-world knowledge in a form that a computer system can store, understand, reason with, and use to make decisions.
+
+In Artificial Intelligence, an intelligent system needs knowledge about:
+
+Objects and their properties
+Events and actions
+Relationships between objects
+Rules and constraints
+Facts about the world
+Causes and effects
+Uncertainty and incomplete information
+Example
+
+Consider the statement:
+
+“All humans are mortal. Socrates is a human. Therefore, Socrates is mortal.”
+
+A knowledge representation system should store these facts and rules in such a way that it can infer the conclusion.
+
+Human(Socrates)
+∀x Human(x) → Mortal(x)
+--------------------------------
+Mortal(Socrates)
+
+Thus, KR is not simply storing information. It also enables reasoning over the stored knowledge.
+
+2. What is Knowledge Representation?
+Definition
+
+Knowledge Representation is the method of encoding knowledge about the world into a formal structure that can be processed and reasoned about by an AI system.
+
+A good knowledge representation should allow an AI system to:
+
+Represent facts.
+Represent relationships.
+Represent rules.
+Draw new conclusions.
+Handle changes in knowledge.
+Handle incomplete or uncertain information.
+3. Knowledge Representation Cycle
+
+An AI system generally follows this process:
+
+        Real World
+             ↓
+     Acquire Knowledge
+             ↓
+   Represent Knowledge
+             ↓
+    Store in Knowledge Base
+             ↓
+        Reasoning
+             ↓
+      New Knowledge
+             ↓
+       Take Action
+Example: Medical Diagnosis
+Patient has fever
+        ↓
+Patient has cough
+        ↓
+Knowledge Base
+        ↓
+Reasoning
+        ↓
+Possible infection
+        ↓
+Diagnosis / Recommendation
+4. Knowledge Representation Issues
+
+When designing a knowledge representation system, several important issues must be considered.
+
+The major knowledge representation issues are:
+
+Representational Adequacy
+Inferential Adequacy
+Inferential Efficiency
+Acquisitional Efficiency
+Handling Incomplete Knowledge
+Handling Uncertain Knowledge
+Representing Common-Sense Knowledge
+Representing Time and Change
+Consistency of Knowledge
+Scalability and Complexity
+5. Representational Adequacy
+Meaning
+
+Representational adequacy refers to the ability of a knowledge representation system to represent all the important types of knowledge required for a particular problem.
+
+A KR system should be able to represent:
+
+Objects
+Properties
+Relationships
+Events
+Actions
+Rules
+Concepts
+Situations
+Example
+
+Suppose we want to represent:
+
+“Ravi owns a car.”
+
+We need to represent:
+
+Person → Ravi
+Object → Car
+Relationship → Owns
+
+A simple representation could be:
+
+Owns(Ravi, Car1)
+
+If we also want to represent:
+
+“The car is red.”
+
+we need:
+
+Color(Car1, Red)
+Key Point
+
+A representation is representationally adequate if it can express the knowledge required by the application.
+
+6. Inferential Adequacy
+Meaning
+
+Inferential adequacy is the ability of a knowledge representation system to derive new knowledge from existing knowledge.
+
+The system should not only store facts but should also be able to reason with them.
+
+Example
+
+Given:
+
+Human(Ravi)
+
+and the rule:
+
+Human(x) → Mortal(x)
+
+The system should infer:
+
+Mortal(Ravi)
+Another Example
+Bird(Tweety)
+Bird(x) → HasWings(x)
+
+Therefore:
+
+HasWings(Tweety)
+Key Point
+
+Representational adequacy → Can I represent the knowledge?
+
+Inferential adequacy → Can I derive new knowledge from it?
+
+7. Inferential Efficiency
+Meaning
+
+Inferential efficiency refers to the ability of a knowledge representation system to perform reasoning efficiently.
+
+An AI system may contain thousands or millions of facts and rules.
+
+If it checks every fact for every query, reasoning can become very slow.
+
+Example
+
+Suppose a knowledge base contains:
+
+1,000,000 facts
+100,000 rules
+
+If the system searches everything for every question, the response may be extremely slow.
+
+Therefore, KR systems use techniques such as:
+
+Indexing
+Heuristics
+Rule organization
+Efficient search
+Inference optimization
+Example
+
+If the question is:
+
+“Can Ravi drive a car?”
+
+The system should primarily search knowledge related to:
+
+Ravi
+Driver
+Car
+Driving
+
+rather than examining unrelated information such as:
+
+Weather on Mars
+History of Rome
+Population of Japan
+Key Point
+
+Inferential efficiency = obtaining conclusions with minimum unnecessary computation.
+
+8. Acquisitional Efficiency
+Meaning
+
+Acquisitional efficiency refers to how easily new knowledge can be added to the knowledge base.
+
+Knowledge is continuously changing.
+
+For example:
+
+Old:
+Ravi works at Company A.
+
+New:
+Ravi works at Company B.
+
+The system should make it easy to:
+
+Add new facts
+Modify existing facts
+Delete outdated facts
+Update rules
+Example
+
+A medical knowledge system may need regular updates when:
+
+New diseases are discovered
+New medicines are introduced
+New medical guidelines are published
+Key Point
+
+A good KR system should make knowledge acquisition and updating easy and efficient.
+
+9. Handling Incomplete Knowledge
+
+Real-world knowledge is rarely complete.
+
+An AI system may not know everything about an object.
+
+Example
+
+Suppose the system knows:
+
+Bird(Tweety)
+
+But it does not know:
+
+Color(Tweety, ?)
+
+The system should not automatically assume:
+
+Color(Tweety, Red)
+
+Instead, it should recognize that the information is unknown.
+
+Three possible states
+
+For a statement such as:
+
+“Ravi owns a car.”
+
+the system may know:
+
+TRUE
+FALSE
+UNKNOWN
+
+This is important because:
+
+Unknown does not necessarily mean false.
+
+10. Handling Uncertain Knowledge
+
+Many real-world situations involve uncertainty.
+
+Example
+
+A doctor may say:
+
+“The patient probably has influenza.”
+
+This is not a definite fact.
+
+Similarly:
+
+“There is a 70% chance of rain tomorrow.”
+
+An AI system needs mechanisms for representing uncertainty.
+
+Common approaches include:
+
+Probability
+Bayesian networks
+Fuzzy logic
+Certainty factors
+Possibility theory
+Example
+Rain tomorrow = 0.7
+
+This represents uncertainty quantitatively.
+
+11. Representing Common-Sense Knowledge
+
+One of the biggest challenges in AI is representing common-sense knowledge.
+
+Humans automatically understand many things that are rarely explicitly stated.
+
+Example
+
+Consider:
+
+“John went to the restaurant and ordered food.”
+
+Humans can infer that:
+
+John is probably inside the restaurant.
+Food is likely prepared before being served.
+John may have eaten the food.
+John probably paid or will pay for it.
+
+However, these facts may not be explicitly stated.
+
+Problem
+
+There is an enormous amount of common-sense knowledge.
+
+Examples:
+
+Objects fall when unsupported.
+People need food.
+Fire can cause burns.
+Water can make things wet.
+People usually use doors to enter buildings.
+
+Representing all such knowledge is difficult.
+
+12. Representing Time
+
+Knowledge often depends on time.
+
+Consider:
+
+“Ravi is a student.”
+
+This may be true today but not necessarily five years later.
+
+We may need to represent:
+
+Student(Ravi, 2026)
+
+and later:
+
+Graduate(Ravi, 2029)
+Temporal knowledge includes:
+Before
+After
+During
+Since
+Until
+Duration
+Frequency
+Example
+Event A occurs before Event B.
+
+Representation:
+
+Before(A, B)
+13. Representing Change
+
+The world is dynamic.
+
+Objects change their:
+
+Location
+State
+Properties
+Relationships
+Example
+
+Initially:
+
+Door(Closed)
+
+After an action:
+
+Open(Door)
+
+The KR system must represent:
+
+Initial State → Action → New State
+
+For example:
+
+Closed(Door)
+      ↓
+OpenDoor()
+      ↓
+Open(Door)
+
+This is important in:
+
+Robotics
+Game AI
+Planning
+Autonomous vehicles
+14. Handling Consistency
+
+A knowledge base may contain contradictory information.
+
+Example
+
+Suppose it contains:
+
+Bird(Tweety)
+CanFly(Tweety)
+
+Later it receives:
+
+CannotFly(Tweety)
+
+Now there is a contradiction:
+
+CanFly(Tweety)
+CannotFly(Tweety)
+
+A KR system needs mechanisms for:
+
+Detecting contradictions
+Resolving conflicts
+Maintaining consistency
+Determining which information is more reliable
+15. Scalability
+
+A knowledge representation system should work efficiently as the amount of knowledge increases.
+
+Small knowledge base
+100 facts
+
+may be easy to process.
+
+But a real-world AI system may contain:
+
+Millions/Billions of facts
+
+Therefore, the system must be able to:
+
+Store large amounts of knowledge
+Search efficiently
+Perform inference efficiently
+Update knowledge efficiently
+16. Granularity of Knowledge
+
+Another issue is deciding how detailed the representation should be.
+
+Example
+
+Suppose we represent:
+
+“Ravi drove to college.”
+
+A simple representation:
+
+Drove(Ravi, College)
+
+A detailed representation might include:
+
+Driver = Ravi
+Vehicle = Car1
+StartingLocation = Home
+Destination = College
+Time = 8:00 AM
+Speed = 40 km/h
+Weather = Rainy
+Problem
+
+More detail provides more information but increases:
+
+Storage requirements
+Complexity
+Reasoning time
+
+Therefore, the appropriate level of granularity must be selected.
+
+17. Choosing the Right Representation
+
+Different types of knowledge may require different representation techniques.
+
+Common knowledge representation techniques
+Technique	Suitable for
+Logic	Facts and formal reasoning
+Production Rules	IF–THEN knowledge
+Semantic Networks	Relationships between concepts
+Frames	Structured object knowledge
+Ontologies	Concepts, categories and relationships
+Bayesian Networks	Uncertain knowledge
+Fuzzy Logic	Vagueness
+Scripts	Common sequences of events
+Example
+
+For:
+
+“If it is raining, carry an umbrella.”
+
+A production rule is appropriate:
+
+IF Rain
+THEN Carry(Umbrella)
+18. Trade-off in Knowledge Representation
+
+There is often a trade-off between:
+
+Expressiveness
+      ↕
+Efficiency
+
+A very expressive representation can represent complex knowledge, but reasoning may become computationally expensive.
+
+A simple representation may be fast but unable to express complex knowledge.
+
+Therefore:
+
+A good KR system should provide a balance between expressiveness and computational efficiency.
+
+19. Summary of Knowledge Representation Issues
+Issue	Main Question
+Representational Adequacy	Can the system represent required knowledge?
+Inferential Adequacy	Can it derive new knowledge?
+Inferential Efficiency	Can it reason efficiently?
+Acquisitional Efficiency	Can new knowledge be added easily?
+Incomplete Knowledge	What if information is missing?
+Uncertain Knowledge	What if information is uncertain?
+Common Sense	Can everyday knowledge be represented?
+Time	Can temporal information be represented?
+Change	Can changing states be represented?
+Consistency	Can contradictions be handled?
+Scalability	Can the system handle huge knowledge bases?
+Granularity	How much detail should be represented?
+20. Important Exam Point
+
+The four classical requirements of a knowledge representation system are:
+
+1. Representational Adequacy
+
+Ability to represent the required knowledge.
+
+2. Inferential Adequacy
+
+Ability to derive new knowledge from existing knowledge.
+
+3. Inferential Efficiency
+
+Ability to perform inference efficiently.
+
+4. Acquisitional Efficiency
+
+Ability to acquire and incorporate new knowledge efficiently.
+
+Easy way to remember
+
+R – I – I – A
+
+Represent → Infer → Infer Efficiently → Acquire
+
+Or:
+
+“Represent knowledge, Infer new knowledge, Infer efficiently, Acquire knowledge easily.”
+
+21. Possible University Exam Questions
+2-Mark Questions
+Define Knowledge Representation.
+What is representational adequacy?
+What is inferential adequacy?
+Define inferential efficiency.
+What is acquisitional efficiency?
+Why is common-sense knowledge difficult to represent?
+What is incomplete knowledge?
+Why is uncertainty important in knowledge representation?
+5-Mark Questions
+
+Explain the major issues in Knowledge Representation.
+
+Expected points:
+
+1. Representational adequacy
+2. Inferential adequacy
+3. Inferential efficiency
+4. Acquisitional efficiency
+5. Incomplete knowledge
+6. Uncertainty
+7. Common-sense knowledge
+8. Time and change
+9. Consistency
+10. Scalability
+10-Mark Question
+
+Explain the issues involved in Knowledge Representation in Artificial Intelligence with suitable examples.
+
+For a long-answer question, explain the four classical issues first, followed by incomplete/uncertain knowledge, common sense, time, change, consistency, and scalability. This gives a strong exam-oriented structure.
+
+what is knowledge and how it is used in AI
+Knowledge and Its Use in Artificial Intelligence
+1. What is Knowledge?
+
+Knowledge is the collection of facts, information, concepts, relationships, rules, and experiences that an intelligent system can use to understand a situation, solve problems, and make decisions.
+
+Simple definition
+
+Knowledge is information about the world together with the relationships and rules needed to reason about that information.
+
+For example, a human may know:
+
+Birds have wings.
+Birds generally can fly.
+Penguins are birds.
+Penguins cannot fly.
+
+These are not just isolated facts. They are facts + relationships + rules, which can be used for reasoning.
+
+2. Data, Information, and Knowledge
+
+It is useful to distinguish these three concepts.
+
+Data
+
+Raw observations or values.
+
+25
+Ravi
+80 km/h
+Information
+
+Data that has meaning.
+
+Ravi's speed is 80 km/h.
+Knowledge
+
+Information combined with relationships, rules, and the ability to reason.
+
+If a vehicle travels above the speed limit,
+it may receive a speeding violation.
+
+Ravi is travelling at 80 km/h.
+Therefore, Ravi may be violating the speed limit.
+
+So:
+
+Data
+  ↓
+Information
+  ↓
+Knowledge
+  ↓
+Reasoning
+  ↓
+Decision
+3. Types of Knowledge Used in AI
+
+AI systems can work with different types of knowledge.
+
+1. Factual Knowledge
+
+Knowledge about facts.
+
+Example:
+
+The Earth revolves around the Sun.
+Delhi is the capital of India.
+2. Relational Knowledge
+
+Knowledge about relationships between entities.
+
+Example:
+
+Ravi → student_of → ABC College
+ABC College → located_in → Andhra Pradesh
+3. Procedural Knowledge
+
+Knowledge about how to perform an action.
+
+Example:
+
+To make tea:
+
+Boil water
+↓
+Add tea powder
+↓
+Add milk
+↓
+Add sugar
+↓
+Serve
+4. Heuristic Knowledge
+
+Knowledge based on experience or rules of thumb.
+
+Example:
+
+If the road is wet, drive more carefully.
+
+This is not an absolute law, but it can help an AI make a decision.
+
+5. Common-Sense Knowledge
+
+Everyday knowledge that humans normally assume.
+
+Example:
+
+If a glass falls on a hard floor, it may break.
+
+6. Meta-Knowledge
+
+Knowledge about knowledge.
+
+Example:
+
+“This rule is more reliable than that rule.”
+
+An expert system may use this to decide which knowledge source to trust.
+
+4. What is Knowledge in AI?
+
+In AI, knowledge is information about a problem domain that is stored in a form that a computer can process and reason about.
+
+The stored knowledge is generally called a:
+
+Knowledge Base (KB)
+
+For example, consider a medical AI.
+
+Knowledge Base
+│
+├── Disease information
+├── Symptoms
+├── Causes
+├── Medicines
+├── Patient information
+└── Diagnostic rules
+
+The AI uses this knowledge to reason about a particular patient.
+
+5. How Knowledge is Used in AI
+
+Knowledge plays a central role in intelligent behavior.
+
+The basic process is:
+
+             WORLD
+               ↓
+          Observations
+               ↓
+        ┌───────────────┐
+        │   Knowledge   │
+        │     Base      │
+        └───────────────┘
+               ↓
+           Reasoning
+               ↓
+            Decision
+               ↓
+             Action
+6. Knowledge for Problem Solving
+
+AI uses knowledge to solve problems.
+
+Example
+
+Suppose an AI has:
+
+Fact:
+Ravi is at Home.
+
+Rule:
+If Ravi is at Home, Ravi can travel to College by Bus.
+
+Fact:
+Bus goes from Home to College.
+
+The AI can reason:
+
+Ravi is at Home
+      +
+Bus connects Home → College
+      ↓
+Ravi can travel to College
+
+Thus, knowledge helps the AI find a solution.
+
+7. Knowledge for Reasoning
+
+AI can derive new knowledge from existing knowledge.
+
+Example:
+
+Fact:
+Socrates is a human.
+
+Rule:
+All humans are mortal.
+
+Inference:
+Socrates is mortal.
+
+In logical form:
+
+Human(Socrates)
+
+∀x Human(x) → Mortal(x)
+
+Therefore:
+
+Mortal(Socrates)
+
+This process is called inference.
+
+8. Knowledge for Decision Making
+
+AI uses knowledge to choose an appropriate action.
+
+Example: Self-driving car
+
+Knowledge:
+
+Red traffic light → Stop
+Green traffic light → Move
+Pedestrian detected → Slow/Stop
+Obstacle detected → Avoid
+
+The AI combines:
+
+Sensor Data + Knowledge + Reasoning
+                    ↓
+                 Decision
+                    ↓
+                  Action
+9. Knowledge for Planning
+
+AI uses knowledge to determine a sequence of actions to achieve a goal.
+
+Example
+
+Goal:
+
+Reach College.
+
+Knowledge:
+
+Home → Bus Stop
+Bus Stop → College
+
+AI can generate a plan:
+
+1. Leave Home
+2. Go to Bus Stop
+3. Take Bus
+4. Get down at College
+
+This is important in:
+
+Robotics
+Game AI
+Autonomous systems
+Logistics
+Navigation
+10. Knowledge in Expert Systems
+
+Expert systems use a knowledge base + inference engine.
+
+          User
+           ↓
+     User Interface
+           ↓
+     Inference Engine
+           ↕
+     Knowledge Base
+           ↓
+        Solution
+Example
+
+A medical expert system may contain:
+
+IF fever AND cough
+THEN possible_flu
+
+Given:
+
+Patient has fever.
+Patient has cough.
+
+The inference engine applies the rule:
+
+fever + cough
+     ↓
+possible flu
+11. Knowledge in Game Playing
+
+Game-playing AI uses knowledge about:
+
+Game rules
+Board states
+Legal moves
+Opponent behavior
+Winning conditions
+Strategies
+
+For example, chess AI knows:
+
+Chess rules
+     ↓
+Possible moves
+     ↓
+Evaluate positions
+     ↓
+Choose best move
+
+Algorithms such as Minimax and Alpha-Beta Pruning use the available game knowledge to select moves.
+
+12. Knowledge in Natural Language Processing
+
+AI needs knowledge to understand language.
+
+Consider:
+
+“The boy dropped the glass because it was slippery.”
+
+Understanding what “it” refers to requires contextual knowledge.
+
+NLP systems use knowledge about:
+
+Words
+Grammar
+Meaning
+Context
+Relationships
+Real-world concepts
+13. Knowledge in Robotics
+
+A robot needs knowledge about:
+
+Objects
+Locations
+Actions
+Environment
+Obstacles
+Goals
+
+For example:
+
+Knowledge:
+Table is in Room A.
+Cup is on Table.
+Robot is in Room A.
+
+Goal:
+Pick up the cup.
+
+The robot can reason:
+
+Robot
+ ↓
+Room A
+ ↓
+Table
+ ↓
+Cup
+ ↓
+Pick up Cup
+14. Knowledge in Recommendation Systems
+
+Recommendation systems use knowledge about:
+
+Users
+Products
+Preferences
+Previous interactions
+Relationships between products
+
+Example:
+
+User likes:
+Science fiction movies
+
+Knowledge:
+Movie A → Science Fiction
+Movie B → Science Fiction
+
+Recommendation:
+Movie A / Movie B
+15. Knowledge Representation
+
+The computer cannot directly reason with knowledge in the same way humans express it.
+
+Therefore, knowledge must be represented in a suitable formal form.
+
+Common knowledge representation techniques include:
+
+Knowledge
+   ↓
+Representation
+   ├── Logic
+   ├── Semantic Networks
+   ├── Frames
+   ├── Production Rules
+   ├── Ontologies
+   └── Probabilistic Models
+
+For example:
+
+Natural language
+
+All humans are mortal.
+
+Logic
+∀x Human(x) → Mortal(x)
+
+The logical representation makes it possible for an AI system to perform inference.
+
+16. Why is Knowledge Important in AI?
+
+Without knowledge, an AI system may only process raw inputs.
+
+Knowledge allows it to:
+
+Understand situations
+Reason about facts
+Solve problems
+Make decisions
+Plan actions
+Predict outcomes
+Learn from experience
+Interact intelligently with humans
+
+A useful way to remember this is:
+
+Knowledge gives AI the information it needs to reason and act intelligently.
+
+17. Knowledge-Based AI Architecture
+
+A basic knowledge-based AI system can be represented as:
+
+                 USER / ENVIRONMENT
+                         ↓
+                    Input / Data
+                         ↓
+              ┌───────────────────┐
+              │   Knowledge Base   │
+              │                   │
+              │ Facts + Rules +   │
+              │ Relationships     │
+              └─────────┬─────────┘
+                        ↓
+              ┌───────────────────┐
+              │ Inference Engine  │
+              │                   │
+              │ Reasoning         │
+              └─────────┬─────────┘
+                        ↓
+                    Decision
+                        ↓
+                     Action
+Example
+Knowledge:
+Birds can fly.
+Tweety is a bird.
+
+Inference:
+Tweety can fly.
+
+Decision:
+Tweety can be treated as a flying bird.
+18. Knowledge vs Intelligence
+
+An important point for students:
+
+Knowledge alone is not intelligence.
+
+For example:
+
+Knowledge:
+A red traffic light means STOP.
+
+The AI also needs:
+
+Perception → Recognize red light
+Knowledge → Red means STOP
+Reasoning → Determine required action
+Action → Apply brakes
+
+Therefore:
+
+Intelligent behavior results from combining knowledge with perception, reasoning, learning, and action.
+
+Exam-Oriented Definition
+
+Knowledge in Artificial Intelligence is a collection of facts, concepts, relationships, rules, and experiences about a particular domain that can be represented in a machine-readable form and used by an AI system for reasoning, problem solving, decision making, and planning.
+
+Short 5-mark answer structure
+
+If asked “What is knowledge and how is it used in AI?”, write:
+
+Definition of knowledge.
+Difference between data, information, and knowledge.
+Types of knowledge.
+Knowledge Base.
+Role of knowledge in:
+Problem solving
+Reasoning
+Decision making
+Planning
+Expert systems
+Robotics/game playing
+Conclude with:
+
+Knowledge is the foundation of knowledge-based intelligent systems because it enables an AI system to reason about the world and make intelligent decisions.
+
+Tue, Sep 15 at 6:50 AM
+Knowledge in AI
+Knowledge in Artificial Intelligence
+1. Definition
+
+In Artificial Intelligence, knowledge is the collection of facts, concepts, relationships, rules, and information about a particular domain that an AI system uses to understand, reason, solve problems, make decisions, and take actions.
+
+Knowledge = Information + Relationships + Rules + Ability to use them for reasoning
+
+Example
+
+Consider the following knowledge:
+
+Ravi is a student.
+Every student has an ID.
+Ravi is a student.
+
+From this knowledge, an AI system can infer:
+
+Ravi has a student ID.
+
+2. Knowledge vs Data vs Information
+
+These terms are related but different.
+
+Concept	Meaning	Example
+Data	Raw facts or observations	80
+Information	Meaningful interpretation of data	Ravi's marks are 80
+Knowledge	Information combined with relationships/rules that supports reasoning	If marks ≥ 40, Ravi has passed
+Data
+  ↓
+Information
+  ↓
+Knowledge
+  ↓
+Reasoning
+  ↓
+Decision / Action
+3. Components of Knowledge
+
+Knowledge in AI can contain:
+
+1. Facts
+
+Statements that are considered true.
+
+Ravi is a student.
+The Earth revolves around the Sun.
+2. Objects
+
+Entities in the domain.
+
+Ravi
+Car
+College
+Book
+3. Properties
+
+Characteristics of objects.
+
+Car → Red
+Student → Intelligent
+Book → 500 pages
+4. Relationships
+
+Connections between objects.
+
+Ravi → studies_at → College
+Ravi → owns → Car
+5. Rules
+
+Rules describe how knowledge can be used to derive conclusions.
+
+IF student has attendance ≥ 75%
+THEN student is eligible for examination.
+6. Constraints
+
+Restrictions on possible situations.
+
+A student cannot simultaneously be
+in two different classrooms.
+4. Types of Knowledge in AI
+A. Factual Knowledge
+
+Knowledge about what is true.
+
+Example:
+
+Delhi is the capital of India.
+Ravi is a student.
+B. Relational Knowledge
+
+Knowledge about relationships between entities.
+
+Example:
+
+Ravi → studies_at → College
+College → located_in → Andhra Pradesh
+C. Procedural Knowledge
+
+Knowledge about how to perform something.
+
+Example:
+
+To start a car:
+
+Insert key
+   ↓
+Turn key
+   ↓
+Start engine
+   ↓
+Release key
+D. Heuristic Knowledge
+
+Knowledge based on experience or rules of thumb.
+
+Example:
+
+If a road is wet, reduce driving speed.
+
+It is useful but may not always be true.
+
+E. Common-Sense Knowledge
+
+Everyday knowledge that humans normally understand without explicitly stating it.
+
+Example:
+
+If you drop a glass on a hard floor, it may break.
+
+F. Meta-Knowledge
+
+Knowledge about knowledge.
+
+Example:
+
+Rule A is more reliable than Rule B.
+
+This allows an AI system to reason about the reliability or source of its knowledge.
+
+5. Knowledge Base
+
+A Knowledge Base (KB) is a structured collection of knowledge that an AI system can access.
+
+It may contain:
+
+Knowledge Base
+│
+├── Facts
+├── Rules
+├── Objects
+├── Properties
+├── Relationships
+└── Constraints
+Example
+
+A simple medical knowledge base:
+
+Fact:
+Patient has fever.
+
+Fact:
+Patient has cough.
+
+Rule:
+IF patient has fever AND cough
+THEN possible infection.
+
+The knowledge base stores the knowledge, while the inference engine uses it to derive conclusions.
+
+6. How AI Uses Knowledge
+
+The major uses are:
+
+              KNOWLEDGE
+                  ↓
+       ┌──────────┼──────────┐
+       ↓          ↓          ↓
+   Reasoning  Problem      Planning
+              Solving
+       ↓          ↓          ↓
+   Decision    Solution     Action
+1. Reasoning
+
+AI derives new facts from existing knowledge.
+
+Human(Socrates)
+Human(x) → Mortal(x)
+
+Therefore:
+
+Mortal(Socrates)
+2. Problem Solving
+
+Knowledge helps AI determine how to reach a solution.
+
+Example:
+
+Current State → Available Actions → Goal
+3. Decision Making
+
+Knowledge helps AI select an appropriate action.
+
+Example:
+
+IF traffic_light = RED
+THEN STOP
+4. Planning
+
+Knowledge helps determine a sequence of actions.
+
+Example:
+
+Goal: Reach College
+
+Walk to bus stop
+      ↓
+Take bus
+      ↓
+Get down at college
+5. Prediction
+
+Knowledge can be used to predict possible outcomes.
+
+Example:
+
+Dark clouds + weather knowledge
+              ↓
+        Possible Rain
+7. Knowledge Representation
+
+Since computers cannot directly manipulate knowledge expressed only in natural language, knowledge must be represented in a suitable formal structure.
+
+Common Knowledge Representation techniques include:
+
+Logic
+Production Rules
+Semantic Networks
+Frames
+Ontologies
+Probabilistic representations
+
+For example:
+
+Natural language:
+
+All humans are mortal.
+
+Logical representation:
+
+∀x Human(x) → Mortal(x)
+
+This allows an AI system to perform inference.
+
+8. Simple Knowledge-Based AI Model
+             Environment
+                  ↓
+             Perception
+                  ↓
+        ┌─────────────────┐
+        │ Knowledge Base  │
+        │                 │
+        │ Facts           │
+        │ Rules           │
+        │ Relationships   │
+        └────────┬────────┘
+                 ↓
+         Inference Engine
+                 ↓
+              Decision
+                 ↓
+               Action
+Example
+
+A robot knows:
+
+Obstacle is ahead.
+Robot should avoid obstacles.
+
+The inference process is:
+
+Obstacle detected
+       ↓
+Apply knowledge/rule
+       ↓
+Avoid obstacle
+       ↓
+Change direction
+9. Key Point for Students
+
+The most important idea is:
+
+Knowledge provides an AI system with information about the world, while reasoning mechanisms use that knowledge to derive conclusions and make intelligent decisions.
+
+One-line flow to remember
+
+Knowledge → Representation → Reasoning → Decision → Action
+
+And in a Knowledge Representation unit, the next natural topics are:
+
+Knowledge → Knowledge Representation → Representation Issues → Logic → Semantic Networks → Frames → Rules → Reasoning under Uncertainty.

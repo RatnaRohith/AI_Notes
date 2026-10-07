@@ -1,0 +1,738 @@
+Rules-Based Deduction Systems — AI Lecture
+1. Introduction
+
+A Rules-Based Deduction System (RBDS) is a knowledge-based AI system that uses:
+
+Facts — information known to be true
+Rules — logical statements that describe relationships between facts
+Inference mechanism — a procedure for deriving new facts from existing facts
+
+The basic idea is:
+
+Facts + Rules → New Knowledge / Conclusions
+
+Simple Example
+
+Facts:
+
+Ravi is a student.
+Ravi studies AI.
+
+Rule:
+
+If a person is a student and studies AI, then the person learns AI.
+
+Deduction:
+
+Ravi learns AI.
+2. What is Deduction?
+
+Deduction is the process of deriving a logically valid conclusion from known facts and rules.
+
+General form
+$$ P $$ $$ P \rightarrow Q $$
+
+Therefore,
+
+$$ Q $$
+
+This is called Modus Ponens.
+
+Example
+
+Fact:
+
+It is raining.
+
+Rule:
+
+If it is raining, then the ground is wet.
+
+Conclusion:
+
+The ground is wet.
+
+3. Rules-Based Deduction System
+
+A rules-based deduction system represents knowledge using IF–THEN rules.
+
+General rule
+IF condition
+THEN conclusion
+
+For example:
+
+IF temperature > 38°C
+THEN patient_has_fever
+
+If the system knows:
+
+temperature = 39°C
+
+it can deduce:
+
+patient_has_fever
+4. Components of a Rules-Based Deduction System
+
+A typical system consists of four major components.
+
+             ┌──────────────────┐
+             │   Knowledge Base  │
+             │                  │
+             │ Facts + Rules    │
+             └────────┬─────────┘
+                      │
+                      ▼
+             ┌──────────────────┐
+             │ Inference Engine │
+             └────────┬─────────┘
+                      │
+                      ▼
+             ┌──────────────────┐
+             │    Conclusions   │
+             └──────────────────┘
+4.1 Knowledge Base
+
+Contains the knowledge required for reasoning.
+
+It consists of:
+
+Facts
+
+Statements known to be true.
+
+Bird(Tweety)
+HasWings(Tweety)
+Rules
+
+Statements describing relationships.
+
+Bird(x) → Animal(x)
+4.2 Inference Engine
+
+The inference engine applies rules to facts to derive new facts.
+
+For example:
+
+Fact:
+Bird(Tweety)
+
+Rule:
+Bird(x) → Animal(x)
+
+Inference engine derives:
+
+Animal(Tweety)
+4.3 Working Memory
+
+Stores facts that are currently available during reasoning.
+
+For example:
+
+Bird(Tweety)
+HasWings(Tweety)
+Animal(Tweety)
+
+As new facts are derived, they can be added to working memory.
+
+4.4 User Interface
+
+Allows users to:
+
+provide facts
+ask questions
+receive conclusions
+sometimes inspect explanations
+
+Example:
+
+User:
+Is Tweety an animal?
+
+System:
+Yes.
+Because Tweety is a bird and all birds are animals.
+5. Structure of a Rule
+
+A rule normally contains:
+
+Antecedent
+
+The IF part.
+
+Consequent
+
+The THEN part.
+
+Example:
+
+IF Bird(x)
+THEN Animal(x)
+
+Here:
+
+Bird(x) → antecedent
+Animal(x) → consequent
+
+Mathematically:
+
+$$ Bird(x) \rightarrow Animal(x) $$
+6. Types of Rules
+6.1 Simple Rules
+
+Contain one condition.
+
+IF Student(x)
+THEN Person(x)
+6.2 Conjunctive Rules
+
+Contain multiple conditions connected by AND.
+
+IF Student(x) AND StudiesAI(x)
+THEN LearnsAI(x)
+
+Both conditions must be true.
+
+Example
+
+Facts:
+
+Student(Ravi)
+StudiesAI(Ravi)
+
+Therefore:
+
+LearnsAI(Ravi)
+6.3 Disjunctive Rules
+
+Contain alternatives using OR.
+
+IF Rainy OR Stormy
+THEN CarryUmbrella
+
+If either condition is true, the conclusion can be derived.
+
+6.4 Rules with Negation
+
+Rules may contain negative conditions.
+
+IF Bird(x) AND NOT Penguin(x)
+THEN CanFly(x)
+7. Forward Chaining
+
+Forward chaining is a data-driven inference technique.
+
+It starts with known facts and repeatedly applies rules to derive new facts.
+
+Process
+Initial Facts
+     ↓
+Match Rules
+     ↓
+Apply Applicable Rule
+     ↓
+Generate New Fact
+     ↓
+Add Fact to Knowledge Base
+     ↓
+Repeat
+Example
+Facts
+Bird(Tweety)
+Rules
+R1: Bird(x) → Animal(x)
+
+R2: Animal(x) → LivingThing(x)
+
+R3: LivingThing(x) → NeedsFood(x)
+Step 1
+
+We have:
+
+Bird(Tweety)
+
+Apply R1:
+
+Animal(Tweety)
+Step 2
+
+Apply R2:
+
+LivingThing(Tweety)
+Step 3
+
+Apply R3:
+
+NeedsFood(Tweety)
+Final knowledge
+Bird(Tweety)
+Animal(Tweety)
+LivingThing(Tweety)
+NeedsFood(Tweety)
+
+This is forward chaining.
+
+8. Backward Chaining
+
+Backward chaining is a goal-driven inference technique.
+
+Instead of starting from facts, it starts with a goal and works backward to determine what facts are required.
+
+Example
+
+Goal:
+
+NeedsFood(Tweety)
+
+Rule:
+
+LivingThing(x) → NeedsFood(x)
+
+Therefore, the system asks:
+
+Is Tweety a living thing?
+
+Another rule:
+
+Animal(x) → LivingThing(x)
+
+So it asks:
+
+Is Tweety an animal?
+
+Another rule:
+
+Bird(x) → Animal(x)
+
+So it asks:
+
+Is Tweety a bird?
+
+Fact:
+
+Bird(Tweety)
+
+Therefore:
+
+Bird(Tweety)
+→ Animal(Tweety)
+→ LivingThing(Tweety)
+→ NeedsFood(Tweety)
+9. Forward vs Backward Chaining
+Feature	Forward Chaining	Backward Chaining
+Approach	Data-driven	Goal-driven
+Starts with	Facts	Goal
+Direction	Facts → Conclusion	Goal → Required facts
+Main question	What can I derive?	Can I prove this goal?
+Useful when	Many facts are available	Specific goal/query is given
+Example	Expert monitoring	Diagnosis/query systems
+Easy way to remember
+
+Forward:
+
+"I know these facts. What can I conclude?"
+
+Backward:
+
+"I want to prove this conclusion. What facts do I need?"
+
+10. Rule Matching
+
+Before applying a rule, the inference engine checks whether its conditions match the available facts.
+
+Example:
+
+Rule:
+IF Student(x) AND StudiesAI(x)
+THEN Intelligent(x)
+
+Facts:
+
+Student(Ravi)
+StudiesAI(Ravi)
+
+The variable:
+
+x = Ravi
+
+satisfies both conditions.
+
+Therefore:
+
+Intelligent(Ravi)
+11. Unification
+
+Unification is the process of finding substitutions that make logical expressions identical.
+
+Example:
+
+Student(x)
+Student(Ravi)
+
+They can be unified using:
+
+x = Ravi
+
+Therefore:
+
+Student(Ravi)
+
+matches:
+
+Student(x)
+Another example
+
+Rule:
+
+Likes(x, AI) → Interested(x, AI)
+
+Fact:
+
+Likes(Ravi, AI)
+
+Substitution:
+
+x = Ravi
+
+Conclusion:
+
+Interested(Ravi, AI)
+12. Rule Firing
+
+When all conditions of a rule are satisfied, the rule is said to fire.
+
+Example:
+
+R1:
+IF Student(x) AND StudiesAI(x)
+THEN LearnsAI(x)
+
+Facts:
+
+Student(Ravi)
+StudiesAI(Ravi)
+
+Since both conditions are satisfied:
+
+R1 fires
+
+and produces:
+
+LearnsAI(Ravi)
+13. Inference Cycle
+
+A rules-based system generally follows this cycle:
+
+1. Match
+
+Find rules whose conditions match known facts.
+
+2. Select
+
+If several rules match, select one according to a conflict-resolution strategy.
+
+3. Execute
+
+Fire the selected rule.
+
+4. Update
+
+Add the newly derived fact to working memory.
+
+5. Repeat
+
+Continue until:
+
+the goal is reached, or
+no more rules can fire.
+
+This is sometimes called the Match–Select–Act cycle.
+
+14. Conflict Resolution
+
+Sometimes several rules can be applied at the same time.
+
+Example:
+
+R1: IF Student(x) THEN Person(x)
+
+R2: IF Student(x) THEN Learner(x)
+
+R3: IF Student(x) THEN YoungPerson(x)
+
+If:
+
+Student(Ravi)
+
+all three rules are applicable.
+
+The inference engine needs a strategy for selecting which rule to fire.
+
+Common strategies include:
+
+1. Priority
+
+Give some rules higher priority.
+
+R1 priority = 10
+R2 priority = 5
+
+R1 is selected first.
+
+2. Specificity
+
+Prefer the rule with more specific conditions.
+
+3. Recency
+
+Prefer rules involving recently added facts.
+
+4. Rule ordering
+
+Rules may be executed according to their order in the knowledge base.
+
+15. Example: Medical Diagnosis
+
+Consider a simple diagnosis system.
+
+Facts
+Fever(Ravi)
+Cough(Ravi)
+BodyPain(Ravi)
+Rules
+R1:
+IF Fever(x) AND Cough(x)
+THEN RespiratoryInfection(x)
+
+R2:
+IF RespiratoryInfection(x) AND BodyPain(x)
+THEN PossibleFlu(x)
+
+R3:
+IF PossibleFlu(x)
+THEN RecommendMedicalCheckup(x)
+Forward reasoning
+
+From:
+
+Fever(Ravi)
+Cough(Ravi)
+
+derive:
+
+RespiratoryInfection(Ravi)
+
+Then:
+
+RespiratoryInfection(Ravi)
+BodyPain(Ravi)
+
+derive:
+
+PossibleFlu(Ravi)
+
+Finally:
+
+RecommendMedicalCheckup(Ravi)
+
+This illustrates how a chain of rules can produce a conclusion.
+
+In a real medical system, such rules would need validated clinical knowledge and should not be treated as a diagnosis by themselves.
+
+16. Rules-Based Deduction vs Rules-Based Systems
+
+These terms are related but not identical.
+
+Rules-based system
+
+A broader system that represents knowledge using rules.
+
+Rules-based deduction system
+
+Emphasizes logical deduction from facts using those rules.
+
+Therefore:
+
+Rules
+   +
+Facts
+   +
+Inference
+   ↓
+Deduction
+17. Advantages
+1. Easy knowledge representation
+
+Knowledge can be written in understandable IF–THEN form.
+
+2. Explainability
+
+The system can often explain:
+
+"This conclusion was obtained because Rule R2 was applied to Facts F1 and F3."
+
+3. Modularity
+
+Rules can be added, removed, or modified independently.
+
+4. Separation of knowledge and reasoning
+
+Knowledge is stored in the knowledge base while reasoning is handled by the inference engine.
+
+5. Suitable for expert systems
+
+Useful in domains where expert knowledge can be expressed as rules.
+
+18. Limitations
+1. Knowledge acquisition problem
+
+Obtaining and encoding expert knowledge can be difficult.
+
+2. Rule explosion
+
+Large systems may require thousands of rules.
+
+3. Conflicting rules
+
+Different rules may produce contradictory conclusions.
+
+4. Limited uncertainty handling
+
+Traditional rule systems generally work with definite facts.
+
+For example:
+
+Fever(x) → Flu(x)
+
+does not naturally represent:
+
+"There is a 70% probability that the patient has flu."
+
+5. Maintenance
+
+Changing one part of a large rule base may affect many other rules.
+
+19. Applications
+
+Rules-based deduction systems have been used in:
+
+Expert systems
+Medical decision support
+Fault diagnosis
+Financial decision systems
+Configuration systems
+Legal reasoning
+Network troubleshooting
+Industrial control
+Intelligent tutoring systems
+Recommendation and decision-support systems
+Knowledge-based agents
+20. Complete Example
+
+Consider the following knowledge base.
+
+Facts
+Bird(Tweety)
+HasWings(Tweety)
+Rules
+R1: Bird(x) → Animal(x)
+
+R2: Animal(x) → LivingThing(x)
+
+R3: Bird(x) AND HasWings(x) → CanFly(x)
+
+R4: LivingThing(x) → NeedsFood(x)
+Forward deduction
+
+Step 1
+
+Bird(Tweety)
+
+R1 fires:
+
+Animal(Tweety)
+
+Step 2
+
+R2 fires:
+
+LivingThing(Tweety)
+
+Step 3
+
+R3 fires because:
+
+Bird(Tweety)
+HasWings(Tweety)
+
+Therefore:
+
+CanFly(Tweety)
+
+Step 4
+
+R4 fires:
+
+NeedsFood(Tweety)
+Final result
+Bird
+  ↓
+Animal
+  ↓
+LivingThing
+  ↓
+NeedsFood
+
+Bird + HasWings
+       ↓
+     CanFly
+21. Important Terminology for Students
+Term	Meaning
+Fact	Known information
+Rule	IF–THEN knowledge
+Antecedent	IF part of a rule
+Consequent	THEN part
+Inference	Deriving new knowledge
+Deduction	Logical derivation from known information
+Inference Engine	Performs reasoning
+Working Memory	Stores current facts
+Rule Firing	Executing an applicable rule
+Unification	Matching expressions using substitutions
+Forward Chaining	Facts → conclusions
+Backward Chaining	Goals → required facts
+Conflict Resolution	Choosing among applicable rules
+22. Exam-Oriented Definition
+
+A Rules-Based Deduction System is a knowledge-based AI system that represents knowledge using facts and IF–THEN rules and uses an inference engine to logically derive new facts or conclusions from the available knowledge.
+
+Basic architecture
+        ┌─────────────────────┐
+        │    Knowledge Base   │
+        │                     │
+        │  Facts + Rules      │
+        └──────────┬──────────┘
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │   Inference Engine  │
+        │                     │
+        │ Match → Select      │
+        │        → Fire       │
+        └──────────┬──────────┘
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │ New Facts / Goal    │
+        │      Conclusion     │
+        └─────────────────────┘
+Key takeaway
+
+Rules-Based Deduction = Facts + IF–THEN Rules + Inference → Conclusions
+
+The two most important reasoning mechanisms to remember are:
+
+Forward chaining:
+Facts → Rules → Conclusions
+
+Backward chaining:
+Goal → Rules → Required Facts

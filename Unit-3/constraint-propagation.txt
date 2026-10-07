@@ -1,0 +1,590 @@
+Fri, Sep 11 at 2:51 AM
+constraint propagation  lecture
+Constraint Propagation — AI Lecture
+1. Introduction
+
+Constraint Propagation is a technique used in Artificial Intelligence and Constraint Satisfaction Problems (CSPs) to reduce the possible values of variables by repeatedly applying constraints.
+
+Simple definition
+
+Constraint propagation is the process of using constraints to eliminate values that cannot be part of a valid solution.
+
+The main idea is:
+
+Constraints → eliminate impossible values → reduce search space → find solution faster
+
+2. What is a Constraint Satisfaction Problem?
+
+A Constraint Satisfaction Problem (CSP) consists of:
+
+Variables
+Domains
+Constraints
+Example
+
+Suppose we have:
+
+$$ X + Y = 10 $$
+
+where:
+
+$$ X,Y \in \{1,2,3,\ldots,9\} $$
+
+Here:
+
+Variables = {X, Y}
+Domains = {1,2,...,9}
+Constraint = X + Y = 10
+
+Initially:
+
+$$ D(X)=\{1,2,3,4,5,6,7,8,9\} $$ $$ D(Y)=\{1,2,3,4,5,6,7,8,9\} $$
+
+Constraint propagation can determine that:
+
+If \(X=1\), then \(Y=9\)
+If \(X=2\), then \(Y=8\)
+...
+If \(X=9\), then \(Y=1\)
+
+The constraint restricts which values can coexist.
+
+3. Why Constraint Propagation?
+
+A naïve search may try every possible combination.
+
+If there are:
+
+\(n\) variables
+\(d\) possible values per variable
+
+then the search space can contain approximately:
+
+$$ d^n $$
+
+possibilities.
+
+For example:
+
+$$ 10 \text{ variables},\quad 10 \text{ values each} $$
+
+gives:
+
+$$ 10^{10}=10,000,000,000 $$
+
+possibilities.
+
+Constraint propagation reduces this search space before or during search.
+
+4. Basic Idea
+
+Consider:
+
+$$ X < Y $$
+
+and:
+
+$$ D(X)=\{1,2,3,4,5\} $$ $$ D(Y)=\{1,2,3\} $$
+
+Since \(X<Y\):
+
+\(X=4\) is impossible because Y can be at most 3.
+\(X=5\) is impossible.
+\(Y=1\) is impossible because there is no value of X smaller than 1.
+
+After propagation:
+
+$$ D(X)=\{1,2\} $$ $$ D(Y)=\{2,3\} $$
+
+The domains have become smaller.
+
+5. Domain Reduction
+
+The fundamental operation of constraint propagation is:
+
+Remove values from a variable's domain that cannot participate in any valid solution.
+
+For example:
+
+$$ D(A)=\{1,2,3,4,5\} $$
+
+Constraint:
+
+$$ A > 3 $$
+
+After propagation:
+
+$$ D(A)=\{4,5\} $$
+
+Values 1, 2 and 3 are removed.
+
+6. Local vs Global Propagation
+Local propagation
+
+Uses constraints involving a small number of variables.
+
+Example:
+
+$$ X \neq Y $$
+Global propagation
+
+Uses a constraint involving many variables.
+
+Example:
+
+AllDifferent
+
+$$ X_1,X_2,X_3,X_4 $$
+
+must all have different values.
+
+Global constraints can eliminate many possibilities at once.
+
+7. Constraint Propagation in CSP
+
+A typical CSP can be represented as a constraint graph.
+
+Example:
+
+$$ A \neq B $$ $$ B \neq C $$ $$ C \neq D $$
+
+Graphically:
+
+A ---- B ---- C ---- D
+
+The variables are nodes.
+
+The constraints are edges.
+
+When the domain of one variable changes, neighboring variables may also need to be updated.
+
+8. Propagation Process
+
+The general process is:
+
+Start with initial domains
+        ↓
+Apply constraints
+        ↓
+Remove inconsistent values
+        ↓
+Domain changed?
+    ↓ Yes
+Propagate to related variables
+        ↓
+Apply constraints again
+        ↓
+Continue until no more changes
+        ↓
+Consistent domains
+
+This condition is called reaching a:
+
+Fixed point
+
+9. Arc Consistency
+
+One of the most important forms of constraint propagation is Arc Consistency.
+
+Consider a binary constraint:
+
+$$ C(X,Y) $$
+
+An arc \(X \rightarrow Y\) is consistent if:
+
+For every value in \(D(X)\), there exists at least one compatible value in \(D(Y)\).
+
+This compatible value is called a support.
+
+10. Example of Arc Consistency
+
+Consider:
+
+$$ X < Y $$
+
+Domains:
+
+$$ D(X)=\{1,2,3,4\} $$ $$ D(Y)=\{2,3\} $$
+
+Check values of X.
+
+X = 1
+
+There is a Y value greater than 1:
+
+$$ Y=2 $$
+
+So 1 remains.
+
+X = 2
+
+Y can be 3.
+
+So 2 remains.
+
+X = 3
+
+There is no Y > 3.
+
+Remove 3.
+
+X = 4
+
+There is no Y > 4.
+
+Remove 4.
+
+Therefore:
+
+$$ D(X)=\{1,2\} $$
+11. AC-3 Algorithm
+
+AC-3 (Arc Consistency Algorithm 3) is a commonly taught algorithm for enforcing arc consistency in CSPs.
+
+Basic idea
+
+Maintain a queue of arcs.
+
+Queue ← all arcs
+
+Take one arc:
+
+$$ (X_i,X_j) $$
+
+and revise \(D(X_i)\).
+
+If values are removed from \(D(X_i)\), then neighboring arcs must be reconsidered.
+
+12. AC-3 Algorithm
+Algorithm
+AC-3(CSP):
+
+    Queue ← all arcs (Xi, Xj)
+
+    while Queue is not empty:
+
+        (Xi, Xj) ← Remove-First(Queue)
+
+        if Revise(Xi, Xj):
+
+            if Domain(Xi) is empty:
+                return FAILURE
+
+            for every neighbor Xk of Xi
+                where Xk ≠ Xj:
+
+                add (Xk, Xi) to Queue
+
+    return SUCCESS
+13. Revise Operation
+
+The important operation is:
+
+REVISE(Xi, Xj)
+
+It removes a value from \(D(X_i)\) if there is no compatible value in \(D(X_j)\).
+
+Example
+
+Constraint:
+
+$$ X_i < X_j $$
+
+Suppose:
+
+$$ D(X_i)=\{1,2,3,4\} $$ $$ D(X_j)=\{2,3\} $$
+
+For each value of \(X_i\):
+
+\(X_i\)	Supporting \(X_j\)?	Action
+1	2 or 3	Keep
+2	3	Keep
+3	None	Remove
+4	None	Remove
+
+Final:
+
+$$ D(X_i)=\{1,2\} $$
+14. Forward Checking vs Constraint Propagation
+
+These concepts are closely related but not identical.
+
+Feature	Forward Checking	Constraint Propagation
+When applied	After assignment	Repeatedly
+Scope	Usually future variables	Can propagate through many variables
+Strength	Moderate	Generally stronger
+Goal	Detect immediate conflicts	Achieve consistency
+Example	Remove values from neighbors	Repeatedly remove unsupported values
+Example
+
+Suppose:
+
+A → B → C
+
+If we assign:
+
+$$ A=1 $$
+
+Forward checking may reduce B.
+
+Constraint propagation can continue:
+
+A changes
+   ↓
+B changes
+   ↓
+C changes
+   ↓
+More propagation
+15. Constraint Propagation and Backtracking
+
+Constraint propagation is often combined with backtracking search.
+
+Without propagation:
+
+Choose variable
+     ↓
+Assign value
+     ↓
+Continue search
+     ↓
+Eventually discover conflict
+     ↓
+Backtrack
+
+With propagation:
+
+Choose variable
+     ↓
+Assign value
+     ↓
+Propagate constraints
+     ↓
+Detect conflict early
+     ↓
+Backtrack immediately
+
+Therefore:
+
+Constraint propagation reduces unnecessary search.
+
+16. Example — Map Coloring
+
+Suppose we have three regions:
+
+A ---- B
+ \    /
+   C
+
+Colors:
+
+$$ D(A)=D(B)=D(C)=\{Red,Green,Blue\} $$
+
+Constraints:
+
+$$ A\neq B $$ $$ A\neq C $$ $$ B\neq C $$
+
+Assign:
+
+$$ A=Red $$
+
+Propagation gives:
+
+$$ D(B)=\{Green,Blue\} $$ $$ D(C)=\{Green,Blue\} $$
+
+Now assign:
+
+$$ B=Green $$
+
+Propagation gives:
+
+$$ D(C)=\{Blue\} $$
+
+Therefore:
+
+$$ C=Blue $$
+
+The solution is obtained with very little search.
+
+17. Example — Sudoku
+
+Constraint propagation is heavily used in Sudoku solving.
+
+Each cell has a domain:
+
+$$ D(cell)=\{1,2,3,4,5,6,7,8,9\} $$
+
+Constraints:
+
+Each row must contain 1–9.
+Each column must contain 1–9.
+Each \(3\times3\) block must contain 1–9.
+
+Suppose:
+
+5 3 . | . 7 . | . . .
+
+If 5 and 3 are already present in the row, they cannot be placed in the empty cells of that row.
+
+The same reasoning occurs with columns and blocks.
+
+One assignment can therefore trigger many domain reductions.
+
+18. Types of Consistency
+
+Important consistency techniques include:
+
+1. Node Consistency
+
+Concerned with constraints involving a single variable.
+
+Example:
+
+$$ X > 5 $$ $$ D(X)=\{1,2,3,4,5,6,7\} $$
+
+After propagation:
+
+$$ D(X)=\{6,7\} $$
+2. Arc Consistency
+
+Concerned with constraints involving two variables.
+
+Example:
+
+$$ X < Y $$
+
+Every value of X must have a supporting value in Y.
+
+3. Path Consistency
+
+Considers relationships among three variables.
+
+It checks whether compatible assignments for two variables can be extended through a third variable.
+
+4. k-Consistency
+
+A CSP is k-consistent if any consistent assignment to \(k-1\) variables can be extended to another variable.
+
+Special cases:
+
+1-consistency → node consistency
+2-consistency → arc consistency
+3-consistency → path consistency
+19. Benefits of Constraint Propagation
+1. Reduces search space
+
+Fewer values need to be considered.
+
+2. Detects failure early
+
+If a domain becomes empty:
+
+$$ D(X)=\emptyset $$
+
+the current branch cannot produce a solution.
+
+3. Improves backtracking
+
+Conflicts are discovered before exploring large parts of the search tree.
+
+4. Improves efficiency
+
+It can dramatically reduce the number of assignments examined.
+
+5. Supports intelligent search
+
+It works well with:
+
+Backtracking
+MRV
+Degree heuristic
+Forward checking
+Arc consistency
+20. Limitations
+
+Constraint propagation does not always solve the entire CSP.
+
+After propagation, domains may still contain multiple values.
+
+For example:
+
+$$ D(A)=\{1,2\} $$ $$ D(B)=\{1,2\} $$
+
+Propagation may not determine which assignment is correct.
+
+Search is then required.
+
+Hence:
+
+Constraint propagation reduces the search; it does not necessarily eliminate the need for search.
+
+21. Constraint Propagation + Backtracking
+
+A powerful CSP solver can use:
+
+Backtracking Search
+        +
+Variable Ordering
+        +
+Value Ordering
+        +
+Constraint Propagation
+
+Typical process:
+
+              CSP
+               ↓
+       Select variable
+               ↓
+         Assign value
+               ↓
+      Propagate constraints
+               ↓
+       ┌───────┴────────┐
+       ↓                ↓
+   Consistent        Inconsistent
+       ↓                ↓
+ Continue          Backtrack
+       ↓
+ Propagate again
+22. Key Terms for Students
+Term	Meaning
+CSP	Problem defined by variables, domains and constraints
+Domain	Set of possible values
+Constraint	Restriction on variable values
+Propagation	Passing domain restrictions through constraints
+Domain reduction	Removing impossible values
+Consistency	Ensuring values have required support
+Arc consistency	Every value has a compatible value in neighboring domain
+AC-3	Algorithm for enforcing arc consistency
+Revise	Removes unsupported domain values
+Fixed point	State where propagation produces no further changes
+Backtracking	Searching by undoing assignments when conflicts occur
+23. Exam-Oriented Definition
+
+Constraint propagation is a CSP technique that repeatedly applies constraints to reduce the domains of variables by removing values that cannot participate in any valid solution. It helps detect inconsistencies early and reduces the search space, thereby improving the efficiency of CSP solving.
+
+Short example
+
+Given:
+
+$$ X<Y $$ $$ D(X)=\{1,2,3,4\} $$ $$ D(Y)=\{2,3\} $$
+
+Constraint propagation removes 3 and 4 from \(D(X)\), because neither has a supporting value in \(D(Y)\).
+
+Thus:
+
+$$ D(X)=\{1,2\} $$
+24. One-Line Summary
+
+Constraint propagation = Use constraints repeatedly to remove impossible values before or during search.
+
+Constraints
+     ↓
+Domain Reduction
+     ↓
+Consistency
+     ↓
+Smaller Search Space
+     ↓
+Faster CSP Solution

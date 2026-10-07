@@ -1,0 +1,634 @@
+Mon, Sep 28 at 12:10 PM
+first order logic lecture
+First-Order Logic (FOL) – Lecture
+1. Introduction
+
+First-Order Logic (FOL) is a formal language used in Artificial Intelligence to represent knowledge about objects, their properties, and relationships between objects.
+
+It is more expressive than Propositional Logic because it can represent:
+
+Individual objects
+Properties of objects
+Relationships between objects
+General statements about groups of objects
+Example
+
+Consider the statements:
+
+Socrates is a man.
+All men are mortal.
+Therefore, Socrates is mortal.
+
+In propositional logic, these statements can be represented as separate propositions.
+
+In FOL, we can represent the general rule:
+
+$$ \forall x\; (Man(x) \rightarrow Mortal(x)) $$
+
+and the fact:
+
+$$ Man(Socrates) $$
+
+From these, we can infer:
+
+$$ Mortal(Socrates) $$
+2. Why First-Order Logic?
+
+Propositional logic has limitations.
+
+For example:
+
+Ram is a student.
+Ravi is a student.
+Sita is a student.
+
+We need separate propositions:
+
+$$ Student(Ram) $$ $$ Student(Ravi) $$ $$ Student(Sita) $$
+
+But suppose we want to express:
+
+Every student is a person.
+
+We cannot easily express this general relationship using only propositional logic.
+
+FOL allows us to write:
+
+$$ \forall x(Student(x) \rightarrow Person(x)) $$
+
+This single statement applies to every object in the domain.
+
+3. Components of First-Order Logic
+
+The major components of FOL are:
+
+Constants
+Variables
+Predicates
+Functions
+Logical connectives
+Quantifiers
+4. Constants
+
+A constant represents a particular object or individual.
+
+Examples:
+
+Ram
+Sita
+John
+Delhi
+Earth
+
+For example:
+
+$$ Student(Ram) $$
+
+Here, Ram is a constant representing a particular person.
+
+5. Variables
+
+A variable represents an arbitrary object in the domain.
+
+Common variables are:
+
+$$ x,\ y,\ z $$
+
+Example:
+
+$$ Student(x) $$
+
+means:
+
+x is a student.
+
+The variable x does not refer to one specific person until it is assigned or quantified.
+
+6. Predicates
+
+A predicate represents a property or relationship.
+
+Unary predicate
+
+A unary predicate has one argument.
+
+$$ Student(x) $$
+
+Meaning:
+
+x is a student.
+
+Other examples:
+
+$$ Human(x) $$ $$ Tall(x) $$ $$ Intelligent(x) $$
+Binary predicate
+
+A binary predicate has two arguments and represents a relationship.
+
+$$ Likes(x,y) $$
+
+Meaning:
+
+x likes y.
+
+For example:
+
+$$ Likes(Ram,Sita) $$
+
+means:
+
+Ram likes Sita.
+
+Other examples:
+
+$$ Father(Ram,Sita) $$ $$ Friend(Ravi,John) $$ $$ LivesIn(Ram,Hyderabad) $$
+Ternary predicate
+
+A ternary predicate has three arguments.
+
+$$ Between(x,y,z) $$
+
+For example:
+
+$$ Between(A,B,C) $$
+
+could mean:
+
+B is between A and C.
+
+7. Functions
+
+A function maps one or more objects to another object.
+
+Examples:
+
+$$ Father(x) $$
+
+means:
+
+father of x.
+
+$$ Mother(x) $$
+
+means:
+
+mother of x.
+
+Another example:
+
+$$ Age(x) $$
+
+could represent the age associated with x.
+
+Predicate vs Function
+Predicate	Function
+Represents property/relationship	Represents an object/value
+Produces True/False	Produces an object/value
+Student(Ram)	Father(Ram)
+Likes(Ram,Sita)	Mother(Ram)
+8. Logical Connectives
+
+FOL uses the same major logical connectives as propositional logic.
+
+AND
+$$ \land $$
+
+Example:
+
+$$ Student(x) \land Intelligent(x) $$
+
+Meaning:
+
+x is a student AND x is intelligent.
+
+OR
+$$ \lor $$
+
+Example:
+
+$$ Student(x) \lor Teacher(x) $$
+
+Meaning:
+
+x is a student OR x is a teacher.
+
+NOT
+$$ \neg $$
+
+Example:
+
+$$ \neg Student(x) $$
+
+Meaning:
+
+x is not a student.
+
+IMPLICATION
+$$ \rightarrow $$
+
+Example:
+
+$$ Student(x) \rightarrow Person(x) $$
+
+Meaning:
+
+If x is a student, then x is a person.
+
+BICONDITIONAL
+$$ \leftrightarrow $$
+
+Example:
+
+$$ Student(x) \leftrightarrow Learner(x) $$
+
+Meaning:
+
+x is a student if and only if x is a learner.
+
+9. Quantifiers
+
+Quantifiers are one of the most important features of First-Order Logic.
+
+There are two main quantifiers:
+
+Universal Quantifier
+Existential Quantifier
+10. Universal Quantifier
+
+The universal quantifier is:
+
+$$ \forall $$
+
+It means:
+
+For all
+For every
+
+Example
+
+All humans are mortal.
+
+FOL representation:
+
+$$ \forall x(Human(x) \rightarrow Mortal(x)) $$
+
+Read as:
+
+For every x, if x is a human, then x is mortal.
+
+Another example
+
+Every student studies.
+
+$$ \forall x(Student(x) \rightarrow Studies(x)) $$
+Important point
+
+The universal quantifier does not mean that everything in the world is a student.
+
+Consider:
+
+$$ \forall x(Student(x) \rightarrow Intelligent(x)) $$
+
+It means:
+
+Every student is intelligent.
+
+It does not mean:
+
+Everyone is a student.
+
+11. Existential Quantifier
+
+The existential quantifier is:
+
+$$ \exists $$
+
+It means:
+
+There exists at least one.
+
+Example
+
+Some student is intelligent.
+
+$$ \exists x(Student(x) \land Intelligent(x)) $$
+
+Read as:
+
+There exists at least one x such that x is a student and x is intelligent.
+
+Another example
+
+There is a student who likes mathematics.
+
+$$ \exists x(Student(x) \land Likes(x,Mathematics)) $$
+12. Universal vs Existential Quantifier
+Quantifier	Symbol	Meaning
+Universal	\(\forall\)	For every
+Existential	\(\exists\)	There exists at least one
+Example
+
+Every student is intelligent
+
+$$ \forall x(Student(x) \rightarrow Intelligent(x)) $$
+
+Some student is intelligent
+
+$$ \exists x(Student(x) \land Intelligent(x)) $$
+
+These two statements have different meanings.
+
+13. Free and Bound Variables
+
+A variable is bound when it is controlled by a quantifier.
+
+Example:
+
+$$ \forall x(Student(x) \rightarrow Intelligent(x)) $$
+
+Here, x is bound by:
+
+$$ \forall x $$
+
+A variable that is not controlled by a quantifier is called a free variable.
+
+Example:
+
+$$ Student(x) $$
+
+Here, x is free.
+
+14. Well-Formed Formula
+
+A valid expression in FOL is called a Well-Formed Formula (WFF).
+
+Example:
+
+$$ Student(Ram) $$
+
+is a valid formula.
+
+$$ \forall x(Student(x) \rightarrow Person(x)) $$
+
+is also a valid formula.
+
+15. Translating English into FOL
+
+This is an important examination topic.
+
+Example 1
+
+All humans are intelligent.
+
+$$ \forall x(Human(x) \rightarrow Intelligent(x)) $$
+Example 2
+
+Some humans are intelligent.
+
+$$ \exists x(Human(x) \land Intelligent(x)) $$
+Example 3
+
+No human is immortal.
+
+$$ \forall x(Human(x) \rightarrow \neg Immortal(x)) $$
+Example 4
+
+Ram is intelligent.
+
+$$ Intelligent(Ram) $$
+Example 5
+
+Ram likes Sita.
+
+$$ Likes(Ram,Sita) $$
+Example 6
+
+Every student likes mathematics.
+
+$$ \forall x(Student(x) \rightarrow Likes(x,Mathematics)) $$
+Example 7
+
+There is a student who likes mathematics.
+
+$$ \exists x(Student(x) \land Likes(x,Mathematics)) $$
+16. Nested Quantifiers
+
+FOL can use more than one quantifier in a statement.
+
+Consider:
+
+Every student likes some teacher.
+
+We can represent it as:
+
+$$ \forall x(Student(x) \rightarrow \exists y(Teacher(y) \land Likes(x,y))) $$
+
+Meaning:
+
+For every student x, there exists some teacher y whom x likes.
+
+Notice the order:
+
+$$ \forall x\exists y $$
+
+is different from:
+
+$$ \exists y\forall x $$
+17. Importance of Quantifier Order
+
+Consider:
+
+Statement 1
+
+Every student likes some teacher.
+
+$$ \forall x(Student(x) \rightarrow \exists y(Teacher(y) \land Likes(x,y))) $$
+
+Different students may like different teachers.
+
+Statement 2
+
+There is a teacher whom every student likes.
+
+$$ \exists y(Teacher(y) \land \forall x(Student(x) \rightarrow Likes(x,y))) $$
+
+Here, one particular teacher is liked by every student.
+
+Therefore:
+
+$$ \forall x\exists y $$
+
+and
+
+$$ \exists y\forall x $$
+
+do not generally have the same meaning.
+
+18. Examples of FOL Knowledge Representation
+
+Suppose our domain contains students and teachers.
+
+Facts
+
+Ravi is a student.
+
+$$ Student(Ravi) $$
+
+Anu is a teacher.
+
+$$ Teacher(Anu) $$
+
+Ravi likes Anu.
+
+$$ Likes(Ravi,Anu) $$
+Rules
+
+Every student is a person.
+
+$$ \forall x(Student(x) \rightarrow Person(x)) $$
+
+Every teacher is a person.
+
+$$ \forall x(Teacher(x) \rightarrow Person(x)) $$
+
+From:
+
+$$ Student(Ravi) $$
+
+and:
+
+$$ \forall x(Student(x) \rightarrow Person(x)) $$
+
+we can infer:
+
+$$ Person(Ravi) $$
+19. FOL Inference
+
+Inference means deriving new knowledge from existing knowledge.
+
+Consider:
+
+Knowledge Base
+$$ Human(Socrates) $$ $$ \forall x(Human(x) \rightarrow Mortal(x)) $$
+Step 1
+
+We know:
+
+$$ Human(Socrates) $$
+Step 2
+
+The rule says:
+
+$$ Human(x) \rightarrow Mortal(x) $$
+Step 3
+
+Substitute:
+
+$$ x = Socrates $$
+
+Therefore:
+
+$$ Human(Socrates) \rightarrow Mortal(Socrates) $$
+Conclusion
+$$ Mortal(Socrates) $$
+20. FOL vs Propositional Logic
+Feature	Propositional Logic	First-Order Logic
+Basic unit	Proposition	Predicate
+Variables	No	Yes
+Quantifiers	No	Yes
+Objects	Limited	Yes
+Relationships	Limited	Yes
+General rules	Limited	Powerful
+Expressiveness	Lower	Higher
+Example	P → Q	∀x(Student(x) → Person(x))
+21. Advantages of First-Order Logic
+
+FOL provides:
+
+Greater expressive power
+Representation of objects
+Representation of properties
+Representation of relationships
+Representation of general rules
+Quantification over objects
+Formal reasoning and inference
+Knowledge representation for AI systems
+22. Limitations of FOL
+
+FOL also has some limitations:
+
+It can become complex for large knowledge bases.
+Reasoning can be computationally expensive.
+Basic FOL does not naturally represent uncertainty.
+Representing time and changing information can be difficult.
+Knowledge acquisition can be difficult.
+Natural-language statements may have multiple interpretations.
+
+For uncertainty, systems may use approaches such as Bayesian reasoning or Dempster-Shafer theory.
+
+23. Applications of FOL in AI
+
+First-Order Logic is used in:
+
+Knowledge representation
+Expert systems
+Automated theorem proving
+Natural language processing
+Planning
+Robotics
+Intelligent agents
+Semantic reasoning
+Database systems
+Automated reasoning
+24. Important FOL Symbols
+Symbol	Name	Meaning
+\(x,y,z\)	Variables	Objects
+\(P,Q\)	Predicates	Properties/relations
+\(a,b,c\)	Constants	Specific objects
+\(f(x)\)	Function	Maps objects to objects
+\(\forall\)	Universal quantifier	For all
+\(\exists\)	Existential quantifier	There exists
+\(\neg\)	Negation	Not
+\(\land\)	AND	Conjunction
+\(\lor\)	OR	Disjunction
+\(\rightarrow\)	Implication	If...then
+\(\leftrightarrow\)	Biconditional	If and only if
+25. Simple Example for Students
+
+Consider:
+
+All engineers are educated.
+Ravi is an engineer.
+Therefore, Ravi is educated.
+
+FOL representation
+
+Rule:
+
+$$ \forall x(Engineer(x) \rightarrow Educated(x)) $$
+
+Fact:
+
+$$ Engineer(Ravi) $$
+
+Inference:
+
+$$ Educated(Ravi) $$
+
+This demonstrates how FOL represents knowledge and derives new knowledge through inference.
+
+26. Summary
+
+First-Order Logic extends propositional logic by introducing objects, variables, predicates, functions, and quantifiers.
+
+The basic structure can be remembered as:
+
+$$ \boxed{\text{Constants + Variables + Predicates + Functions + Connectives + Quantifiers}} $$
+
+The two most important quantifiers are:
+
+$$ \boxed{\forall = \text{For all}} $$ $$ \boxed{\exists = \text{There exists}} $$
+
+The key idea is:
+
+FOL allows AI systems to represent not only individual facts, but also general rules and relationships among objects.

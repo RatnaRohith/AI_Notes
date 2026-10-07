@@ -1,0 +1,34 @@
+Searching, Components of searching, Types of searching
+Uninformed Searching
+
+
+
+
+
+Game Playing,
+Optimal Decisions in multiplayer games
+Problem in game playing
+Evaluation functions
+
+
+Game Playing:
+Types of games -
+Deterministic Games
+Stochastic Games
+Perfect Information games
+Imperfect Information games
+Zero sum games
+
+Characteristics of game playing
+Initial State
+Players
+Actions
+Terminal State
+Utility Function
+
+Multiplayer Games
+Utility Vector
+Maxn -
+Paranoid Algorithm
+Coalition Formation
+Nash Equilibrium they cant win by just maxing themselves

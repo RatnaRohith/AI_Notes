@@ -1,0 +1,389 @@
+Representing Knowledge Using Rules
+
+In Artificial Intelligence, rules are one of the simplest and most widely used methods for knowledge representation. A rule represents knowledge in the form of a condition and an action or conclusion.
+
+1. What is Rule-Based Knowledge Representation?
+
+A rule is generally written as:
+
+IF condition THEN conclusion/action
+
+For example:
+
+IF it is raining
+THEN the ground is wet.
+
+Here:
+
+IF part → condition / premise / antecedent
+THEN part → conclusion / action / consequent
+
+Rules allow an AI system to represent knowledge and use it to derive new facts or make decisions.
+
+2. General Structure
+
+A rule can be represented as:
+
+$$ IF\ P_1 \land P_2 \land ... \land P_n\ THEN\ Q $$
+
+Where:
+
+\(P_1, P_2, ..., P_n\) = conditions
+\(Q\) = conclusion
+Example
+IF
+    temperature > 38°C
+AND
+    patient has fever
+THEN
+    patient may have high fever
+3. Simple Examples of Rules
+Example 1: Weather
+IF it is cloudy
+AND humidity is high
+THEN it may rain.
+Example 2: Student
+IF attendance >= 75%
+AND marks >= 40%
+THEN student is eligible for examination.
+Example 3: Medical Diagnosis
+IF patient has fever
+AND patient has cough
+AND patient has body pain
+THEN patient may have flu.
+Example 4: Banking
+IF account_balance < minimum_balance
+THEN charge penalty.
+4. Components of a Rule
+
+A rule-based knowledge representation system generally contains:
+
+1. Facts
+
+Facts represent information that is currently known.
+
+Bird(Tweety)
+HasWings(Tweety)
+
+or simply:
+
+Tweety is a bird.
+Tweety has wings.
+2. Rules
+
+Rules describe relationships between facts.
+
+IF X is a bird
+THEN X can fly.
+3. Inference Engine
+
+The inference engine applies rules to known facts to derive new knowledge.
+
+4. Knowledge Base
+
+The knowledge base contains the facts and rules.
+
+FACTS:
+    Tweety is a bird.
+
+RULE:
+    IF something is a bird
+    THEN it can fly.
+
+The inference engine derives:
+
+Tweety can fly.
+5. Rule Firing
+
+When the conditions of a rule are satisfied, the rule is said to fire.
+
+Consider:
+
+FACT:
+    Ravi has fever.
+
+RULE:
+    IF a person has fever
+    THEN temperature may be high.
+
+Since the condition is satisfied:
+
+Fever(Ravi)
+        ↓
+Rule matches
+        ↓
+TemperatureHigh(Ravi)
+
+The rule fires and produces a new fact.
+
+6. Rule-Based Inference
+
+Rules are used by an inference engine to reason from known facts.
+
+Suppose the knowledge base contains:
+
+FACT 1: Ravi is a student.
+FACT 2: Ravi has attendance above 75%.
+
+RULE:
+IF a person is a student
+AND attendance is above 75%
+THEN the person is eligible for examination.
+
+The inference engine matches the facts with the rule:
+
+Student(Ravi)
+AttendanceAbove75(Ravi)
+             ↓
+          RULE
+             ↓
+EligibleForExam(Ravi)
+
+Therefore:
+
+Ravi is eligible for examination.
+
+7. Types of Rules
+A. Production Rules
+
+The most common form:
+
+IF condition
+THEN action/conclusion
+
+Example:
+
+IF traffic_light = red
+THEN stop_vehicle.
+B. Classification Rules
+
+Used to classify objects.
+
+IF animal has feathers
+AND animal has wings
+THEN animal is a bird.
+C. Diagnostic Rules
+
+Used to identify a problem based on symptoms.
+
+IF engine does not start
+AND battery voltage is low
+THEN battery may be faulty.
+D. Decision Rules
+
+Used to make decisions.
+
+IF income > 50000
+AND credit_score > 750
+THEN approve loan.
+8. Forward Chaining
+
+Forward chaining starts with known facts and applies rules to derive new facts.
+
+Example
+
+Facts:
+
+Dog(Rocky)
+
+Rules:
+
+IF X is a dog
+THEN X is an animal.
+
+IF X is an animal
+THEN X needs food.
+
+Inference:
+
+Dog(Rocky)
+    ↓
+Animal(Rocky)
+    ↓
+NeedsFood(Rocky)
+
+So forward chaining moves:
+
+Facts → Rules → New Facts
+
+It is also called data-driven reasoning.
+
+Applications
+Expert systems
+Monitoring systems
+Diagnosis
+Automated control
+9. Backward Chaining
+
+Backward chaining starts with a goal and works backward to determine whether it can be proved.
+
+Suppose the goal is:
+
+NeedsFood(Rocky)
+
+The system searches for a rule that can produce this conclusion:
+
+IF X is an animal
+THEN X needs food.
+
+Now it needs to prove:
+
+Animal(Rocky)
+
+It finds another rule:
+
+IF X is a dog
+THEN X is an animal.
+
+It then checks:
+
+Dog(Rocky)
+
+This is already a fact.
+
+Therefore:
+
+Dog(Rocky)
+    ↓
+Animal(Rocky)
+    ↓
+NeedsFood(Rocky)
+
+Backward chaining moves:
+
+Goal → Rules → Required Facts
+
+It is also called goal-driven reasoning.
+
+10. Forward vs Backward Chaining
+Feature	Forward Chaining	Backward Chaining
+Direction	Facts → Conclusion	Goal → Facts
+Also called	Data-driven	Goal-driven
+Starts with	Known facts	Goal
+Main question	What can I conclude?	Can I prove this goal?
+Suitable for	Prediction, monitoring	Diagnosis, query answering
+Example	Expert systems	Logic programming
+11. Advantages of Rule-Based Representation
+1. Easy to understand
+
+Rules are close to natural language.
+
+IF fever THEN examine patient.
+2. Easy to modify
+
+New rules can be added without changing the entire system.
+
+3. Modular
+
+Knowledge can be divided into separate rules.
+
+4. Supports inference
+
+The system can derive new knowledge from existing facts.
+
+5. Explainable
+
+The system can explain its reasoning:
+
+Patient has fever.
+Patient has cough.
+Rule R5 was satisfied.
+Therefore, possible flu.
+12. Limitations
+1. Large number of rules
+
+Complex problems can require thousands of rules.
+
+2. Rule conflicts
+
+Two rules may produce contradictory conclusions.
+
+IF temperature < 20
+THEN cold.
+
+IF temperature < 25
+THEN warm.
+
+Both may fire for the same situation.
+
+3. Difficult knowledge acquisition
+
+Experts may find it difficult to express all their knowledge as rules.
+
+4. Lack of common sense
+
+A rule system only knows what has been explicitly represented.
+
+5. Maintenance problem
+
+As the number of rules increases, maintaining and checking them becomes difficult.
+
+13. Example: Simple Expert System
+
+Consider a car troubleshooting system.
+
+Facts
+BatteryLow
+EngineDoesNotStart
+Rules
+R1:
+IF battery is low
+THEN battery needs charging.
+
+R2:
+IF battery is low
+AND engine does not start
+THEN battery may be the problem.
+
+R3:
+IF battery needs charging
+THEN charge the battery.
+Reasoning
+BatteryLow
+EngineDoesNotStart
+       ↓
+      R2
+       ↓
+BatteryMayBeProblem
+
+and
+
+BatteryLow
+       ↓
+      R1
+       ↓
+BatteryNeedsCharging
+       ↓
+      R3
+       ↓
+ChargeBattery
+
+Thus, the AI system can use rules to reason about the problem and recommend an action.
+
+14. Rule-Based Knowledge Representation in AI
+
+The overall architecture can be remembered as:
+
+              KNOWLEDGE BASE
+          ┌─────────────────────┐
+          │       FACTS         │
+          │       RULES         │
+          └──────────┬──────────┘
+                     │
+                     ↓
+             INFERENCE ENGINE
+                     │
+          ┌──────────┴──────────┐
+          ↓                     ↓
+   Forward Chaining      Backward Chaining
+          │                     │
+          └──────────┬──────────┘
+                     ↓
+              NEW KNOWLEDGE /
+                CONCLUSION
+Exam Definition
+
+Rule-based knowledge representation is a technique of representing knowledge in AI using a collection of IF–THEN rules, where the IF part specifies conditions and the THEN part specifies conclusions or actions. An inference engine applies these rules to known facts to derive new knowledge and make decisions.
+
+Key terms to remember:
+Facts → Rules → Inference Engine → Rule Firing → New Knowledge → Forward/Backward Chaining.

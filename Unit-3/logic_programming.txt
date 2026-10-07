@@ -1,0 +1,293 @@
+Tue, Sep 22 at 1:39 PM
+logic programming
+Logic Programming in AI
+1. What is Logic Programming?
+
+Logic programming is a programming paradigm in which a problem is represented using facts and rules, and the computer uses logical inference to determine answers to queries.
+
+Instead of specifying how to solve a problem step by step, we specify what is true, and the logic programming system determines how to derive the required result.
+
+A common language used for logic programming is Prolog.
+
+Simple idea
+Facts + Rules + Query → Inference → Answer
+2. Components of Logic Programming
+
+Logic programming mainly consists of three components:
+
+A. Facts
+
+Facts represent information that is known to be true.
+
+Example:
+
+human(ravi).
+human(sita).
+mortal(ravi).
+
+These state:
+
+Ravi is a human.
+Sita is a human.
+Ravi is mortal.
+B. Rules
+
+Rules represent relationships or logical conditions.
+
+Example:
+
+mortal(X) :- human(X).
+
+This means:
+
+If X is a human, then X is mortal.
+
+The symbol :- can be read as "if" or "is true if".
+
+So:
+
+mortal(X) :- human(X).
+
+is equivalent to:
+
+Human(X) → Mortal(X)
+C. Queries
+
+A query asks the system whether something can be logically established.
+
+Example:
+
+?- mortal(ravi).
+
+The system searches the facts and rules.
+
+Since:
+
+human(ravi).
+
+and:
+
+mortal(X) :- human(X).
+
+we can infer:
+
+mortal(ravi)
+
+Therefore:
+
+true
+3. Example
+
+Consider the following knowledge base:
+
+parent(ravi, arun).
+parent(ravi, priya).
+
+male(ravi).
+female(priya).
+
+father(X, Y) :- parent(X, Y), male(X).
+
+Here:
+
+Facts
+parent(ravi, arun).
+parent(ravi, priya).
+male(ravi).
+female(priya).
+Rule
+father(X, Y) :- parent(X, Y), male(X).
+
+The rule says:
+
+X is the father of Y if X is a parent of Y AND X is male.
+
+Query
+?- father(ravi, arun).
+
+The system checks:
+
+parent(ravi, arun) → true
+male(ravi)         → true
+
+Therefore:
+
+father(ravi, arun) → true
+4. Logic Programming and Predicate Logic
+
+Logic programming is closely related to predicate logic.
+
+For example:
+
+Predicate logic
+Human(Ravi)
+Human(X) → Mortal(X)
+Logic programming
+human(ravi).
+mortal(X) :- human(X).
+
+The logic programming system uses these statements to perform inference.
+
+5. How Logic Programming Works
+
+A simplified execution process is:
+
+        Knowledge Base
+       /              \
+    Facts             Rules
+       \              /
+        \            /
+          Query
+            ↓
+     Logical Inference
+            ↓
+      Unification
+            ↓
+      Backtracking
+            ↓
+          Answer
+
+Two important mechanisms are unification and backtracking.
+
+6. Unification
+
+Unification is the process of finding values for variables that make two logical expressions match.
+
+Example:
+
+parent(ravi, X).
+
+Given:
+
+parent(ravi, arun).
+parent(ravi, priya).
+
+The system can unify:
+
+X = arun
+
+and also:
+
+X = priya
+
+Therefore:
+
+?- parent(ravi, X).
+
+may produce:
+
+X = arun
+X = priya
+7. Backtracking
+
+Backtracking allows the system to return to an earlier decision and search for another possible solution when necessary.
+
+Example:
+
+parent(ravi, arun).
+parent(ravi, priya).
+
+Query:
+
+?- parent(ravi, X).
+
+The system first finds:
+
+X = arun
+
+When asked for another solution, it backtracks and finds:
+
+X = priya
+
+So backtracking allows logic programs to explore multiple possible solutions.
+
+8. Prolog
+
+Prolog stands for PROgramming in LOGic.
+
+It is one of the most well-known logic programming languages.
+
+A Prolog program consists mainly of:
+
+Facts
+Rules
+Queries
+
+Example:
+
+% Facts
+likes(ravi, cricket).
+likes(sita, music).
+
+% Rule
+friend(X, Y) :- likes(X, cricket), likes(Y, cricket).
+
+Query:
+
+?- likes(ravi, cricket).
+
+Output:
+
+true
+9. Advantages of Logic Programming
+Uses a declarative programming style.
+Suitable for representing knowledge.
+Supports automatic logical inference.
+Variables and relationships are easy to represent.
+Supports unification.
+Supports backtracking.
+Useful for problems involving symbolic reasoning.
+Programs can closely resemble mathematical logic.
+10. Limitations
+Can be inefficient for very large search spaces.
+Performance depends heavily on the rules and search strategy.
+Not naturally suited to numerical computation or graphics.
+Recursive rules can sometimes lead to infinite searches.
+Debugging logical relationships can be difficult.
+Classical logic programming generally requires extensions to handle uncertainty effectively.
+11. Applications in AI
+
+Logic programming is useful in:
+
+Application	Example
+Expert systems	Medical or technical diagnosis
+Knowledge representation	Representing facts and relationships
+Natural Language Processing	Grammar and parsing
+Automated reasoning	Proving logical conclusions
+Planning	Finding sequences of actions
+Decision systems	Rule-based decisions
+Constraint solving	Finding values satisfying conditions
+Question answering	Answering queries from a knowledge base
+12. Logic Programming vs Procedural Programming
+Logic Programming	Procedural Programming
+Describes what is true	Describes how to perform a task
+Based on facts and rules	Based on instructions/statements
+Uses logical inference	Uses explicit control flow
+Variables represent unknowns	Variables usually store values
+Example: Prolog	Example: C, Java, Python
+Uses unification and backtracking	Uses loops, conditions, function calls
+Simple distinction
+
+Procedural programming:
+
+"Do these steps to solve the problem."
+
+Logic programming:
+
+"These facts and rules describe the problem; find what follows logically."
+
+13. Exam Definition
+
+Logic programming is a declarative programming paradigm in which knowledge is represented using facts and rules, and queries are answered through logical inference using mechanisms such as unification and backtracking. Prolog is a commonly used logic programming language.
+
+Key terms to remember
+
+Logic Programming → Facts + Rules + Queries + Inference
+
+Prolog → PROgramming in LOGic
+
+Unification → Matching expressions
+
+Backtracking → Searching for alternative solutions
+
+Inference → Deriving new facts from existing facts and rules

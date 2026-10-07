@@ -1,0 +1,671 @@
+Fri, Sep 11 at 2:56 AM
+Bayes probabilistic interferences   lecture
+Bayes Probabilistic Inference — Lecture
+1. Introduction
+
+In Artificial Intelligence, an agent often has to make decisions when it does not have complete or certain information.
+
+For example:
+
+A patient has symptoms. Does the patient have a disease?
+A sensor gives a reading. Is the machine actually faulty?
+An email contains certain words. Is it spam?
+A robot observes an object. Is it an obstacle?
+
+In such situations, probabilistic inference allows an AI system to reason about uncertainty.
+
+Bayesian inference is the process of updating the probability of a hypothesis when new evidence becomes available.
+
+2. What is Probabilistic Inference?
+
+Probabilistic inference is the process of calculating the probability of an unknown event or hypothesis based on available information and evidence.
+
+Suppose:
+
+\(D\) = patient has a disease
+\(T\) = patient has a positive test result
+
+We may want to calculate:
+
+$$ P(D|T) $$
+
+This means:
+
+Probability that the patient has the disease given that the test is positive.
+
+The important point is that AI does not simply ask:
+
+"Is the patient sick?"
+
+Instead, it asks:
+
+"How likely is it that the patient is sick, given the evidence?"
+
+3. Bayes' Theorem
+
+Bayes' theorem provides a mathematical method for updating beliefs when new evidence is observed.
+
+\(P(A|B) = \frac{P(B|A)P(A)}{P(B)}\)
+𝑃
+(
+𝐴
+∣
+𝐵
+)
+=
+0.85
+(
+0.20
+)
+0.25
+=
+0.68
+P(A∣B)=
+0.25
+0.85(0.20)
+	​
+
+=0.68
+𝑃
+(
+𝐴
+)
+P(A)
+𝑃
+(
+𝐴
+)
+P(A)
+𝑃
+(
+𝐵
+∣
+𝐴
+)
+P(B∣A)
+𝑃
+(
+𝐵
+∣
+𝐴
+)
+P(B∣A)
+𝑃
+(
+𝐵
+∣
+¬
+𝐴
+)
+P(B∣¬A)
+𝑃
+(
+𝐵
+∣
+¬
+𝐴
+)
+P(B∣¬A)
+𝑃
+(
+𝐵
+)
+P(B)
+= 0.25
+𝑃
+(
+𝐵
+∩
+𝐴
+)
+P(B∩A)
+= 0.17
+𝑃
+(
+𝐵
+∩
+¬
+𝐴
+)
+P(B∩¬A)
+= 0.08
+Give feedback
+
+The theorem is:
+
+$$ P(A|B)=\frac{P(B|A)P(A)}{P(B)} $$
+
+Where:
+
+Term	Meaning
+(P(A	B))
+(P(B	A))
+\(P(A)\)	Prior probability
+\(P(B)\)	Evidence
+4. Understanding the Four Terms
+4.1 Prior Probability — \(P(A)\)
+
+The prior is our initial belief about an event before seeing new evidence.
+
+Example:
+
+If 1% of people have a particular disease:
+
+$$ P(D)=0.01 $$
+
+This is the prior probability.
+
+4.2 Likelihood — \(P(B|A)\)
+
+Likelihood tells us how probable the evidence is when the hypothesis is true.
+
+Example:
+
+If a person has the disease, there is a 90% chance that the medical test is positive:
+
+$$ P(T|D)=0.90 $$
+4.3 Evidence — \(P(B)\)
+
+Evidence is the overall probability of observing the evidence.
+
+For example:
+
+$$ P(T) $$
+
+means the probability that a randomly selected person gets a positive test.
+
+4.4 Posterior Probability — \(P(A|B)\)
+
+The posterior is the updated probability after observing the evidence.
+
+For example:
+
+$$ P(D|T) $$
+
+means:
+
+Probability that the patient has the disease given that the test is positive.
+
+This is usually the quantity we want to calculate.
+
+5. Basic Bayesian Inference Process
+
+Bayesian reasoning can be viewed as:
+
+Prior belief → Observe evidence → Update belief → Posterior belief
+
+For example:
+
+Initial belief
+     ↓
+Patient has 1% chance of disease
+     ↓
+Medical test is positive
+     ↓
+Apply Bayes' theorem
+     ↓
+Updated probability
+     ↓
+Posterior probability of disease
+6. Worked Example — Medical Diagnosis
+
+Suppose:
+
+Probability of disease = 1%
+Probability of positive test when disease exists = 90%
+Probability of positive test when disease does not exist = 5%
+
+Given that the test is positive, find the probability that the person actually has the disease.
+
+Given
+$$ P(D)=0.01 $$ $$ P(T|D)=0.90 $$ $$ P(T|\neg D)=0.05 $$
+
+We need:
+
+$$ P(D|T) $$
+Step 1: Calculate \(P(T)\)
+
+Using the law of total probability:
+
+$$ P(T)=P(T|D)P(D)+P(T|\neg D)P(\neg D) $$
+
+Since:
+
+$$ P(\neg D)=1-P(D)=0.99 $$
+
+Therefore:
+
+$$ P(T)=(0.90)(0.01)+(0.05)(0.99) $$ $$ P(T)=0.009+0.0495 $$ $$ P(T)=0.0585 $$
+Step 2: Apply Bayes' theorem
+$$ P(D|T)= \frac{P(T|D)P(D)}{P(T)} $$ $$ P(D|T)= \frac{(0.90)(0.01)}{0.0585} $$ $$ P(D|T)\approx0.1538 $$
+
+Therefore:
+
+$$ \boxed{P(D|T)\approx15.38\%} $$
+Important observation
+
+Although the test is positive, the probability of actually having the disease is only about 15.38%.
+
+This demonstrates why Bayesian reasoning is important.
+
+A positive test does not automatically mean that the hypothesis is true.
+
+7. Why Does This Happen?
+
+The reason is the relatively low prior probability.
+
+Only 1% of people have the disease.
+
+Among 10,000 people:
+
+100 have the disease.
+9,900 do not.
+
+Assume the test characteristics above.
+
+Among 100 diseased people
+
+90 test positive.
+
+Among 9,900 healthy people
+
+5% test positive:
+
+$$ 9900\times0.05=495 $$
+
+Therefore, positive results:
+
+$$ 90+495=585 $$
+
+Actual diseased people among positive results:
+
+$$ 90 $$
+
+Therefore:
+
+$$ P(D|T)=\frac{90}{585}\approx15.38\% $$
+
+This is an excellent intuitive explanation of Bayesian inference.
+
+8. Bayes' Theorem in AI
+
+Bayesian inference is widely used in AI because AI systems frequently operate under uncertainty.
+
+Applications include:
+
+1. Medical diagnosis
+Symptoms → Possible diseases
+2. Spam detection
+Words in email → Probability of spam
+3. Fault diagnosis
+Sensor readings → Probability of machine failure
+4. Speech recognition
+Audio evidence → Probability of words
+5. Computer vision
+Image evidence → Probability of object
+6. Robotics
+Sensor observations → Probability of robot location
+7. Recommendation systems
+User behavior → Probability of user preference
+9. Bayesian Network
+
+A Bayesian Network is a graphical representation of probabilistic relationships between variables.
+
+It consists of:
+
+Nodes → random variables
+Directed edges → dependencies
+Conditional probability tables (CPTs) → probabilities
+
+Example:
+
+     Rain
+      ↓
+    Wet Road
+      ↓
+   Accident
+
+Here:
+
+Rain influences whether the road is wet.
+Wet road influences the probability of an accident.
+
+A more complex example:
+
+          Rain
+         /    \
+        ↓      ↓
+   Wet Road   Traffic
+        \      /
+         ↓    ↓
+         Accident
+
+The network allows an AI system to reason about uncertain events.
+
+10. Conditional Probability
+
+Bayesian inference is based heavily on conditional probability.
+
+Conditional probability is:
+
+$$ P(A|B) $$
+
+Read as:
+
+Probability of A given B.
+
+For example:
+
+$$ P(Rain|Cloudy) $$
+
+means:
+
+Probability of rain given that the sky is cloudy.
+
+It is calculated as:
+
+$$ P(A|B)=\frac{P(A\cap B)}{P(B)} $$
+11. Bayes' Theorem Derivation
+
+Starting with conditional probability:
+
+$$ P(A|B)=\frac{P(A\cap B)}{P(B)} $$
+
+Similarly:
+
+$$ P(B|A)=\frac{P(A\cap B)}{P(A)} $$
+
+Therefore:
+
+$$ P(A\cap B)=P(B|A)P(A) $$
+
+Substituting:
+
+$$ P(A|B)= \frac{P(B|A)P(A)}{P(B)} $$
+
+Thus:
+
+$$ \boxed{P(A|B)=\frac{P(B|A)P(A)}{P(B)}} $$
+12. Bayes' Theorem Terminology
+
+A very important exam table:
+
+Component	Symbol	Meaning
+Prior	\(P(A)\)	Initial belief
+Likelihood	(P(B	A))
+Evidence	\(P(B)\)	Overall probability of evidence
+Posterior	(P(A	B))
+
+A useful memory trick:
+
+Posterior = Likelihood × Prior / Evidence
+
+13. Bayesian Inference vs Classical Logic
+Classical Logic	Bayesian Inference
+Deals mainly with certainty	Deals with uncertainty
+True / False	Probability
+Yes / No conclusions	Degree of belief
+Requires definite facts/rules	Can work with incomplete evidence
+Example: \(A\rightarrow B\)	Example: (P(B
+Example
+
+Classical reasoning:
+
+If it rains, the road becomes wet.
+It is raining.
+Therefore, the road is wet.
+
+Bayesian reasoning:
+
+There is an 80% probability the road becomes wet if it rains.
+It is raining.
+Therefore, the probability that the road is wet is 80%.
+
+14. Bayesian Updating
+
+One of the most important concepts is updating beliefs.
+
+Suppose an AI initially believes:
+
+$$ P(A)=0.30 $$
+
+New evidence \(B\) is observed.
+
+The AI calculates:
+
+$$ P(A|B) $$
+
+and obtains:
+
+$$ P(A|B)=0.75 $$
+
+The AI has therefore updated its belief:
+
+Before evidence: 30%
+          ↓
+     New evidence
+          ↓
+After evidence: 75%
+
+This is the fundamental idea behind Bayesian reasoning.
+
+15. Multiple Pieces of Evidence
+
+Bayesian inference can also incorporate multiple observations.
+
+Suppose an AI receives:
+
+$$ E_1,E_2,E_3 $$
+
+It can calculate:
+
+$$ P(H|E_1,E_2,E_3) $$
+
+where \(H\) is a hypothesis.
+
+For example:
+
+Symptoms
+   +
+Blood test
+   +
+X-ray
+   ↓
+Bayesian inference
+   ↓
+Probability of disease
+
+As additional evidence becomes available, the probability can be updated.
+
+16. Naïve Bayes Classifier
+
+A very important AI application of Bayes' theorem is the Naïve Bayes classifier.
+
+It is a probabilistic classification algorithm based on Bayes' theorem.
+
+For a class \(C\) and features \(X_1,X_2,\ldots,X_n\):
+
+$$ P(C|X_1,X_2,\ldots,X_n) $$
+
+Using the naïve conditional-independence assumption:
+
+$$ P(C|X_1,\ldots,X_n) \propto P(C)\prod_{i=1}^{n}P(X_i|C) $$
+
+The classifier chooses the class with the highest probability.
+
+17. Example — Spam Classification
+
+Suppose an email contains:
+
+"Win free money"
+
+Features:
+
+\(X_1=\) "win"
+\(X_2=\) "free"
+\(X_3=\) "money"
+
+Possible classes:
+
+Spam
+Not Spam
+
+The classifier calculates approximately:
+
+$$ P(Spam|Win,Free,Money) $$
+
+and:
+
+$$ P(NotSpam|Win,Free,Money) $$
+
+If:
+
+$$ P(Spam|features)>P(NotSpam|features) $$
+
+then:
+
+$$ \boxed{\text{Classify as Spam}} $$
+18. Bayesian Reasoning Example in Robotics
+
+Consider a robot searching for a charging station.
+
+Initially:
+
+Location A: 40%
+Location B: 35%
+Location C: 25%
+
+The robot receives a sensor reading indicating that it detects a strong charging signal near Location C.
+
+It updates its beliefs:
+
+Before sensor:
+A = 40%
+B = 35%
+C = 25%
+
+       ↓ Sensor evidence
+
+After sensor:
+A = 15%
+B = 20%
+C = 65%
+
+The robot can now make a better decision based on the updated probabilities.
+
+19. Advantages of Bayesian Inference
+1. Handles uncertainty
+
+It allows AI systems to reason when information is incomplete.
+
+2. Incorporates prior knowledge
+
+Previous knowledge can be represented using prior probabilities.
+
+3. Updates beliefs
+
+New evidence can change the probability of hypotheses.
+
+4. Supports decision making
+
+An AI agent can select an action based on the most probable situation.
+
+5. Works with noisy information
+
+Real-world sensors and observations are rarely perfect.
+
+20. Limitations
+1. Requires probability information
+
+Prior and conditional probabilities may be difficult to obtain.
+
+2. Computational complexity
+
+Large Bayesian models can require significant computation.
+
+3. Dependence assumptions
+
+Some simplified models, such as Naïve Bayes, assume conditional independence that may not be completely true.
+
+4. Poor probabilities can produce poor results
+
+If the prior or likelihood estimates are inaccurate, the resulting inference can also be inaccurate.
+
+21. Key Terms for Examination
+
+Students should remember these terms:
+
+Probability
+Measure of how likely an event is.
+
+Conditional probability
+Probability of an event given another event.
+
+Prior probability
+Initial probability before observing evidence.
+
+Likelihood
+Probability of observing evidence given a hypothesis.
+
+Evidence
+Overall probability of observing the evidence.
+
+Posterior probability
+Updated probability after observing evidence.
+
+Bayesian inference
+Updating the probability of a hypothesis using new evidence.
+
+Bayesian network
+Graphical model representing probabilistic dependencies.
+
+Naïve Bayes
+Probabilistic classifier based on Bayes' theorem and conditional-independence assumptions.
+
+22. Important Formula Sheet
+Conditional Probability
+$$ \boxed{P(A|B)=\frac{P(A\cap B)}{P(B)}} $$
+Joint Probability
+$$ \boxed{P(A\cap B)=P(A|B)P(B)} $$
+Bayes' Theorem
+$$ \boxed{P(A|B)=\frac{P(B|A)P(A)}{P(B)}} $$
+Complement
+$$ \boxed{P(\neg A)=1-P(A)} $$
+Total Probability
+$$ \boxed{ P(B)=P(B|A)P(A)+P(B|\neg A)P(\neg A) } $$
+23. Exam-Oriented Summary
+
+Bayesian probabilistic inference is a method of reasoning under uncertainty in which an AI system uses prior knowledge and newly observed evidence to calculate an updated probability.
+
+The central formula is:
+
+$$ \boxed{P(H|E)=\frac{P(E|H)P(H)}{P(E)}} $$
+
+where:
+
+\(H\) = hypothesis
+\(E\) = evidence
+\(P(H)\) = prior
+\(P(E|H)\) = likelihood
+\(P(E)\) = evidence
+\(P(H|E)\) = posterior
+
+The general process is:
+
+        Prior Knowledge
+              ↓
+          Hypothesis
+              ↓
+        Observe Evidence
+              ↓
+       Apply Bayes' Theorem
+              ↓
+       Calculate Posterior
+              ↓
+       Updated Belief
+              ↓
+       AI Decision
+
+Core idea:
+
+Bayesian inference allows an AI system to start with a belief, observe evidence, and mathematically update that belief.

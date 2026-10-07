@@ -1,0 +1,602 @@
+Fri, Sep 11 at 2:54 AM
+Reasoning under uncertainty  
+Reasoning Under Uncertainty in Artificial Intelligence
+1. Introduction
+
+In many real-world AI problems, an agent does not have complete, accurate information about the environment.
+
+For example:
+
+A doctor may not know exactly which disease a patient has.
+A self-driving car may not know whether an object is a pedestrian or a sign.
+A weather system cannot know exactly whether it will rain tomorrow.
+A robot may receive noisy sensor readings.
+A spam filter cannot be 100% certain whether an email is spam.
+
+Therefore, an intelligent system needs to reason with incomplete, uncertain, or ambiguous information.
+
+Definition
+
+Reasoning under uncertainty is the process of drawing conclusions or making decisions when the available knowledge is incomplete, ambiguous, noisy, or uncertain.
+
+2. Why Uncertainty Occurs in AI
+
+Uncertainty can arise for several reasons.
+
+1. Incomplete Information
+
+The system does not have all the required facts.
+
+Example:
+
+A medical AI knows:
+
+Patient has fever.
+Patient has cough.
+
+But it does not know all the patient's medical history.
+
+2. Noisy Information
+
+Sensors or data sources may provide incorrect or imprecise information.
+
+Example:
+
+A robot's sensor reports:
+
+"Obstacle detected at 4.9–5.1 meters."
+
+The measurement is not exact.
+
+3. Ambiguous Information
+
+The same evidence may have multiple interpretations.
+
+Example:
+
+A camera detects an object.
+
+It could be:
+
+A person
+A tree
+A statue
+
+The AI must determine the most likely interpretation.
+
+4. Dynamic Environment
+
+The world changes over time.
+
+Example:
+
+A traffic-navigation system cannot know exactly what traffic conditions will be 30 minutes from now.
+
+5. Conflicting Information
+
+Different sources may provide different information.
+
+Example:
+
+Sensor A:
+
+Temperature = 30°C
+
+Sensor B:
+
+Temperature = 32°C
+
+The AI must combine the evidence.
+
+3. Certainty vs Uncertainty
+
+Traditional logical reasoning often assumes that a statement is either:
+
+True
+False
+
+For example:
+
+All humans are mortal.
+Socrates is a human.
+Therefore, Socrates is mortal.
+
+This is certain reasoning.
+
+But real-world AI often deals with statements such as:
+
+"There is a 70% probability that the patient has influenza."
+
+This is uncertain reasoning.
+
+Certain Reasoning	Uncertain Reasoning
+True/False	Probability or degree of belief
+Complete knowledge assumed	Incomplete knowledge allowed
+Exact conclusions	Probabilistic conclusions
+Classical logic	Probability, fuzzy logic, Bayesian reasoning
+Example: Socrates is mortal	Example: Patient probably has flu
+4. Sources of Uncertainty
+
+The major sources can be summarized as:
+
+                 Uncertainty
+                      |
+       +--------------+--------------+
+       |              |              |
+   Incomplete       Noisy         Ambiguous
+   Information      Data          Information
+       |              |              |
+       +--------------+--------------+
+                      |
+               Dynamic Environment
+                      |
+               Conflicting Evidence
+5. Approaches to Reasoning Under Uncertainty
+
+AI uses several techniques to handle uncertainty.
+
+Major approaches
+Probability Theory
+Bayesian Reasoning
+Bayesian Networks
+Certainty Factors
+Fuzzy Logic
+Dempster-Shafer Theory
+Possibility Theory
+Non-monotonic Reasoning
+6. Probability-Based Reasoning
+
+Probability provides a mathematical way to represent uncertainty.
+
+Probability has values between:
+
+$$ 0 \leq P(A) \leq 1 $$
+
+where:
+
+0 → impossible
+1 → certain
+values between 0 and 1 → different degrees of likelihood
+Example
+
+Suppose an AI predicts rain tomorrow:
+
+$$ P(Rain)=0.8 $$
+
+This means there is an 80% probability of rain.
+
+It does not mean that rain is guaranteed.
+
+7. Conditional Probability
+
+Sometimes the probability of an event depends on another event.
+
+This is called conditional probability.
+
+$$ P(A|B) $$
+
+It means:
+
+Probability of A given that B has occurred.
+
+Example
+
+Let:
+
+A = Patient has flu
+B = Patient has fever
+
+Then:
+
+$$ P(Flu|Fever) $$
+
+means:
+
+Probability that the patient has flu given that the patient has fever.
+
+8. Bayes' Theorem
+
+Bayes' theorem is one of the most important techniques for reasoning under uncertainty.
+
+$$ P(A|B)=\frac{P(B|A)P(A)}{P(B)} $$
+
+Where:
+
+\(P(A|B)\) = posterior probability
+\(P(B|A)\) = likelihood
+\(P(A)\) = prior probability
+\(P(B)\) = evidence
+Basic idea
+Prior Knowledge
+      +
+New Evidence
+      ↓
+Bayesian Reasoning
+      ↓
+Updated Belief
+Example
+
+A medical AI initially believes:
+
+$$ P(Disease)=0.10 $$
+
+After observing symptoms, it updates its belief:
+
+$$ P(Disease|Symptoms)=0.65 $$
+
+The system has updated its belief based on new evidence.
+
+9. Bayesian Networks
+
+A Bayesian Network is a graphical model used to represent probabilistic relationships among variables.
+
+It consists of:
+
+Nodes → variables
+Directed edges → dependency relationships
+Conditional probability tables → probabilities
+Example
+        Rain
+       /    \
+      ↓      ↓
+   Wet Road  Traffic
+      |
+      ↓
+   Accident
+
+For example:
+
+Rain increases probability of a wet road.
+A wet road increases the probability of an accident.
+Rain may also affect traffic.
+
+Bayesian networks are useful for:
+
+Medical diagnosis
+Fault detection
+Prediction
+Risk analysis
+Decision support
+10. Fuzzy Logic
+
+Probability and fuzzy logic are different concepts.
+
+Probability
+
+Deals with uncertainty about whether something is true.
+
+Example:
+
+There is a 70% probability that it will rain.
+
+Fuzzy Logic
+
+Deals with degrees of truth.
+
+Example:
+
+The temperature is somewhat hot.
+
+A temperature of 30°C might have:
+
+$$ Hot(30)=0.7 $$
+
+This does not necessarily mean that there is a 70% chance that it is hot.
+
+Instead, it represents the degree to which 30°C belongs to the concept "hot."
+
+11. Certainty Factors
+
+Certainty factors were used in expert systems such as MYCIN to represent confidence in conclusions.
+
+For example:
+
+IF patient has fever
+AND patient has cough
+THEN patient has flu
+WITH certainty = 0.8
+
+The system can therefore represent:
+
+"The evidence supports this conclusion with a certain degree of confidence."
+
+12. Dempster-Shafer Theory
+
+Dempster-Shafer theory provides a framework for reasoning with belief and uncertainty.
+
+Instead of assigning all belief to individual hypotheses, it can assign belief to a set of possibilities.
+
+For example, an AI may know:
+
+The object is either a car or a truck.
+
+But it does not have enough evidence to decide which one.
+
+Instead of forcing:
+
+$$ P(Car)=0.5 $$
+
+and
+
+$$ P(Truck)=0.5 $$
+
+the system can represent the uncertainty as belief in:
+
+$$ \{Car, Truck\} $$
+
+This is useful when evidence is incomplete.
+
+13. Non-Monotonic Reasoning
+
+In classical logic, once a conclusion is derived, adding new facts generally does not invalidate it.
+
+Real-world reasoning is different.
+
+Example
+
+Initially:
+
+Birds can fly.
+
+We conclude:
+
+Tweety can fly.
+
+Then we learn:
+
+Tweety is a penguin.
+
+Now:
+
+Tweety cannot normally fly.
+
+The previous conclusion must be withdrawn.
+
+This is called non-monotonic reasoning.
+
+Initial Knowledge
+       ↓
+Conclusion
+       ↓
+New Information
+       ↓
+Revise Conclusion
+14. Default Reasoning
+
+Default reasoning allows an AI system to make reasonable assumptions when complete information is unavailable.
+
+Example:
+
+Birds normally fly.
+
+If we know:
+
+Tweety is a bird.
+
+We assume:
+
+Tweety can fly.
+
+But if we later learn:
+
+Tweety is a penguin.
+
+The default assumption is cancelled.
+
+15. Reasoning Under Uncertainty vs Reasoning with Incomplete Information
+
+These concepts are related but not identical.
+
+Incomplete information
+
+The system does not know something.
+
+Example:
+
+"I don't know whether it will rain."
+
+Uncertain information
+
+The system has information but cannot be completely sure.
+
+Example:
+
+"There is an 80% chance of rain."
+
+Concept	Example
+Complete information	It will rain
+Incomplete information	We don't know whether it will rain
+Uncertain information	There is an 80% chance of rain
+16. Example: Medical Diagnosis
+
+Consider a medical diagnosis system.
+
+Evidence
+Patient
+ ├── Fever
+ ├── Cough
+ ├── Fatigue
+ └── Headache
+
+Possible diseases:
+
+             Symptoms
+                 |
+       +---------+---------+
+       ↓         ↓         ↓
+      Flu      COVID    Pneumonia
+
+The AI may calculate:
+
+Disease	Probability
+Flu	0.60
+COVID	0.25
+Pneumonia	0.15
+
+The system does not simply say:
+
+"The patient definitely has flu."
+
+Instead, it says:
+
+"Based on the available evidence, flu is the most probable diagnosis."
+
+This is reasoning under uncertainty.
+
+17. Decision Making Under Uncertainty
+
+Reasoning is often used to make decisions.
+
+Suppose a self-driving car detects an object.
+
+Possible interpretations:
+
+Object
+  |
+  +-- Pedestrian → 70%
+  |
+  +-- Sign       → 20%
+  |
+  +-- Other      → 10%
+
+The vehicle must decide whether to:
+
+Continue
+Slow down
+Stop
+
+Because the consequences of an incorrect decision may be serious, the AI considers both:
+
+Probability + Cost of action
+
+This leads to decision theory.
+
+18. Expected Utility
+
+A decision can be evaluated using expected utility.
+
+$$ EU(Action)=\sum_i P(Result_i|Action)\times Utility(Result_i) $$
+
+The AI chooses the action with the highest expected utility.
+
+Example
+              Decision
+                 |
+        +--------+--------+
+        |                 |
+      Brake            Continue
+        |                 |
+    Safe outcome     Possible accident
+
+The system considers the probability and consequences of each outcome.
+
+19. Applications
+
+Reasoning under uncertainty is widely used in AI.
+
+Medical AI
+Disease diagnosis
+Treatment recommendation
+Patient risk prediction
+Robotics
+Sensor interpretation
+Object recognition
+Navigation
+Autonomous Vehicles
+Pedestrian detection
+Traffic prediction
+Collision avoidance
+Natural Language Processing
+Speech recognition
+Language understanding
+Word prediction
+Finance
+Credit scoring
+Fraud detection
+Risk analysis
+Weather Prediction
+Rain prediction
+Storm forecasting
+Temperature prediction
+Expert Systems
+Fault diagnosis
+Troubleshooting
+Decision support
+20. Key Techniques – Comparison
+Technique	Main Idea	Example
+Probability	Numerical likelihood	80% chance of rain
+Bayesian reasoning	Update beliefs using evidence	Disease diagnosis
+Bayesian Network	Graphical probabilistic model	Medical diagnosis
+Fuzzy Logic	Degree of truth	Temperature is "hot"
+Certainty Factor	Degree of confidence	Expert systems
+Dempster-Shafer	Belief with incomplete evidence	Sensor fusion
+Non-monotonic reasoning	Revise conclusions	Penguin exception
+Decision Theory	Choose best action under uncertainty	Self-driving car
+21. Advantages
+
+Reasoning under uncertainty allows AI systems to:
+
+Handle incomplete information
+Deal with noisy data
+Combine evidence from multiple sources
+Make predictions
+Estimate risks
+Make decisions when certainty is impossible
+Adapt conclusions when new information becomes available
+22. Limitations
+
+However, it also has challenges:
+
+Probability values may be difficult to obtain.
+Models can be computationally expensive.
+Incorrect assumptions can produce incorrect conclusions.
+Real-world dependencies may be difficult to model.
+Different uncertainty models may produce different results.
+Large Bayesian networks can become complex.
+23. Simple Overall Framework
+
+A useful way to remember the complete process is:
+
+          Real World
+              ↓
+      Observations / Data
+              ↓
+      Incomplete / Noisy
+          Information
+              ↓
+    Represent Uncertainty
+              ↓
+   +----------+-----------+
+   |          |           |
+Probability  Fuzzy    Belief Models
+   |          |           |
+   +----------+-----------+
+              ↓
+         Reasoning
+              ↓
+      Updated Knowledge
+              ↓
+        Decision Making
+              ↓
+            Action
+Exam Definition
+
+Reasoning under uncertainty is an AI process of deriving conclusions and making decisions when knowledge is incomplete, ambiguous, imprecise, noisy, or probabilistic. Techniques such as probability theory, Bayesian reasoning, Bayesian networks, fuzzy logic, certainty factors, and Dempster-Shafer theory are used to represent and handle uncertainty.
+
+Important exam points
+
+For a 10-mark answer, cover:
+
+Definition
+Need for reasoning under uncertainty
+Sources of uncertainty
+Probability-based reasoning
+Conditional probability
+Bayes' theorem
+Bayesian networks
+Fuzzy logic
+Certainty factors
+Dempster-Shafer theory
+Non-monotonic reasoning
+Applications
+Advantages and limitations

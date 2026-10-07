@@ -1,0 +1,386 @@
+Fri, Sep 11 at 2:55 AM
+review of probability  
+Review of Probability
+
+Probability is fundamental to reasoning under uncertainty in Artificial Intelligence. It provides a mathematical way to represent how likely an event is to occur when the available information is incomplete or uncertain.
+
+1. Basic Terminology
+Experiment
+
+An action or process whose outcome cannot be predicted with certainty.
+
+Example: Tossing a coin.
+
+Sample Space \(S\)
+
+The set of all possible outcomes.
+
+For a coin:
+
+$$ S=\{H,T\} $$
+
+For a die:
+
+$$ S=\{1,2,3,4,5,6\} $$
+Event
+
+A subset of the sample space.
+
+Example: Getting an even number when throwing a die:
+
+$$ A=\{2,4,6\} $$
+2. Probability of an Event
+
+For equally likely outcomes:
+
+$$ P(A)=\frac{\text{Number of favorable outcomes}} {\text{Total number of possible outcomes}} $$
+
+Example:
+
+Probability of getting a 4 on a die:
+
+$$ P(4)=\frac{1}{6} $$
+
+Probability of getting an even number:
+
+$$ P(E)=\frac{3}{6}=\frac{1}{2} $$
+3. Range of Probability
+
+Probability always lies between 0 and 1:
+
+$$ 0\leq P(A)\leq1 $$
+Probability	Meaning
+\(P(A)=0\)	Impossible event
+\(0<P(A)<1\)	Uncertain event
+\(P(A)=1\)	Certain event
+
+Probability can also be expressed as a percentage.
+
+$$ 0.75=75\% $$
+4. Complement of an Event
+
+The complement of event \(A\) means A does not occur.
+
+It is represented by:
+
+$$ \neg A $$
+
+or
+
+$$ A^c $$
+
+The probability is:
+
+$$ P(\neg A)=1-P(A) $$
+Example
+
+If the probability that it rains is:
+
+$$ P(Rain)=0.3 $$
+
+Then:
+
+$$ P(No\ Rain)=1-0.3=0.7 $$
+5. Addition Rule
+
+The probability that A or B occurs is:
+
+$$ P(A\cup B)=P(A)+P(B)-P(A\cap B) $$
+
+The intersection term is subtracted because it gets counted twice.
+
+If A and B are mutually exclusive
+
+If A and B cannot occur together:
+
+$$ P(A\cap B)=0 $$
+
+Therefore:
+
+$$ P(A\cup B)=P(A)+P(B) $$
+Example
+
+For a die:
+
+$$ A=\{2\} $$ $$ B=\{4\} $$
+
+Since they cannot occur simultaneously:
+
+$$ P(A\cup B)=\frac16+\frac16=\frac13 $$
+6. Conditional Probability
+
+Conditional probability answers:
+
+What is the probability of A occurring, given that B has already occurred?
+
+It is written as:
+
+$$ P(A|B) $$
+
+and defined as:
+
+$$ \boxed{P(A|B)=\frac{P(A\cap B)}{P(B)}} $$
+
+where \(P(B)>0\).
+
+Example
+
+Suppose:
+
+60% of students study AI.
+30% of students study AI and Machine Learning.
+
+Then:
+
+$$ P(ML|AI)=\frac{P(ML\cap AI)}{P(AI)} $$ $$ =\frac{0.30}{0.60}=0.5 $$
+
+So there is a 50% probability that a student studies ML given that the student studies AI.
+
+7. Independent Events
+
+Two events are independent if the occurrence of one does not affect the probability of the other.
+
+For independent events:
+
+$$ P(A\cap B)=P(A)P(B) $$
+
+Also:
+
+$$ P(A|B)=P(A) $$
+Example
+
+Tossing a coin twice.
+
+The result of the first toss does not affect the second toss.
+
+Therefore:
+
+$$ P(H_1\cap H_2)=P(H_1)P(H_2) $$ $$ =\frac12\times\frac12=\frac14 $$
+8. Multiplication Rule
+
+From conditional probability:
+
+$$ P(A\cap B)=P(A|B)P(B) $$
+
+Similarly:
+
+$$ P(A\cap B)=P(B|A)P(A) $$
+
+This rule is extremely important in AI because many AI problems involve the probability of multiple events occurring together.
+
+9. Random Variables
+
+A random variable assigns a numerical value to each possible outcome of a random experiment.
+
+Example: Coin Toss
+
+Let:
+
+$$ X= \begin{cases} 1 & \text{if Head}\\ 0 & \text{if Tail} \end{cases} $$
+
+Here, \(X\) is a random variable.
+
+Types
+
+Discrete random variable
+
+Takes countable values.
+
+Examples:
+
+Number of heads
+Number of customers
+Dice outcome
+
+Continuous random variable
+
+Can take any value within a range.
+
+Examples:
+
+Temperature
+Height
+Time
+Speed
+10. Probability Distribution
+
+A probability distribution describes the probability associated with every possible value of a random variable.
+
+For a fair die:
+
+X	P(X)
+1	1/6
+2	1/6
+3	1/6
+4	1/6
+5	1/6
+6	1/6
+
+The probabilities must add up to 1:
+
+$$ \sum_xP(X=x)=1 $$
+11. Joint Probability
+
+Joint probability represents the probability that two or more events occur together.
+
+$$ P(A,B) $$
+
+is often used as shorthand for:
+
+$$ P(A\cap B) $$
+
+Example:
+
+$$ P(Rain,Traffic) $$
+
+means the probability that it is raining and there is heavy traffic.
+
+This concept is especially important in Bayesian networks.
+
+12. Marginal Probability
+
+Marginal probability is the probability of one variable regardless of the value of another variable.
+
+For example:
+
+$$ P(Rain) $$
+
+can be obtained from a joint distribution:
+
+$$ P(Rain)=\sum_{t}P(Rain,t) $$
+
+This process is called marginalization.
+
+13. Bayes' Theorem
+
+One of the most important concepts for AI reasoning under uncertainty is Bayes' theorem.
+
+$$ \boxed{ P(A|B)=\frac{P(B|A)P(A)}{P(B)} } $$
+
+It allows us to update our belief about \(A\) after obtaining evidence \(B\).
+
+Components
+$$ P(A) $$
+
+= Prior probability
+
+Initial belief about A.
+
+$$ P(B|A) $$
+
+= Likelihood
+
+Probability of observing B if A is true.
+
+$$ P(B) $$
+
+= Evidence
+
+Overall probability of observing B.
+
+$$ P(A|B) $$
+
+= Posterior probability
+
+Updated belief about A after observing B.
+
+AI Example
+
+Suppose an AI medical diagnosis system wants to determine whether a patient has a disease based on a test result.
+
+$$ P(Disease|Positive) $$
+
+Bayes' theorem allows the system to calculate this from:
+
+$$ P(Positive|Disease) $$ $$ P(Disease) $$
+
+and
+
+$$ P(Positive) $$
+
+Thus, new evidence updates the AI's belief.
+
+14. Expected Value
+
+Expected value represents the average outcome expected over many repetitions.
+
+For a discrete random variable:
+
+$$ \boxed{ E(X)=\sum_x xP(X=x) } $$
+
+Example:
+
+For a fair die:
+
+$$ E(X)= 1\left(\frac16\right)+ 2\left(\frac16\right)+ \cdots+ 6\left(\frac16\right) $$ $$ E(X)=3.5 $$
+
+The expected value does not mean that we can roll a 3.5. It represents the long-run average.
+
+15. Variance
+
+Variance measures how much the values of a random variable differ from its expected value.
+
+$$ Var(X)=E[(X-E(X))^2] $$
+
+An equivalent formula is:
+
+$$ Var(X)=E(X^2)-[E(X)]^2 $$
+
+The standard deviation is:
+
+$$ \sigma=\sqrt{Var(X)} $$
+16. Probability Concepts Important in AI
+
+The following concepts are particularly important for Reasoning Under Uncertainty:
+
+Concept	Importance in AI
+Probability	Represents uncertainty
+Conditional Probability	Reasoning given evidence
+Joint Probability	Represents relationships between events
+Marginal Probability	Eliminates variables
+Independence	Simplifies probability calculations
+Bayes' Theorem	Updates beliefs using evidence
+Random Variables	Represents uncertain quantities
+Probability Distribution	Represents possible values and probabilities
+Expected Value	Supports decision making
+Variance	Measures uncertainty/spread
+17. Probability in Artificial Intelligence
+
+Traditional logic often works with:
+
+True or False
+
+Probability allows AI to work with:
+
+How likely is it to be true?
+
+For example:
+
+Logic-based reasoning:
+
+If smoke is detected, there is fire.
+
+Probabilistic reasoning:
+
+If smoke is detected, there is an 80% probability of fire.
+
+This is useful because real-world AI systems deal with:
+
+incomplete information
+noisy sensors
+uncertain observations
+ambiguous situations
+unreliable data
+changing environments
+Key Formulas to Remember
+$$ \boxed{0\leq P(A)\leq1} $$ $$ \boxed{P(\neg A)=1-P(A)} $$ $$ \boxed{P(A\cup B)=P(A)+P(B)-P(A\cap B)} $$ $$ \boxed{P(A|B)=\frac{P(A\cap B)}{P(B)}} $$ $$ \boxed{P(A\cap B)=P(A|B)P(B)} $$
+
+For independent events:
+
+$$ \boxed{P(A\cap B)=P(A)P(B)} $$
+
+Bayes' theorem:
+
+$$ \boxed{P(A|B)=\frac{P(B|A)P(A)}{P(B)}} $$
+
+These provide the mathematical foundation for Bayesian reasoning, Bayesian networks, probabilistic inference, and decision-making under uncertainty in AI.
