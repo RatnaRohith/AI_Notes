@@ -1,0 +1,524 @@
+# REVIEW OF PROBABILITY
+
+## 1. Introduction to Probability
+
+Probability is a branch of mathematics that measures the likelihood of an event occurring.
+
+In Artificial Intelligence (AI), probability is used to represent uncertainty and make decisions when complete information is not available.
+
+Example:
+An AI weather prediction system may estimate a 70% probability of rain tomorrow.
+
+## 2. Basic Terminology
+
+### 2.1 Experiment
+
+An experiment is an action or process that produces an outcome.
+
+Examples:
+- Tossing a coin.
+- Rolling a die.
+- Drawing a card from a deck.
+
+### 2.2 Sample Space
+
+The sample space is the set of all possible outcomes of an experiment.
+
+It is represented by S.
+
+Example 1: Tossing a coin
+
+S = {H, T}
+
+Example 2: Rolling a die
+
+S = {1, 2, 3, 4, 5, 6}
+
+### 2.3 Event
+
+An event is a subset of the sample space.
+
+Example:
+
+When rolling a die, let A be the event of obtaining an even number.
+
+A = {2, 4, 6}
+
+## 3. Probability of an Event
+
+When all outcomes are equally likely, the probability of an event A is:
+
+P(A) = Number of favorable outcomes / Total number of possible outcomes
+
+Example 1: Probability of getting a 4 on a fair die.
+
+P(4) = 1/6
+
+Example 2: Probability of getting an even number.
+
+P(E) = 3/6 = 1/2
+
+## 4. Range of Probability
+
+The probability of any event A satisfies:
+
+0 ≤ P(A) ≤ 1
+
+Interpretation:
+
+- P(A) = 0: Impossible event.
+- P(A) = 1: Certain event.
+- 0 < P(A) < 1: Uncertain event.
+
+Probability can also be expressed as a percentage.
+
+Example:
+
+P(A) = 0.75 = 75%
+
+## 5. Complement of an Event
+
+The complement of event A represents the event that A does not occur.
+
+It is represented by Aᶜ or ¬A.
+
+Formula:
+
+P(Aᶜ) = 1 − P(A)
+
+Example:
+
+If the probability of rain is 0.3, then:
+
+P(Rain) = 0.3
+
+P(No Rain) = 1 − 0.3 = 0.7
+
+Therefore, the probability of no rain is 0.7 or 70%.
+
+## 6. Addition Rule of Probability
+
+The addition rule calculates the probability that event A or event B occurs.
+
+Formula:
+
+P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+
+Here:
+
+- P(A ∪ B) represents the probability of A or B occurring.
+- P(A ∩ B) represents the probability of both A and B occurring.
+
+The intersection is subtracted because it is counted twice when adding P(A) and P(B).
+
+### 6.1 Mutually Exclusive Events
+
+Two events are mutually exclusive if they cannot occur simultaneously.
+
+For mutually exclusive events:
+
+P(A ∩ B) = 0
+
+Therefore:
+
+P(A ∪ B) = P(A) + P(B)
+
+Example:
+
+When rolling a die:
+
+A = Getting a 2
+
+B = Getting a 4
+
+P(A ∪ B) = 1/6 + 1/6 = 2/6 = 1/3
+
+## 7. Conditional Probability
+
+Conditional probability is the probability of an event occurring when another event is already known to have occurred.
+
+It is represented by P(A | B).
+
+Formula:
+
+P(A | B) = P(A ∩ B) / P(B)
+
+Condition: P(B) > 0
+
+Here:
+
+- P(A | B) means the probability of A given B.
+- P(A ∩ B) means the probability of both A and B.
+- P(B) means the probability of B.
+
+Example:
+
+Suppose:
+
+P(AI) = 0.60
+
+P(AI ∩ ML) = 0.30
+
+The probability that a student studies Machine Learning given that the student studies AI is:
+
+P(ML | AI) = P(ML ∩ AI) / P(AI)
+
+P(ML | AI) = 0.30 / 0.60
+
+P(ML | AI) = 0.50
+
+Therefore, the conditional probability is 50%.
+
+## 8. Independent Events
+
+Two events are independent if the occurrence of one does not affect the probability of the other.
+
+For independent events A and B:
+
+P(A ∩ B) = P(A) × P(B)
+
+Also:
+
+P(A | B) = P(A)
+
+Example:
+
+Tossing a fair coin twice.
+
+The result of the first toss does not affect the second toss.
+
+Probability of getting heads on the first toss:
+
+P(H₁) = 1/2
+
+Probability of getting heads on the second toss:
+
+P(H₂) = 1/2
+
+Probability of getting heads on both tosses:
+
+P(H₁ ∩ H₂) = P(H₁) × P(H₂)
+
+P(H₁ ∩ H₂) = 1/2 × 1/2 = 1/4
+
+## 9. Multiplication Rule of Probability
+
+The multiplication rule calculates the probability that two events occur together.
+
+Formula:
+
+P(A ∩ B) = P(A | B) × P(B)
+
+Similarly:
+
+P(A ∩ B) = P(B | A) × P(A)
+
+This rule is useful when the events are dependent.
+
+For independent events:
+
+P(A ∩ B) = P(A) × P(B)
+
+This concept is important in AI systems that calculate the joint probability of multiple events.
+
+## 10. Random Variables
+
+A random variable assigns a numerical value to each possible outcome of a random experiment.
+
+It is commonly represented by X.
+
+Example: Coin Toss
+
+Define X as follows:
+
+X = 1 if the outcome is Heads.
+
+X = 0 if the outcome is Tails.
+
+Here, X is a random variable.
+
+### 10.1 Types of Random Variables
+
+Discrete Random Variable:
+
+A random variable that takes countable values.
+
+Examples:
+- Number of heads in coin tosses.
+- Number of customers visiting a shop.
+- Outcome of rolling a die.
+
+Continuous Random Variable:
+
+A random variable that can take any value within a specified interval.
+
+Examples:
+- Temperature.
+- Height.
+- Time.
+- Speed.
+
+## 11. Probability Distribution
+
+A probability distribution describes the probabilities associated with the possible values of a random variable.
+
+Example: Rolling a Fair Die
+
+X       P(X)
+
+1       1/6
+
+2       1/6
+
+3       1/6
+
+4       1/6
+
+5       1/6
+
+6       1/6
+
+The sum of all probabilities in a discrete probability distribution must equal 1.
+
+Σ P(X = x) = 1
+
+Here, Σ represents summation over all possible values of X.
+
+## 12. Joint Probability
+
+Joint probability represents the probability that two or more events occur together.
+
+It is represented by:
+
+P(A, B) = P(A ∩ B)
+
+Example:
+
+P(Rain, Traffic)
+
+This represents the probability that it is raining and there is heavy traffic.
+
+Joint probability is important in Bayesian networks, where multiple variables may be related.
+
+## 13. Marginal Probability
+
+Marginal probability is the probability of one variable without specifying the value of another variable.
+
+Example:
+
+P(Rain) represents the probability of rain regardless of whether traffic is heavy or light.
+
+If T represents traffic conditions, then:
+
+P(Rain) = Σₜ P(Rain, T = t)
+
+This means adding the joint probabilities over all possible traffic conditions.
+
+The process of obtaining a marginal probability from a joint probability distribution is called marginalization.
+
+## 14. Bayes' Theorem
+
+Bayes' theorem is a fundamental probability rule used to update beliefs when new evidence becomes available.
+
+Formula:
+
+P(A | B) = [P(B | A) × P(A)] / P(B)
+
+Where:
+
+P(A | B) = Posterior Probability
+
+The updated probability of A after observing B.
+
+P(B | A) = Likelihood
+
+The probability of observing B when A is true.
+
+P(A) = Prior Probability
+
+The initial probability of A before observing B.
+
+P(B) = Evidence
+
+The overall probability of observing B.
+
+### Example: Medical Diagnosis
+
+Suppose an AI medical diagnosis system wants to calculate the probability that a patient has a disease given a positive test result.
+
+The required probability is:
+
+P(Disease | Positive)
+
+Using Bayes' theorem:
+
+P(Disease | Positive) = [P(Positive | Disease) × P(Disease)] / P(Positive)
+
+The system uses the disease's prior probability, the test's likelihood, and the overall probability of a positive result to calculate the posterior probability.
+
+Bayes' theorem is widely used in probabilistic reasoning and AI diagnosis systems.
+
+## 15. Expected Value
+
+Expected value is the weighted average of the possible values of a random variable, where each value is weighted by its probability.
+
+For a discrete random variable:
+
+E(X) = Σₓ x × P(X = x)
+
+Example: Rolling a Fair Die
+
+E(X) = 1 × 1/6 + 2 × 1/6 + 3 × 1/6 + 4 × 1/6 + 5 × 1/6 + 6 × 1/6
+
+E(X) = (1 + 2 + 3 + 4 + 5 + 6) / 6
+
+E(X) = 21/6 = 3.5
+
+Therefore, the expected value is 3.5.
+
+Note: A single die roll cannot produce 3.5. It is the long-run average over many rolls.
+
+## 16. Variance and Standard Deviation
+
+### 16.1 Variance
+
+Variance measures how much the values of a random variable vary around their expected value.
+
+Formula:
+
+Var(X) = E[(X − E(X))²]
+
+An equivalent formula is:
+
+Var(X) = E(X²) − [E(X)]²
+
+A larger variance indicates greater spread in the possible values.
+
+### 16.2 Standard Deviation
+
+Standard deviation is the square root of variance.
+
+σ = √Var(X)
+
+It measures the spread of values in the same units as the random variable.
+
+Variance and standard deviation help describe uncertainty in data and probabilistic models.
+
+## 17. Important Probability Concepts in AI
+
+1. Probability:
+   Represents uncertainty about events.
+
+2. Conditional Probability:
+   Calculates probabilities using known evidence.
+
+3. Joint Probability:
+   Represents the probability of events occurring together.
+
+4. Marginal Probability:
+   Calculates the probability of a variable independently of other variables.
+
+5. Independence:
+   Identifies events whose probabilities do not affect each other.
+
+6. Bayes' Theorem:
+   Updates beliefs using new evidence.
+
+7. Random Variables:
+   Represent uncertain quantities numerically.
+
+8. Probability Distribution:
+   Describes the possible values and their probabilities.
+
+9. Expected Value:
+   Supports decisions based on average expected outcomes.
+
+10. Variance:
+    Measures the spread of possible outcomes.
+
+## 18. Applications of Probability in Artificial Intelligence
+
+Traditional Boolean logic represents statements as True or False.
+
+Probabilistic reasoning allows an AI system to represent uncertainty about whether a statement is true.
+
+Example:
+
+Logic-based statement:
+
+If smoke is detected, there is a fire.
+
+Probabilistic statement:
+
+If smoke is detected, the probability of a fire may be 80%, depending on the available evidence.
+
+Probability is useful in AI because real-world systems often deal with:
+
+- Incomplete information.
+- Noisy sensor readings.
+- Uncertain observations.
+- Ambiguous situations.
+- Unreliable data.
+- Changing environments.
+
+Applications include:
+
+- Medical diagnosis.
+- Weather forecasting.
+- Bayesian networks.
+- Spam email classification.
+- Speech recognition.
+- Robotics and sensor fusion.
+- Decision-making under uncertainty.
+
+## 19. Important Probability Formulas
+
+1. Range of Probability:
+
+   0 ≤ P(A) ≤ 1
+
+2. Complement Rule:
+
+   P(Aᶜ) = 1 − P(A)
+
+3. Addition Rule:
+
+   P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+
+4. Conditional Probability:
+
+   P(A | B) = P(A ∩ B) / P(B)
+
+5. Multiplication Rule:
+
+   P(A ∩ B) = P(A | B) × P(B)
+
+6. Independent Events:
+
+   P(A ∩ B) = P(A) × P(B)
+
+7. Bayes' Theorem:
+
+   P(A | B) = [P(B | A) × P(A)] / P(B)
+
+8. Expected Value:
+
+   E(X) = Σₓ x × P(X = x)
+
+9. Variance:
+
+   Var(X) = E(X²) − [E(X)]²
+
+10. Standard Deviation:
+
+    σ = √Var(X)
+
+## 20. Conclusion
+
+Probability provides the mathematical foundation for reasoning under uncertainty.
+
+The concepts of conditional probability, joint probability, marginal probability, independence, and Bayes' theorem help AI systems interpret evidence and update beliefs.
+
+Expected value and variance help describe outcomes and uncertainty.
+
+These concepts form the foundation for Bayesian reasoning, Bayesian networks, probabilistic inference, and decision-making under uncertainty in Artificial Intelligence.

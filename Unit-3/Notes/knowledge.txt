@@ -1,0 +1,497 @@
+# KNOWLEDGE IN ARTIFICIAL INTELLIGENCE
+
+## 1. Definition of Knowledge
+
+In Artificial Intelligence (AI), knowledge is the collection of facts, concepts, relationships, rules, and information about a particular domain that an AI system uses to understand situations, reason, solve problems, make decisions, and take actions.
+
+Knowledge = Information + Relationships + Rules + Ability to Reason
+
+Example:
+
+1. Ravi is a student.
+2. Every student has a student ID.
+3. Ravi is a student.
+
+Conclusion: Ravi has a student ID.
+
+The AI system uses existing knowledge and rules to derive new knowledge.
+
+--------------------------------------------------
+
+## 2. Data vs Information vs Knowledge
+
+DATA:
+Data consists of raw facts, values, or observations.
+
+Example:
+80
+
+INFORMATION:
+Information is processed data that has meaning.
+
+Example:
+Ravi scored 80 marks in an examination.
+
+KNOWLEDGE:
+Knowledge combines information with rules and relationships to support reasoning.
+
+Example:
+Rule: If a student's marks are greater than or equal to 40, the student passes.
+
+Fact: Ravi scored 80 marks.
+
+Conclusion: Ravi passed the examination.
+
+The relationship can be represented as:
+
+Data
+  ↓
+Information
+  ↓
+Knowledge
+  ↓
+Reasoning
+  ↓
+Decision or Action
+
+--------------------------------------------------
+
+## 3. Components of Knowledge
+
+Knowledge in AI can contain the following components.
+
+### 3.1 Facts
+
+Facts are statements considered true within a particular knowledge base.
+
+Examples:
+- Ravi is a student.
+- The Earth revolves around the Sun.
+- Water freezes at approximately 0°C under standard atmospheric pressure.
+
+### 3.2 Objects
+
+Objects are entities that exist in a particular domain.
+
+Examples:
+- Ravi
+- Car
+- College
+- Book
+
+### 3.3 Properties
+
+Properties describe the characteristics of objects.
+
+Examples:
+- Car → Red
+- Book → 500 pages
+- Student → Roll number 101
+
+### 3.4 Relationships
+
+Relationships describe connections between objects.
+
+Examples:
+- Ravi → studies_at → ABC College
+- Ravi → owns → Car
+- ABC College → located_in → Andhra Pradesh
+
+### 3.5 Rules
+
+Rules describe conditions and conclusions that can be used for reasoning.
+
+Example:
+
+IF student attendance is greater than or equal to 75%
+THEN student is eligible for the examination.
+
+### 3.6 Constraints
+
+Constraints specify restrictions or conditions that must be satisfied.
+
+Example:
+
+A student cannot attend two different classroom sessions at the same time.
+
+--------------------------------------------------
+
+## 4. Types of Knowledge in AI
+
+### 4.1 Factual Knowledge
+
+Factual knowledge describes what is known to be true.
+
+Examples:
+- Delhi is the capital of India.
+- Ravi is a student.
+- The Sun is a star.
+
+### 4.2 Relational Knowledge
+
+Relational knowledge describes relationships between entities.
+
+Example:
+
+Ravi → studies_at → ABC College
+
+ABC College → located_in → Andhra Pradesh
+
+### 4.3 Procedural Knowledge
+
+Procedural knowledge describes how to perform a task or activity.
+
+Example: Starting a car
+
+1. Insert the key.
+2. Turn the key or activate the start system.
+3. Start the engine.
+4. Release the control when the engine starts.
+
+### 4.4 Heuristic Knowledge
+
+Heuristic knowledge is based on experience, practical judgment, or rules of thumb.
+
+Example:
+
+IF the road is wet
+THEN reduce driving speed and maintain a safe distance.
+
+A heuristic is useful but does not guarantee a correct result in every situation.
+
+### 4.5 Common-Sense Knowledge
+
+Common-sense knowledge represents everyday facts and expectations that people generally understand.
+
+Examples:
+- A glass dropped onto a hard floor may break.
+- People generally need food and water.
+- Unsupported objects may fall because of gravity.
+
+### 4.6 Meta-Knowledge
+
+Meta-knowledge is knowledge about other knowledge, including its source, reliability, or applicability.
+
+Example:
+
+Rule A is based on verified information, whereas Rule B is based on an uncertain observation.
+
+An AI system may use this information to determine which rule is more reliable.
+
+--------------------------------------------------
+
+## 5. Knowledge Base
+
+A Knowledge Base (KB) is an organized collection of facts, rules, relationships, and other knowledge used by an AI system.
+
+A knowledge base may contain:
+
+- Facts
+- Rules
+- Objects
+- Properties
+- Relationships
+- Constraints
+
+Example: Medical Knowledge Base
+
+Fact 1: The patient has a fever.
+
+Fact 2: The patient has a cough.
+
+Rule:
+
+IF the patient has a fever AND a cough
+THEN consider the possibility of an infection.
+
+The rule suggests a possibility, not a confirmed diagnosis.
+
+A knowledge base stores knowledge, while an inference engine applies reasoning methods to derive conclusions from that knowledge.
+
+--------------------------------------------------
+
+## 6. How AI Uses Knowledge
+
+Knowledge supports several important AI activities.
+
+### 6.1 Reasoning
+
+Reasoning is the process of deriving conclusions from existing facts and rules.
+
+Example:
+
+Fact: Socrates is a human.
+
+Rule: All humans are mortal.
+
+Conclusion: Socrates is mortal.
+
+Logical representation:
+
+Human(Socrates)
+
+∀x (Human(x) → Mortal(x))
+
+Therefore:
+
+Mortal(Socrates)
+
+### 6.2 Problem Solving
+
+AI uses knowledge to identify possible solutions to a problem.
+
+General process:
+
+Current State
+     ↓
+Identify Available Actions
+     ↓
+Evaluate Possible Outcomes
+     ↓
+Select a Solution
+     ↓
+Reach the Goal
+
+Example:
+
+A navigation system uses information about roads, distances, and traffic conditions to find a suitable route.
+
+### 6.3 Decision Making
+
+Knowledge helps an AI system choose an appropriate action.
+
+Example:
+
+IF traffic_light = RED
+THEN STOP
+
+IF traffic_light = GREEN AND the road is clear
+THEN PROCEED when safe.
+
+### 6.4 Planning
+
+Planning involves identifying a sequence of actions required to achieve a goal.
+
+Example:
+
+Goal: Reach College.
+
+1. Leave home.
+2. Walk to the bus stop.
+3. Board the appropriate bus.
+4. Get down at the college stop.
+5. Reach the college.
+
+### 6.5 Prediction
+
+AI can use existing knowledge and observed patterns to predict possible outcomes.
+
+Example:
+
+Observation: Dark clouds are present.
+
+Additional information: Weather data indicates a high probability of rainfall.
+
+Prediction: Rain is likely.
+
+A prediction is not always certain.
+
+--------------------------------------------------
+
+## 7. Knowledge Representation
+
+Knowledge Representation (KR) is the process of encoding knowledge into a structured form that a computer can store, process, and use for reasoning.
+
+Natural language:
+
+All humans are mortal.
+
+Logical representation:
+
+∀x (Human(x) → Mortal(x))
+
+Given:
+
+Human(Ravi)
+
+The system can infer:
+
+Mortal(Ravi)
+
+Common knowledge representation techniques include:
+
+1. Logic
+2. Production Rules
+3. Semantic Networks
+4. Frames
+5. Ontologies
+6. Probabilistic Representations
+
+Each technique is suitable for different types of knowledge and reasoning tasks.
+
+--------------------------------------------------
+
+## 8. Knowledge-Based AI Architecture
+
+A basic knowledge-based AI system consists of the following components.
+
+1. Environment:
+   The real-world surroundings in which the system operates.
+
+2. Input or Perception:
+   Information obtained from users, sensors, or other sources.
+
+3. Knowledge Base:
+   Stores facts, rules, and relationships.
+
+4. Inference Engine:
+   Applies reasoning methods to the available knowledge.
+
+5. Decision:
+   Selects an appropriate response or action.
+
+6. Action:
+   Executes the selected response.
+
+Architecture:
+
+Environment
+     ↓
+Input / Perception
+     ↓
+Knowledge Base
+     ↕
+Inference Engine
+     ↓
+Decision
+     ↓
+Action
+
+Example: Obstacle-Avoiding Robot
+
+Knowledge:
+- An obstacle is detected ahead.
+- The robot should avoid obstacles.
+
+Reasoning:
+- An obstacle is present in the robot's path.
+- Continuing forward may cause a collision.
+
+Decision:
+- Change direction or stop.
+
+Action:
+- The robot stops or moves along a safe path.
+
+--------------------------------------------------
+
+## 9. Knowledge in Different AI Applications
+
+### 9.1 Expert Systems
+
+Expert systems use domain-specific facts and rules to provide recommendations or solve specialized problems.
+
+Example:
+A medical expert system may use symptoms and medical rules to suggest possible conditions for further examination.
+
+### 9.2 Robotics
+
+Robots use knowledge about objects, locations, obstacles, actions, and goals.
+
+Example:
+A robot uses its map and obstacle information to navigate a room.
+
+### 9.3 Game-Playing AI
+
+Game-playing AI uses game rules, possible moves, board states, and strategies to select actions.
+
+Example:
+A chess program evaluates possible moves to select a promising move.
+
+### 9.4 Natural Language Processing
+
+Natural Language Processing (NLP) systems use language patterns, context, and semantic relationships to interpret text or speech.
+
+Example:
+Understanding the meaning of a word based on the sentence in which it appears.
+
+### 9.5 Recommendation Systems
+
+Recommendation systems use information about users, products, preferences, and previous interactions to suggest relevant items.
+
+Example:
+A movie recommendation system suggests science-fiction movies to a user who enjoys that genre.
+
+--------------------------------------------------
+
+## 10. Knowledge vs Intelligence
+
+Knowledge alone does not guarantee intelligent behavior.
+
+Example:
+
+Knowledge:
+A red traffic light means STOP.
+
+For an AI-controlled vehicle:
+
+1. Perception: Detect the traffic light.
+2. Recognition: Identify that the light is red.
+3. Knowledge: Apply the rule that a red light requires stopping.
+4. Reasoning: Determine the appropriate response.
+5. Action: Apply the brakes safely.
+
+Therefore, intelligent behavior can involve a combination of:
+
+- Knowledge
+- Perception
+- Reasoning
+- Learning
+- Planning
+- Decision Making
+- Action
+
+--------------------------------------------------
+
+## 11. Importance of Knowledge in AI
+
+Knowledge is important because it enables an AI system to:
+
+1. Understand information about its environment.
+2. Represent facts and relationships.
+3. Infer new conclusions.
+4. Solve problems.
+5. Make decisions.
+6. Plan a sequence of actions.
+7. Predict possible outcomes.
+8. Apply domain-specific expertise.
+9. Explain certain conclusions when the system supports explanations.
+10. Use information to achieve defined goals.
+
+--------------------------------------------------
+
+## 12. Summary
+
+Knowledge in Artificial Intelligence consists of facts, concepts, relationships, rules, and other information that an AI system uses to reason and perform tasks.
+
+A Knowledge Base stores organized knowledge.
+
+An Inference Engine applies reasoning methods to the knowledge.
+
+Knowledge Representation provides a structured way to express knowledge so that a computer can process it.
+
+The basic process is:
+
+Knowledge
+    ↓
+Knowledge Representation
+    ↓
+Reasoning
+    ↓
+Decision
+    ↓
+Action
+
+FINAL DEFINITION:
+
+Knowledge in Artificial Intelligence is a collection of facts, concepts, relationships, rules, and experiences about a particular domain that can be represented in a machine-processable form and used by an AI system for reasoning, problem solving, decision making, planning, and action.

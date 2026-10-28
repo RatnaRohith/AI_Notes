@@ -1,0 +1,734 @@
+REASONING UNDER UNCERTAINTY IN ARTIFICIAL INTELLIGENCE
+
+1. INTRODUCTION
+
+In many real-world Artificial Intelligence (AI) problems, an intelligent system does not have complete or accurate information about its environment.
+
+Examples:
+
+1. A doctor may not know exactly which disease a patient has.
+2. A self-driving car may not know whether an object is a pedestrian or a sign.
+3. A weather prediction system cannot determine with complete certainty whether it will rain tomorrow.
+4. A robot may receive noisy sensor readings.
+5. A spam filter may not be completely certain whether an email is spam.
+
+Therefore, an intelligent system must reason with incomplete, uncertain, or ambiguous information.
+
+DEFINITION
+
+Reasoning under uncertainty is the process of drawing conclusions or making decisions when the available knowledge is incomplete, ambiguous, noisy, imprecise, or uncertain.
+
+2. WHY UNCERTAINTY OCCURS IN AI
+
+Uncertainty occurs for several reasons.
+
+2.1 Incomplete Information
+
+The system does not have all the facts required to reach a conclusion.
+
+Example:
+
+A medical AI system knows that a patient has fever and cough, but it does not have the patient's complete medical history.
+
+2.2 Noisy Information
+
+Sensors or data sources may provide inaccurate or imprecise information.
+
+Example:
+
+A robot's sensor reports that an obstacle is approximately 5 meters away. The actual distance may be slightly different.
+
+2.3 Ambiguous Information
+
+The same evidence may have multiple interpretations.
+
+Example:
+
+A camera detects an object, but the object could be a person, a tree, or a statue.
+
+2.4 Dynamic Environment
+
+The environment changes over time, making exact predictions difficult.
+
+Example:
+
+A traffic-navigation system cannot know the exact traffic conditions 30 minutes in the future.
+
+2.5 Conflicting Information
+
+Different sources may provide inconsistent information.
+
+Example:
+
+Sensor A reports a temperature of 30°C, while Sensor B reports a temperature of 32°C.
+
+The AI system must evaluate and combine the available evidence.
+
+3. CERTAIN REASONING VS REASONING UNDER UNCERTAINTY
+
+Traditional logical reasoning often represents statements as either true or false.
+
+Example of certain reasoning:
+
+All humans are mortal.
+Socrates is a human.
+Therefore, Socrates is mortal.
+
+Reasoning under uncertainty deals with conclusions whose truth or likelihood is not completely known.
+
+Example:
+
+There is an 80% probability that it will rain tomorrow.
+
+Differences:
+
+Certain Reasoning:
+- Deals with definite facts and logical conclusions.
+- Often assumes that the required premises are known.
+- Produces conclusions that follow logically from the premises.
+
+Reasoning Under Uncertainty:
+- Deals with incomplete or uncertain information.
+- Represents likelihoods, degrees of belief, or degrees of truth.
+- Produces conclusions that may change when new evidence becomes available.
+
+4. APPROACHES TO REASONING UNDER UNCERTAINTY
+
+Major techniques used in AI include:
+
+1. Probability Theory
+2. Bayesian Reasoning
+3. Bayesian Networks
+4. Certainty Factors
+5. Fuzzy Logic
+6. Dempster-Shafer Theory
+7. Possibility Theory
+8. Non-Monotonic Reasoning
+
+Each technique represents or handles uncertainty in a different way.
+
+5. PROBABILITY-BASED REASONING
+
+Probability theory provides a mathematical method for representing the likelihood of events.
+
+The probability of an event A is represented as P(A).
+
+The probability range is:
+
+0 ≤ P(A) ≤ 1
+
+Where:
+
+P(A) = 0 means the event is impossible.
+P(A) = 1 means the event is certain.
+0 < P(A) < 1 means the event has an intermediate probability.
+
+Example:
+
+Suppose a weather prediction system estimates:
+
+P(Rain) = 0.8
+
+This means that the predicted probability of rain is 80%.
+
+It does not mean that rain is guaranteed.
+
+6. CONDITIONAL PROBABILITY
+
+Conditional probability represents the probability of an event occurring when another event is already known to have occurred.
+
+It is represented as:
+
+P(A | B)
+
+This means the probability of A given B.
+
+Formula:
+
+P(A | B) = P(A ∩ B) / P(B)
+
+Where P(B) > 0.
+
+Here:
+
+P(A | B) = Probability of A given B.
+P(A ∩ B) = Probability that both A and B occur.
+P(B) = Probability of B.
+
+Example:
+
+Let:
+
+A = Patient has influenza.
+B = Patient has fever.
+
+Then:
+
+P(Influenza | Fever)
+
+represents the probability that the patient has influenza given that the patient has a fever.
+
+Fever alone does not prove that the patient has influenza.
+
+7. BAYES' THEOREM
+
+Bayes' theorem is one of the most important techniques for reasoning under uncertainty.
+
+It provides a method for updating the probability of a hypothesis when new evidence becomes available.
+
+Formula:
+
+P(A | B) = [P(B | A) × P(A)] / P(B)
+
+Where:
+
+P(A | B) = Posterior probability.
+P(B | A) = Likelihood.
+P(A) = Prior probability.
+P(B) = Probability of the evidence.
+
+Explanation:
+
+1. Prior Probability: The initial probability of a hypothesis before considering new evidence.
+2. Likelihood: The probability of observing the evidence when the hypothesis is true.
+3. Evidence: The probability of observing the available evidence.
+4. Posterior Probability: The updated probability of the hypothesis after considering the evidence.
+
+Basic Process:
+
+Prior Knowledge
+       +
+New Evidence
+       ↓
+Bayesian Reasoning
+       ↓
+Updated Belief
+
+Example:
+
+A medical AI system initially estimates the probability of a disease as 10%.
+
+After observing symptoms and evaluating relevant evidence, the system updates the probability to 65%.
+
+The updated value depends on the prior probability, the likelihood of the symptoms, and the probability of the evidence.
+
+The system has updated its belief using Bayes' theorem.
+
+8. BAYESIAN NETWORKS
+
+A Bayesian Network is a probabilistic graphical model that represents variables and their conditional dependencies.
+
+Main components:
+
+1. Nodes: Represent random variables.
+2. Directed Edges: Represent dependency relationships.
+3. Conditional Probability Tables (CPTs): Represent the conditional probabilities associated with variables.
+
+Example:
+
+             Rain
+            /    \
+           ↓      ↓
+       Wet Road   Traffic
+           |
+           ↓
+        Accident
+
+Explanation:
+
+- Rain may increase the probability of a wet road.
+- A wet road may increase the probability of an accident.
+- Rain may also influence traffic conditions.
+
+The network uses probability distributions to reason about these relationships.
+
+Applications:
+
+- Medical diagnosis
+- Fault detection
+- Prediction systems
+- Risk analysis
+- Decision support systems
+
+9. FUZZY LOGIC
+
+Fuzzy logic is used to represent degrees of truth rather than restricting every statement to completely true or completely false.
+
+It is particularly useful when dealing with vague concepts such as:
+
+- Hot
+- Cold
+- Tall
+- Short
+- Fast
+- Slow
+
+Example:
+
+A temperature of 30°C may have the following fuzzy membership value:
+
+Hot(30) = 0.7
+
+This means that 30°C belongs to the fuzzy category "Hot" with a membership degree of 0.7.
+
+It does not mean that there is a 70% probability that the temperature is hot.
+
+Difference Between Probability and Fuzzy Logic:
+
+Probability:
+Represents uncertainty about whether an event or proposition is true.
+
+Example:
+There is an 80% probability of rain.
+
+Fuzzy Logic:
+Represents the degree to which an object or value belongs to a vague category.
+
+Example:
+The temperature is hot to a degree of 0.7.
+
+10. CERTAINTY FACTORS
+
+Certainty factors are used in expert systems to represent the degree of confidence associated with a conclusion.
+
+They were notably used in the MYCIN medical expert system.
+
+Example Rule:
+
+IF the patient has fever
+AND the patient has cough
+THEN the patient may have influenza
+WITH a specified certainty factor.
+
+A certainty factor can represent support for a hypothesis or a degree of confidence in a conclusion.
+
+Important Note:
+
+A certainty factor is not automatically equivalent to a probability. Its interpretation depends on the expert system's model.
+
+Applications:
+
+- Medical expert systems
+- Fault diagnosis
+- Rule-based decision support
+- Troubleshooting systems
+
+11. DEMPSTER-SHAFER THEORY
+
+Dempster-Shafer Theory is a mathematical framework for representing belief when evidence is incomplete or uncertain.
+
+It allows belief to be assigned to sets of hypotheses rather than only to individual hypotheses.
+
+Example:
+
+An AI system identifies an object that could be either a car or a truck.
+
+The available evidence is insufficient to distinguish between the two possibilities.
+
+The system may assign belief to the set:
+
+{Car, Truck}
+
+This represents support for the combined possibility that the object is a car or a truck.
+
+The system does not need to divide all the available belief between the two individual hypotheses immediately.
+
+Important Concepts:
+
+1. Frame of Discernment: The set of possible hypotheses.
+2. Basic Probability Assignment: Assigns belief mass to subsets of hypotheses.
+3. Belief Function: Represents the minimum support for a hypothesis.
+4. Plausibility Function: Represents the maximum support that may be assigned to a hypothesis.
+5. Dempster's Rule of Combination: Combines evidence from different sources under appropriate assumptions.
+
+Applications:
+
+- Sensor fusion
+- Object recognition
+- Decision support
+- Information fusion
+- Reasoning with incomplete evidence
+
+12. NON-MONOTONIC REASONING
+
+Non-monotonic reasoning allows a system to withdraw or revise a previously derived conclusion when new information becomes available.
+
+In classical monotonic logic, adding new premises does not invalidate an existing logical consequence.
+
+In non-monotonic reasoning, conclusions may be revised when exceptions or new facts are discovered.
+
+Example:
+
+Initial Rule:
+Birds normally fly.
+
+Fact:
+Tweety is a bird.
+
+Initial Conclusion:
+Tweety can fly.
+
+New Fact:
+Tweety is a penguin.
+
+Revised Conclusion:
+Tweety normally cannot fly.
+
+The system withdraws its earlier default conclusion because it has received new information.
+
+Process:
+
+Initial Knowledge
+       ↓
+Initial Conclusion
+       ↓
+New Information
+       ↓
+Revise the Conclusion
+
+Applications:
+
+- Expert systems
+- Common-sense reasoning
+- Planning systems
+- Intelligent agents
+- Knowledge-based systems
+
+13. DEFAULT REASONING
+
+Default reasoning allows an AI system to make reasonable assumptions when complete information is unavailable.
+
+Example:
+
+General Rule:
+Birds normally fly.
+
+Known Fact:
+Tweety is a bird.
+
+Default Conclusion:
+Tweety can fly.
+
+New Information:
+Tweety is a penguin.
+
+Revised Conclusion:
+Tweety normally cannot fly.
+
+Default reasoning helps AI systems make useful assumptions without requiring every fact to be explicitly provided.
+
+It is closely related to non-monotonic reasoning because default conclusions may be withdrawn when exceptions are discovered.
+
+14. REASONING UNDER UNCERTAINTY VS INCOMPLETE INFORMATION
+
+Incomplete information and uncertain information are related, but they are not identical.
+
+Incomplete Information:
+
+The system does not know whether a particular event will occur.
+
+Example:
+The system has no information about tomorrow's weather.
+
+Uncertain Information:
+
+The system has some evidence but cannot determine the outcome with complete confidence.
+
+Example:
+The weather system predicts an 80% probability of rain.
+
+Comparison:
+
+Incomplete Information:
+Some required facts are missing.
+
+Uncertain Information:
+Available facts do not establish a completely certain conclusion.
+
+In practice, incomplete information often causes uncertainty.
+
+15. EXAMPLE: MEDICAL DIAGNOSIS
+
+Consider an AI-based medical diagnosis system.
+
+Observed Symptoms:
+
+- Fever
+- Cough
+- Fatigue
+- Headache
+
+Possible Diseases:
+
+- Influenza
+- COVID-19
+- Pneumonia
+
+Suppose the system estimates the following probabilities for illustration:
+
+Influenza   = 0.60
+COVID-19    = 0.25
+Pneumonia   = 0.15
+
+These values sum to 1 because the example assumes these are the only three mutually exclusive possibilities.
+
+The system identifies influenza as the most probable diagnosis among the listed alternatives.
+
+However, it should not conclude that influenza is definitely present.
+
+Additional tests, medical history, and clinical evaluation may change the probabilities.
+
+This example demonstrates how AI uses available evidence to reason under uncertainty.
+
+16. DECISION-MAKING UNDER UNCERTAINTY
+
+Reasoning under uncertainty is often used to make decisions when the outcome of an action is not known in advance.
+
+Example:
+
+A self-driving car detects an object ahead.
+
+Possible interpretations:
+
+- Pedestrian
+- Road sign
+- Other object
+
+The AI system estimates the probability of each interpretation and considers possible actions.
+
+Possible Actions:
+
+1. Continue driving.
+2. Reduce speed.
+3. Apply the brakes.
+
+The system must consider both the probability of each outcome and the consequences of its actions.
+
+This is known as decision-making under uncertainty.
+
+Decision theory provides mathematical methods for selecting actions based on possible outcomes, their probabilities, and their utilities.
+
+17. EXPECTED UTILITY
+
+Expected utility is a measure used to evaluate an action when several possible outcomes exist.
+
+Formula:
+
+EU(Action) = Σ P(Resultᵢ | Action) × Utility(Resultᵢ)
+
+Where:
+
+EU(Action) = Expected utility of an action.
+P(Resultᵢ | Action) = Probability of a particular result given the action.
+Utility(Resultᵢ) = Value or desirability of that result.
+Σ = Summation over all possible results.
+
+The decision-maker can compare the expected utilities of available actions.
+
+Example:
+
+A self-driving car considers whether to brake or continue moving.
+
+Braking may reduce the risk of hitting a pedestrian, although it may cause a delay.
+
+Continuing may save time, but it may create a serious safety risk.
+
+The system evaluates the possible outcomes and selects an appropriate action according to its safety constraints and decision criteria.
+
+In safety-critical systems, the action must also satisfy relevant safety requirements; maximizing expected utility alone is not always sufficient.
+
+18. APPLICATIONS OF REASONING UNDER UNCERTAINTY
+
+18.1 Medical AI
+
+- Disease diagnosis
+- Treatment recommendations
+- Patient risk prediction
+- Analysis of medical test results
+
+18.2 Robotics
+
+- Sensor interpretation
+- Object recognition
+- Navigation
+- Obstacle avoidance
+
+18.3 Autonomous Vehicles
+
+- Pedestrian detection
+- Traffic prediction
+- Collision avoidance
+- Road condition estimation
+
+18.4 Natural Language Processing
+
+- Speech recognition
+- Language understanding
+- Word prediction
+- Text classification
+
+18.5 Finance
+
+- Credit risk assessment
+- Fraud detection
+- Financial risk analysis
+- Investment risk estimation
+
+18.6 Weather Forecasting
+
+- Rain prediction
+- Storm forecasting
+- Temperature prediction
+- Climate analysis
+
+18.7 Expert Systems
+
+- Fault diagnosis
+- Troubleshooting
+- Decision support
+- Knowledge-based problem solving
+
+19. COMPARISON OF UNCERTAINTY-HANDLING TECHNIQUES
+
+1. Probability Theory
+
+Main Idea:
+Represents the likelihood of events.
+
+Example:
+An 80% probability of rain.
+
+2. Bayesian Reasoning
+
+Main Idea:
+Updates probabilities using new evidence.
+
+Example:
+Estimating the probability of a disease after observing symptoms.
+
+3. Bayesian Networks
+
+Main Idea:
+Represents probabilistic dependencies using a directed graphical model.
+
+Example:
+A network connecting disease, symptoms, and test results.
+
+4. Fuzzy Logic
+
+Main Idea:
+Represents degrees of truth or membership.
+
+Example:
+A temperature belongs to the category "Hot" with membership value 0.7.
+
+5. Certainty Factors
+
+Main Idea:
+Represents the degree of support or confidence in a conclusion within an expert system.
+
+Example:
+A rule-based medical system assigns a certainty factor to a diagnosis.
+
+6. Dempster-Shafer Theory
+
+Main Idea:
+Represents belief in hypotheses and sets of hypotheses.
+
+Example:
+A sensor system supports the possibility that an object is either a car or a truck.
+
+7. Non-Monotonic Reasoning
+
+Main Idea:
+Allows conclusions to be revised when new information is discovered.
+
+Example:
+A bird is initially assumed to fly, but the assumption is revised when it is identified as a penguin.
+
+8. Decision Theory
+
+Main Idea:
+Selects actions by evaluating possible outcomes, probabilities, and utilities.
+
+Example:
+A self-driving car evaluates whether to brake or continue moving.
+
+20. ADVANTAGES OF REASONING UNDER UNCERTAINTY
+
+1. Handles incomplete information.
+2. Supports reasoning with noisy data.
+3. Combines evidence from multiple sources.
+4. Helps predict possible outcomes.
+5. Supports risk assessment.
+6. Enables decision-making when certainty is impossible.
+7. Allows beliefs and conclusions to be updated.
+8. Improves the flexibility of intelligent systems.
+9. Supports real-world applications where data is imperfect.
+
+21. LIMITATIONS OF REASONING UNDER UNCERTAINTY
+
+1. Accurate probability values may be difficult to obtain.
+2. Incorrect assumptions can lead to incorrect conclusions.
+3. Complex probabilistic models may require significant computation.
+4. Dependencies among variables may be difficult to identify.
+5. Different uncertainty models may produce different results.
+6. Incomplete or biased data can reduce reliability.
+7. Some systems may be difficult to explain and interpret.
+8. Uncertainty estimates do not guarantee correct decisions.
+
+22. GENERAL FRAMEWORK OF REASONING UNDER UNCERTAINTY
+
+Real-World Environment
+          ↓
+Observations and Data
+          ↓
+Incomplete, Noisy, or Ambiguous Information
+          ↓
+Represent Uncertainty
+          ↓
+Select an Appropriate Method
+          ↓
+Probability / Bayesian Reasoning / Fuzzy Logic /
+Certainty Factors / Dempster-Shafer Theory
+          ↓
+Reasoning and Inference
+          ↓
+Updated Knowledge or Beliefs
+          ↓
+Decision-Making
+          ↓
+Action
+
+23. CONCLUSION
+
+Reasoning under uncertainty is an important area of Artificial Intelligence because real-world systems rarely possess complete and perfectly accurate information.
+
+It enables intelligent systems to interpret incomplete evidence, estimate probabilities, combine information, revise conclusions, and make decisions.
+
+Probability theory, Bayesian reasoning, Bayesian networks, fuzzy logic, certainty factors, Dempster-Shafer theory, and non-monotonic reasoning are important approaches for handling different forms of uncertainty.
+
+These techniques are widely used in medical diagnosis, robotics, autonomous vehicles, expert systems, forecasting, and decision-support applications.
+
+EXAM-ORIENTED DEFINITION
+
+Reasoning under uncertainty is the process of deriving conclusions and making decisions when the available knowledge is incomplete, ambiguous, imprecise, noisy, or uncertain. Artificial Intelligence uses techniques such as probability theory, Bayesian reasoning, Bayesian networks, fuzzy logic, certainty factors, Dempster-Shafer theory, and non-monotonic reasoning to represent and handle uncertainty.
+
+IMPORTANT EXAM POINTS
+
+For a 10-mark answer, prepare the following topics:
+
+1. Definition of reasoning under uncertainty.
+2. Need for reasoning under uncertainty.
+3. Sources of uncertainty.
+4. Certain reasoning versus uncertain reasoning.
+5. Probability-based reasoning.
+6. Conditional probability.
+7. Bayes' theorem.
+8. Bayesian networks.
+9. Fuzzy logic.
+10. Certainty factors.
+11. Dempster-Shafer theory.
+12. Non-monotonic and default reasoning.
+13. Decision-making and expected utility.
+14. Applications, advantages, and limitations.

@@ -1,0 +1,542 @@
+# SEMANTIC NETWORKS IN ARTIFICIAL INTELLIGENCE
+
+============================================================
+1. WHAT IS A SEMANTIC NETWORK?
+============================================================
+
+A Semantic Network is a knowledge representation technique used in
+Artificial Intelligence (AI) to represent knowledge as a graph of
+concepts and relationships.
+
+It represents:
+
+1. Concepts or objects as nodes.
+2. Relationships between concepts as links or edges.
+
+Example:
+
+    Bird → is-a → Animal
+    Bird → has → Wings
+    Bird → can → Fly
+    Bird → has → Feathers
+
+In this example:
+
+- Bird, Animal, Wings, Fly, and Feathers are nodes.
+- is-a, has, and can are relationships.
+
+A semantic network organizes knowledge by showing how different
+concepts are connected.
+
+============================================================
+2. COMPONENTS OF A SEMANTIC NETWORK
+============================================================
+
+A. NODES
+
+Nodes represent entities, objects, concepts, or properties.
+
+Examples:
+
+    Student
+    Teacher
+    College
+    Book
+    Car
+    Animal
+
+B. LINKS OR EDGES
+
+Links represent relationships between nodes.
+
+Common relationships include:
+
+1. IS-A
+
+   Represents a class or category relationship.
+
+   Example:
+       Dog → is-a → Animal
+
+2. INSTANCE-OF
+
+   Represents an individual belonging to a class.
+
+   Example:
+       Tommy → instance-of → Dog
+
+3. HAS-A
+
+   Represents possession or ownership of a component.
+
+   Example:
+       Car → has-a → Engine
+
+4. PART-OF
+
+   Represents a component belonging to a larger object.
+
+   Example:
+       Engine → part-of → Car
+
+5. CAN
+
+   Represents an ability or capability.
+
+   Example:
+       Bird → can → Fly
+
+6. LIKES
+
+   Represents a preference or relationship.
+
+   Example:
+       John → likes → Music
+
+Note:
+The exact meaning of a relationship depends on the knowledge
+representation system being used.
+
+============================================================
+3. EXAMPLE OF A SEMANTIC NETWORK
+============================================================
+
+Consider the following knowledge:
+
+1. A Dog is an Animal.
+2. A Dog has four legs.
+3. A Dog has a tail.
+4. Tommy is a Dog.
+5. Dogs can bark.
+
+Semantic Network:
+
+                    ANIMAL
+                       ↑
+                      is-a
+                       |
+                      DOG
+                   /   |   \
+                 has  has   can
+                  |    |     |
+                  ↓    ↓     ↓
+                Four  Tail  Bark
+                Legs
+                       ↑
+                 instance-of
+                       |
+                    TOMMY
+
+The network represents the relationships between Dog, Animal,
+Tommy, and the properties of a dog.
+
+Interpretation:
+
+- Dog is a type of Animal.
+- Dog has four legs.
+- Dog has a tail.
+- Dog can bark.
+- Tommy is an instance of Dog.
+
+============================================================
+4. INHERITANCE IN SEMANTIC NETWORKS
+============================================================
+
+Inheritance is one of the important features of semantic networks.
+
+Inheritance allows a concept to obtain properties from a more
+general concept connected to it through a hierarchical relationship.
+
+Example:
+
+    ANIMAL
+       ↑
+      is-a
+       |
+      BIRD
+       ↑
+      is-a
+       |
+     PARROT
+
+Suppose the network contains:
+
+    Animal → needs → Food
+    Bird   → has → Wings
+    Bird   → can → Fly
+
+Because Bird is a type of Animal, Bird inherits the property:
+
+    Bird → needs → Food
+
+A Parrot can inherit properties from Bird and Animal.
+
+Therefore, the Parrot may inherit:
+
+    Has Wings
+    Can Fly
+    Needs Food
+
+This reduces the need to store the same information repeatedly.
+
+Note:
+Inheritance depends on the relationships and rules defined in the
+knowledge representation system. Properties with exceptions must
+be handled appropriately.
+
+============================================================
+5. TYPES OF RELATIONSHIPS
+============================================================
+
+A. IS-A RELATIONSHIP
+
+Represents a hierarchical relationship between classes.
+
+Example:
+
+    Dog → is-a → Animal
+    Cat → is-a → Animal
+
+Interpretation:
+Dog and Cat are types of Animal.
+
+B. INSTANCE-OF RELATIONSHIP
+
+Represents membership of an individual in a class.
+
+Example:
+
+    Tommy → instance-of → Dog
+    Kitty → instance-of → Cat
+
+Interpretation:
+Tommy is a particular dog, and Kitty is a particular cat.
+
+C. PART-OF RELATIONSHIP
+
+Represents a component that belongs to a larger object.
+
+Example:
+
+    Wheel  → part-of → Car
+    Engine → part-of → Car
+
+Interpretation:
+A wheel and an engine are components of a car.
+
+D. HAS-A RELATIONSHIP
+
+Represents an object having a component or property.
+
+Example:
+
+    Car → has-a → Engine
+    Car → has-a → Wheel
+
+Interpretation:
+A car has an engine and wheels.
+
+E. CAN RELATIONSHIP
+
+Represents an ability or capability.
+
+Example:
+
+    Bird → can → Fly
+    Fish → can → Swim
+
+Note:
+These examples describe typical cases. Some birds cannot fly,
+and some fish may not swim in the usual way.
+
+============================================================
+6. MULTI-LEVEL SEMANTIC NETWORK
+============================================================
+
+A semantic network can represent concepts at multiple levels.
+
+Example:
+
+                    LIVING THING
+                         ↑
+                        is-a
+                         |
+                       ANIMAL
+                      /      \
+                   is-a      is-a
+                    |          |
+                   BIRD      MAMMAL
+                    ↑          ↑
+                   is-a       is-a
+                    |          |
+                  PARROT      DOG
+                    ↑          ↑
+               instance-of instance-of
+                    |          |
+                  POLLY      TOMMY
+
+Interpretation:
+
+- Animal is a type of Living Thing.
+- Bird and Mammal are types of Animal.
+- Parrot is a type of Bird.
+- Dog is a type of Mammal.
+- Polly is an instance of Parrot.
+- Tommy is an instance of Dog.
+
+This hierarchy helps organize knowledge from general concepts
+to specific concepts and individual objects.
+
+============================================================
+7. REASONING USING SEMANTIC NETWORKS
+============================================================
+
+Semantic networks can support inference by following relationships
+between nodes.
+
+Example:
+
+Knowledge Base:
+
+    Dog → is-a → Animal
+    Animal → needs → Food
+
+Question:
+
+    Does a Dog need Food?
+
+Reasoning:
+
+    DOG
+      |
+      | is-a
+      ↓
+    ANIMAL
+      |
+      | needs
+      ↓
+     FOOD
+
+Conclusion:
+
+    Dog → needs → Food
+
+Explanation:
+
+1. Dog is a type of Animal.
+2. Animal needs Food.
+3. Therefore, Dog inherits the property of needing Food.
+
+This is an example of inheritance-based reasoning.
+
+============================================================
+8. EXCEPTIONS IN SEMANTIC NETWORKS
+============================================================
+
+A basic semantic network may represent typical properties that
+are not true for every member of a class.
+
+Example:
+
+    Bird → can → Fly
+
+However:
+
+    Penguin → is-a → Bird
+    Penguin → cannot → Fly
+
+The general property of flying does not apply to penguins.
+
+This illustrates the need for exception handling in semantic
+networks.
+
+A reasoning system must recognize that the more specific
+information about Penguin overrides the general assumption
+about birds.
+
+Important Principle:
+
+    Specific knowledge can override general knowledge.
+
+============================================================
+9. ADVANTAGES OF SEMANTIC NETWORKS
+============================================================
+
+1. Easy to Understand:
+   Knowledge is represented graphically using nodes and links.
+
+2. Supports Inheritance:
+   Concepts can inherit properties from more general concepts.
+
+3. Represents Relationships:
+   It clearly shows relationships between different concepts.
+
+4. Supports Reasoning:
+   New information can be inferred by following relationships
+   and inheritance rules.
+
+5. Reduces Duplication:
+   Common properties can be represented at higher levels of
+   the hierarchy.
+
+6. Organizes Knowledge:
+   Concepts can be arranged in hierarchical structures.
+
+7. Easy to Extend:
+   New nodes and relationships can be added to represent
+   additional knowledge.
+
+============================================================
+10. LIMITATIONS OF SEMANTIC NETWORKS
+============================================================
+
+1. Lack of a Universal Standard:
+   Different semantic network systems may define relationships
+   and inference rules differently.
+
+2. Large Networks:
+   Complex knowledge may produce very large and difficult-to-manage
+   networks.
+
+3. Exception Handling:
+   Conflicting properties and exceptions can complicate reasoning.
+
+4. Uncertain Knowledge:
+   Basic semantic networks do not inherently provide a complete
+   mechanism for representing uncertainty.
+
+5. Complex Logical Statements:
+   Some complex logical relationships are difficult to express
+   using simple nodes and links.
+
+6. Relationship Interpretation:
+   The meaning of a link must be clearly defined to avoid
+   ambiguity.
+
+============================================================
+11. SEMANTIC NETWORKS VS PREDICATE LOGIC
+============================================================
+
+Feature: Representation
+
+    Semantic Networks:
+        Graph-based representation.
+
+    Predicate Logic:
+        Symbolic and logical representation.
+
+Feature: Main Elements
+
+    Semantic Networks:
+        Nodes and labeled links.
+
+    Predicate Logic:
+        Predicates, variables, constants, and logical operators.
+
+Feature: Visualization
+
+    Semantic Networks:
+        Easy to visualize as a graph.
+
+    Predicate Logic:
+        Usually represented using logical expressions.
+
+Feature: Inheritance
+
+    Semantic Networks:
+        Can represent inheritance through hierarchical links.
+
+    Predicate Logic:
+        Can express general rules using logical implications.
+
+Feature: Example
+
+    Semantic Network:
+        Dog → is-a → Animal
+
+    Predicate Logic:
+        ∀x (Dog(x) → Animal(x))
+
+Meaning of the Predicate Logic Expression:
+
+    For every x, if x is a Dog, then x is an Animal.
+
+Feature: Main Use
+
+    Semantic Networks:
+        Organizing concepts and relationships.
+
+    Predicate Logic:
+        Expressing precise logical statements and rules.
+
+============================================================
+12. APPLICATIONS OF SEMANTIC NETWORKS
+============================================================
+
+Semantic networks are useful in several AI applications.
+
+1. Knowledge Representation:
+   Representing facts about objects, classes, and relationships.
+
+2. Expert Systems:
+   Organizing domain-specific knowledge for problem-solving.
+
+3. Natural Language Processing:
+   Representing meanings and relationships between words and concepts.
+
+4. Information Retrieval:
+   Connecting related concepts to help retrieve relevant information.
+
+5. Ontologies:
+   Organizing concepts, categories, and relationships within a domain.
+
+6. Intelligent Tutoring Systems:
+   Representing relationships between topics and learning concepts.
+
+7. Question Answering:
+   Following known relationships to help derive answers.
+
+============================================================
+13. EXAM DEFINITION
+============================================================
+
+A Semantic Network is a graphical knowledge representation
+technique in Artificial Intelligence in which concepts or entities
+are represented as nodes and the relationships between them are
+represented as labeled links or edges. Semantic networks support
+knowledge organization, inheritance, and inference.
+
+============================================================
+14. QUICK REVISION
+============================================================
+
+Semantic Network = Nodes + Relationships + Inheritance + Reasoning
+
+Remember:
+
+1. Nodes represent concepts or objects.
+2. Links represent relationships between nodes.
+3. IS-A represents a hierarchical relationship.
+4. INSTANCE-OF represents membership of an individual in a class.
+5. HAS-A represents possession or a component relationship.
+6. PART-OF represents a component belonging to a larger object.
+7. Inheritance allows properties to pass from general concepts
+   to more specific concepts.
+8. Reasoning derives conclusions by following relationships.
+9. Exceptions must be handled when general properties do not
+   apply to specific concepts.
+
+Simple Example:
+
+    Animal → needs → Food
+    Bird   → is-a → Animal
+    Parrot → is-a → Bird
+
+Using inheritance:
+
+    Parrot → needs → Food
+
+Conclusion:
+
+Semantic networks provide a simple and visual method for
+representing knowledge and relationships in Artificial Intelligence.

@@ -1,0 +1,862 @@
+# REINFORCEMENT LEARNING
+
+## 1. Introduction
+
+Reinforcement Learning (RL) is a type of Machine Learning in which an agent learns how to make decisions by interacting with an environment.
+
+The agent does not receive labeled training examples as in Supervised Learning. Instead, it learns from rewards and penalties received after performing actions.
+
+Basic Learning Process:
+
+Try an Action → Observe the Result → Receive Reward or Penalty → Learn → Improve Future Decisions
+
+Example: Robot Learning to Walk
+
+- Agent: Robot
+- Environment: Ground or World
+- Action: Move a leg
+- State: Current position and posture
+- Reward: +10 for moving forward successfully
+- Penalty: −10 for falling
+- Goal: Learn movements that maximize cumulative reward.
+
+## 2. Reinforcement Learning Model
+
+The basic Reinforcement Learning model consists of the following components:
+
+1. Agent
+2. Environment
+3. State
+4. Action
+5. Reward
+6. Policy
+7. Value Function
+8. Q-Function
+
+Interaction Process:
+
+Agent → Action → Environment → New State + Reward → Agent
+
+The agent repeatedly interacts with the environment and improves its decision-making strategy.
+
+## 3. Agent
+
+An Agent is the entity that learns and makes decisions.
+
+Examples:
+
+- Robot
+- Game-playing AI
+- Self-driving car
+- Trading agent
+- Recommendation system
+- Non-Player Character (NPC) in a video game
+
+The agent observes the environment, selects actions, receives feedback, and learns from experience.
+
+## 4. Environment
+
+The Environment is everything outside the agent with which it interacts.
+
+Example: Chess
+
+- Agent: Chess AI
+- Environment: Chessboard, game rules, and opponent
+- Action: Move a chess piece
+- Reward: Winning the game may provide a positive reward.
+
+The environment changes according to the agent's actions and, in some cases, the actions of other agents.
+
+## 5. State
+
+A State represents the current situation of the environment from the agent's perspective.
+
+Example: Game State
+
+- Player position
+- Enemy positions
+- Player health
+- Ammunition
+- Available weapons
+
+Example: Robot State
+
+- Position
+- Velocity
+- Orientation
+- Sensor readings
+
+The state at time t is represented as:
+
+Sₜ
+
+The agent uses the current state to select an appropriate action.
+
+## 6. Action
+
+An Action is a decision taken by the agent.
+
+Examples of game actions:
+
+- Move Forward
+- Move Backward
+- Turn Left
+- Turn Right
+- Attack
+- Defend
+
+### 6.1 Discrete Actions
+
+Discrete actions represent a finite set of possible choices.
+
+Example:
+
+A = {Left, Right, Forward, Backward}
+
+### 6.2 Continuous Actions
+
+Continuous actions can take values from a continuous range.
+
+Example:
+
+Steering ∈ [−1.0, +1.0]
+
+Acceleration ∈ [0.0, 1.0]
+
+Continuous actions are commonly used in robotics, autonomous vehicles, and physical control systems.
+
+## 7. Reward
+
+A Reward provides feedback to the agent about the result of an action.
+
+Rewards can be positive, negative, or zero.
+
+Examples:
+
+Action                  Reward
+--------------------------------
+Move toward goal        +10
+Move away from goal      −5
+Reach the goal          +100
+Do nothing                0
+Crash                   −100
+
+The main objective of Reinforcement Learning is to maximize the cumulative reward over time.
+
+## 8. Policy
+
+A Policy defines how an agent selects an action based on the current state.
+
+It is commonly represented by:
+
+π(a | s)
+
+Where:
+
+π = Policy
+a = Action
+s = State
+
+The expression π(a | s) represents the probability of selecting action a when the agent is in state s.
+
+Example:
+
+State: Enemy is nearby
+
+Attack → 70%
+Run    → 20%
+Hide   → 10%
+
+A deterministic policy selects a specific action for a given state.
+
+Example:
+
+Enemy nearby → Attack
+
+A stochastic policy selects actions according to probabilities.
+
+## 9. Value Function
+
+A Value Function estimates how good it is for an agent to be in a particular state.
+
+It is represented by:
+
+V(s)
+
+Where:
+
+V(s) = Expected cumulative future reward from state s.
+
+The value function considers future rewards rather than only the immediate reward.
+
+Example:
+
+State A → State B → Treasure
+
+State A may provide no immediate reward, but it can have a high value because it leads to treasure in the future.
+
+## 10. Q-Function or Action-Value Function
+
+The Q-Function evaluates the expected future reward of taking a particular action in a particular state.
+
+It is represented by:
+
+Q(s, a)
+
+Where:
+
+s = Current state
+a = Selected action
+
+Example:
+
+State: Enemy nearby
+
+Action     Q-Value
+------------------
+Attack       80
+Run          40
+Hide         20
+
+If the Q-values are accurate, the agent can select Attack because it has the highest Q-value.
+
+The action-selection rule is:
+
+a* = arg maxₐ Q(s, a)
+
+Here, a* represents the action with the highest Q-value in state s.
+
+## 11. Episode
+
+An Episode is a complete sequence of interactions from an initial state to a terminal state.
+
+Example: Game
+
+Start → Move → Fight Enemy → Collect Key → Open Door → Reach Goal → End
+
+This complete sequence is one episode.
+
+Another example is a chess game from the initial board position until checkmate, a draw, or another terminal condition.
+
+Some reinforcement learning tasks are continuing tasks and do not have a natural terminal state.
+
+## 12. Return
+
+Return is the cumulative reward received from a particular time step onward.
+
+Suppose the rewards are:
+
++10, +5, −2, +20
+
+The undiscounted return is:
+
+Gₜ = 10 + 5 − 2 + 20
+
+Gₜ = 33
+
+Return is often calculated using a discount factor to reduce the contribution of future rewards.
+
+## 13. Discount Factor
+
+The Discount Factor is represented by the Greek letter gamma:
+
+γ
+
+Its value is generally between 0 and 1, inclusive.
+
+0 ≤ γ ≤ 1
+
+The discount factor determines the importance assigned to future rewards.
+
+If γ = 0:
+
+The agent considers only immediate rewards.
+
+If γ is close to 1:
+
+The agent gives greater importance to future rewards.
+
+The discounted return is:
+
+Gₜ = Rₜ₊₁ + γRₜ₊₂ + γ²Rₜ₊₃ + ...
+
+Where:
+
+Gₜ = Return at time t
+Rₜ₊₁ = Reward received at the next time step
+γ = Discount factor
+
+Example:
+
+Immediate reward = 10
+Future reward = 100
+Discount factor γ = 0.5
+
+G = 10 + 0.5 × 100
+
+G = 60
+
+Therefore, the discounted return is 60.
+
+## 14. Markov Decision Process (MDP)
+
+A Markov Decision Process is a mathematical framework commonly used to model Reinforcement Learning problems.
+
+An MDP is represented by:
+
+(S, A, P, R, γ)
+
+Where:
+
+S = Set of states
+A = Set of actions
+P = State transition probability function
+R = Reward function
+γ = Discount factor
+
+### State Transition
+
+When the agent performs an action, the environment moves from the current state to a new state.
+
+Sₜ → Aₜ → Sₜ₊₁
+
+The agent receives a reward associated with the transition:
+
+Rₜ₊₁
+
+The interaction can be represented as:
+
+(Sₜ, Aₜ, Rₜ₊₁, Sₜ₊₁)
+
+The Markov property means that the next-state distribution depends on the current state and action, rather than the entire history, assuming the state contains the necessary information.
+
+## 15. Exploration and Exploitation
+
+A major challenge in Reinforcement Learning is balancing Exploration and Exploitation.
+
+### 15.1 Exploration
+
+Exploration means trying new actions to discover potentially better strategies.
+
+Example:
+
+The agent usually attacks an enemy but decides to try hiding to discover whether it produces a better result.
+
+Advantages:
+
+- Discovers new strategies.
+- Identifies potentially better actions.
+- Improves knowledge of the environment.
+
+### 15.2 Exploitation
+
+Exploitation means selecting the action currently believed to be the best.
+
+Example:
+
+The agent repeatedly attacks because previous experience indicates that attacking provides high rewards.
+
+Advantages:
+
+- Uses existing knowledge.
+- Can produce good immediate results.
+- Avoids unnecessary experimentation.
+
+A good agent balances exploration and exploitation to maximize long-term rewards.
+
+## 16. Epsilon-Greedy Strategy
+
+The Epsilon-Greedy Strategy is a commonly used method for balancing exploration and exploitation.
+
+The parameter epsilon is represented by:
+
+ε
+
+The strategy works as follows:
+
+With probability ε:
+Select a random action.
+
+With probability 1 − ε:
+Select the action with the highest estimated Q-value.
+
+Example:
+
+ε = 0.1
+
+Exploration probability = 10%
+Exploitation probability = 90%
+
+Algorithm:
+
+1. Generate a random number between 0 and 1.
+2. If the number is less than ε, select a random action.
+3. Otherwise, select the action with the highest Q-value.
+
+Pseudocode:
+
+IF random_number < ε:
+    Choose a random action
+ELSE:
+    Choose the action with the maximum Q-value
+
+This strategy helps the agent discover new actions while continuing to use actions that have previously performed well.
+
+## 17. Q-Learning
+
+Q-Learning is a model-free, off-policy Reinforcement Learning algorithm.
+
+It learns the action-value function Q(s, a) and aims to estimate the optimal action values.
+
+The Q-Learning update equation is:
+
+Q(s, a) ← Q(s, a) + α[r + γ maxₐ′ Q(s′, a′) − Q(s, a)]
+
+Where:
+
+s = Current state
+a = Current action
+r = Immediate reward
+s′ = Next state
+a′ = Possible next action
+α = Learning rate
+γ = Discount factor
+maxₐ′ Q(s′, a′) = Highest estimated Q-value in the next state
+
+The learning rate α determines how strongly the new information changes the existing Q-value.
+
+The term:
+
+r + γ maxₐ′ Q(s′, a′)
+
+is called the target value in the Q-Learning update.
+
+The difference between the target and the current estimate is the temporal-difference error.
+
+Temporal-Difference Error:
+
+δ = r + γ maxₐ′ Q(s′, a′) − Q(s, a)
+
+Q-Learning uses this error to update its estimate.
+
+## 18. Q-Learning Numerical Example
+
+Suppose:
+
+Current state = S₁
+Action = Move Right
+Immediate reward = +10
+Next state = S₂
+Current Q(S₁, Right) = 20
+Maximum Q-value at S₂ = 50
+Learning rate α = 0.1
+Discount factor γ = 0.9
+
+Using the Q-Learning equation:
+
+Q(S₁, Right) ← 20 + 0.1[10 + 0.9 × 50 − 20]
+
+Step 1: Calculate the discounted future reward.
+
+0.9 × 50 = 45
+
+Step 2: Calculate the target value.
+
+10 + 45 = 55
+
+Step 3: Calculate the temporal-difference error.
+
+55 − 20 = 35
+
+Step 4: Calculate the update.
+
+0.1 × 35 = 3.5
+
+Step 5: Calculate the new Q-value.
+
+Q(S₁, Right) = 20 + 3.5
+
+Q(S₁, Right) = 23.5
+
+Therefore, the Q-value changes from 20 to 23.5.
+
+The agent has updated its estimate using the reward and the estimated future value.
+
+## 19. SARSA Algorithm
+
+SARSA is another model-free Reinforcement Learning algorithm.
+
+SARSA stands for:
+
+State → Action → Reward → State → Action
+
+It learns action values using the action actually selected by the current policy.
+
+The SARSA update equation is:
+
+Q(s, a) ← Q(s, a) + α[r + γQ(s′, a′) − Q(s, a)]
+
+Where:
+
+s = Current state
+a = Current action
+r = Immediate reward
+s′ = Next state
+a′ = Action actually selected in the next state
+α = Learning rate
+γ = Discount factor
+
+### Difference Between Q-Learning and SARSA
+
+Q-Learning:
+
+Q(s, a) ← Q(s, a) + α[r + γ maxₐ′ Q(s′, a′) − Q(s, a)]
+
+It uses the maximum estimated Q-value in the next state.
+
+SARSA:
+
+Q(s, a) ← Q(s, a) + α[r + γQ(s′, a′) − Q(s, a)]
+
+It uses the Q-value of the action actually selected in the next state.
+
+Therefore:
+
+Q-Learning = Off-policy learning
+SARSA = On-policy learning
+
+Q-Learning learns using a greedy target, whereas SARSA learns using the behavior of its current policy.
+
+## 20. Model-Based and Model-Free Reinforcement Learning
+
+### 20.1 Model-Based Reinforcement Learning
+
+In Model-Based RL, the agent has or learns a model of the environment.
+
+The model predicts:
+
+- The next state.
+- The reward resulting from an action.
+- The possible consequences of decisions.
+
+General process:
+
+Current State + Action → Environment Model → Predicted Next State and Reward
+
+The agent can use these predictions to plan its actions.
+
+### 20.2 Model-Free Reinforcement Learning
+
+In Model-Free RL, the agent learns directly from interactions and experience without requiring an explicit model of the environment.
+
+General process:
+
+State → Action → Reward → Learning
+
+Examples:
+
+- Q-Learning
+- SARSA
+- Policy Gradient methods
+
+## 21. Value-Based Learning
+
+Value-Based methods learn the value of states or state-action pairs.
+
+Examples:
+
+- Q-Learning
+- SARSA
+- Deep Q-Network (DQN)
+
+The agent uses the learned values to select actions.
+
+General process:
+
+State → Estimate Action Values → Select an Action
+
+These methods are useful when action values can be estimated effectively.
+
+## 22. Policy-Based Learning
+
+Policy-Based methods directly learn a policy that maps states to actions or action probabilities.
+
+General process:
+
+State → Policy → Action
+
+Examples:
+
+- Policy Gradient
+- REINFORCE
+
+Policy-based methods can be useful in environments with continuous action spaces or stochastic policies.
+
+## 23. Actor-Critic Methods
+
+Actor-Critic methods combine policy-based and value-based learning.
+
+They contain two main components.
+
+### Actor
+
+The Actor selects actions according to the learned policy.
+
+### Critic
+
+The Critic evaluates states or actions and provides feedback that helps improve the Actor.
+
+General process:
+
+State → Actor → Action
+             ↓
+           Critic
+             ↓
+       Evaluation Feedback
+             ↓
+       Improve the Policy
+
+Popular Actor-Critic algorithms include:
+
+- A2C — Advantage Actor-Critic
+- A3C — Asynchronous Advantage Actor-Critic
+- PPO — Proximal Policy Optimization
+- DDPG — Deep Deterministic Policy Gradient
+- SAC — Soft Actor-Critic
+
+## 24. Deep Reinforcement Learning
+
+Deep Reinforcement Learning combines Reinforcement Learning with Deep Learning.
+
+It uses neural networks to approximate policies, value functions, or action-value functions.
+
+Deep RL is useful when the state space is too large for a simple table.
+
+Example:
+
+Game Screen → Neural Network → Q-Values or Policy → Action
+
+### Deep Q-Network (DQN)
+
+A Deep Q-Network uses a neural network to approximate:
+
+Q(s, a)
+
+Instead of storing every Q-value in a table, the network estimates action values from the input state.
+
+DQN has been used in game-playing and other decision-making tasks.
+
+## 25. Reinforcement Learning vs Supervised Learning
+
+Supervised Learning:
+
+- Training data consists of labeled examples.
+- The model learns from known target outputs.
+- The objective is generally to predict the correct output.
+- Example: Image classification.
+
+Reinforcement Learning:
+
+- Training data is generated through interaction and experience.
+- The agent receives rewards or penalties.
+- The objective is to maximize cumulative reward.
+- Example: Game-playing AI.
+
+Major Difference:
+
+Supervised Learning learns from labeled examples, whereas Reinforcement Learning learns through interaction with an environment and feedback in the form of rewards.
+
+## 26. Reinforcement Learning vs Unsupervised Learning
+
+Unsupervised Learning:
+
+- Works with data that does not contain explicit target labels.
+- Discovers patterns, structures, or relationships.
+- Common methods include clustering and dimensionality reduction.
+- Example: Grouping similar customers.
+
+Reinforcement Learning:
+
+- Learns a decision-making strategy.
+- Receives rewards or penalties.
+- Interacts with an environment.
+- Example: Training a robot to navigate a room.
+
+Major Difference:
+
+Unsupervised Learning focuses on discovering patterns in data, whereas Reinforcement Learning focuses on learning actions that maximize cumulative reward.
+
+## 27. Applications of Reinforcement Learning
+
+### 27.1 Games
+
+- Chess and Go.
+- Video-game AI.
+- NPC decision-making.
+- Strategy optimization.
+
+### 27.2 Robotics
+
+- Robot walking.
+- Object manipulation.
+- Autonomous navigation.
+- Motion control.
+
+### 27.3 Autonomous Vehicles
+
+- Driving decisions.
+- Traffic management.
+- Control strategies.
+- Path planning.
+
+### 27.4 Recommendation Systems
+
+- Selecting content.
+- Personalizing recommendations.
+- Optimizing long-term user engagement.
+
+### 27.5 Finance
+
+- Portfolio optimization.
+- Trading strategies.
+- Risk-aware decision-making.
+
+### 27.6 Resource Management
+
+- Energy optimization.
+- Network management.
+- Data-center resource allocation.
+- Scheduling.
+
+Reinforcement Learning is especially useful when actions influence future states and long-term outcomes.
+
+## 28. Reinforcement Learning in Video Games
+
+Reinforcement Learning can be used to train game agents and NPCs.
+
+Example: Enemy NPC
+
+State Information:
+
+- Distance from player.
+- Player health.
+- Enemy health.
+- Available ammunition.
+- Cover availability.
+
+Possible Actions:
+
+- Attack.
+- Hide.
+- Move.
+- Reload.
+- Retreat.
+
+Example Reward Design:
+
+Kill the player          +100
+Damage the player         +10
+Take damage               −10
+Enemy dies               −100
+Find useful cover          +5
+
+These rewards are illustrative. Their values should be adjusted according to the game's objectives and testing results.
+
+Over multiple episodes, the agent can learn a strategy that maximizes cumulative reward.
+
+Important Consideration:
+
+Poorly designed rewards may lead to undesirable behavior. For example, an NPC might repeatedly seek a small reward rather than completing its intended objective.
+
+## 29. Complete Reinforcement Learning Cycle
+
+The Reinforcement Learning cycle consists of the following steps:
+
+1. Initialize the agent.
+2. Observe the current state.
+3. Select an action using the policy.
+4. Perform the action in the environment.
+5. Receive a reward.
+6. Observe the next state.
+7. Update the policy or value estimates.
+8. Repeat until the episode ends or the task is completed.
+9. Continue learning across additional episodes when appropriate.
+
+The basic interaction is:
+
+State → Action → Reward + Next State → Learning
+
+Mathematically, the interaction can be represented as:
+
+(Sₜ, Aₜ, Rₜ₊₁, Sₜ₊₁)
+
+The agent uses repeated experience to improve its decision-making strategy.
+
+## 30. Important Terms for Examination
+
+1. Agent: The learner or decision-maker.
+2. Environment: The world with which the agent interacts.
+3. State: The current situation.
+4. Action: A decision taken by the agent.
+5. Reward: Immediate feedback received after an action.
+6. Policy: A strategy for selecting actions.
+7. Value Function: Expected cumulative future reward from a state.
+8. Q-Function: Expected cumulative future reward associated with a state-action pair.
+9. Episode: A sequence of interactions ending at a terminal state.
+10. Return: Cumulative future reward.
+11. Discount Factor: A parameter that determines the importance of future rewards.
+12. Exploration: Trying actions to discover new information.
+13. Exploitation: Choosing actions based on existing knowledge.
+14. Q-Learning: A model-free, off-policy, value-based algorithm.
+15. SARSA: A model-free, on-policy, value-based algorithm.
+16. DQN: A Deep Q-Network that approximates Q-values using a neural network.
+17. Policy Gradient: A method that directly optimizes a policy.
+18. Actor-Critic: An approach combining a policy-learning Actor and a value-estimating Critic.
+19. MDP: A mathematical framework for sequential decision-making.
+20. Epsilon-Greedy: A strategy balancing exploration and exploitation.
+
+## 31. Important Formulas
+
+### 31.1 Discounted Return
+
+Gₜ = Rₜ₊₁ + γRₜ₊₂ + γ²Rₜ₊₃ + ...
+
+### 31.2 State-Value Function
+
+V(s) = Expected cumulative return starting from state s under a policy.
+
+### 31.3 Action-Value Function
+
+Q(s, a) = Expected cumulative return starting from state s, taking action a, and following a policy thereafter.
+
+### 31.4 Q-Learning Update
+
+Q(s, a) ← Q(s, a) + α[r + γ maxₐ′ Q(s′, a′) − Q(s, a)]
+
+### 31.5 SARSA Update
+
+Q(s, a) ← Q(s, a) + α[r + γQ(s′, a′) − Q(s, a)]
+
+### 31.6 Epsilon-Greedy Probabilities
+
+Exploration probability = ε
+
+Exploitation probability = 1 − ε
+
+### 31.7 MDP Representation
+
+MDP = (S, A, P, R, γ)
+
+## 32. Conclusion
+
+Reinforcement Learning is a Machine Learning approach in which an agent learns how to make decisions through interaction with an environment.
+
+The agent observes states, selects actions, receives rewards, and updates its strategy to improve future performance.
+
+The main objective is to learn a policy that maximizes cumulative reward.
+
+Reinforcement Learning is widely used in game AI, robotics, autonomous systems, resource management, and other sequential decision-making problems.
+
+One-Line Definition:
+
+Reinforcement Learning is a type of Machine Learning in which an agent learns an effective decision-making policy by interacting with an environment and using rewards or penalties as feedback.

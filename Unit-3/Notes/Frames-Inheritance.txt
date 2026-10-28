@@ -1,0 +1,490 @@
+# FRAMES AND INHERITANCE IN ARTIFICIAL INTELLIGENCE
+
+============================================================
+1. WHAT IS A FRAME?
+============================================================
+
+A Frame is a knowledge representation technique used in Artificial Intelligence (AI) to represent knowledge about an object, concept, situation, or event in a structured way.
+
+A frame consists of:
+
+1. Frame Name - Identifies the concept or object.
+2. Slots - Represent attributes or properties.
+3. Values - Store information in the slots.
+4. Default Values - Values assumed when specific information is unavailable.
+
+Example: Car Frame
+
+FRAME: CAR
+
+    Type       → Vehicle
+    Color      → Red
+    Wheels     → 4
+    Engine     → Petrol
+    Max_Speed  → 120 km/h
+
+A frame is similar to a structured record containing knowledge about an entity.
+
+============================================================
+2. COMPONENTS OF A FRAME
+============================================================
+
+A. Frame Name
+
+The name identifies the frame.
+
+Example:
+    FRAME: STUDENT
+
+B. Slots
+
+Slots represent properties or attributes of an object.
+
+Examples:
+    Name
+    Age
+    Roll_No
+    Branch
+    College
+
+C. Slot Values
+
+Slot values provide information about the properties.
+
+Example:
+    Name    → Ravi
+    Age     → 20
+    Branch  → AIML
+
+D. Default Values
+
+A default value is an assumed value used when specific information is not available.
+
+Example:
+
+FRAME: BIRD
+
+    Color       → Unknown
+    Wings       → 2
+    Can_Fly      → Yes (Default)
+
+Note: Default values may be overridden when more specific information is available.
+
+============================================================
+3. EXAMPLE OF A STUDENT FRAME
+============================================================
+
+FRAME: STUDENT_1
+
+    Name       → Ravi
+    Age        → 20
+    Branch     → AIML
+    Year       → 4
+    College    → ABC Engineering College
+
+Another student can have a different frame.
+
+FRAME: STUDENT_2
+
+    Name       → Anu
+    Age        → 21
+    Branch     → CSE
+    Year       → 4
+    College    → XYZ Engineering College
+
+The frame structure can remain the same while the slot values change.
+
+============================================================
+4. FRAMES AND INHERITANCE
+============================================================
+
+Inheritance is an important feature of frame-based knowledge representation.
+
+Inheritance is the mechanism by which a child frame obtains properties and values from its parent frame.
+
+Example hierarchy:
+
+    ANIMAL
+       |
+       | is-a
+       ↓
+      BIRD
+       |
+       | is-a
+       ↓
+     PARROT
+
+Consider the following frames.
+
+FRAME: ANIMAL
+
+    Needs_Food  → Yes
+    Has_Life    → Yes
+
+FRAME: BIRD
+
+    Parent          → ANIMAL
+    Has_Wings       → Yes
+    Number_of_Legs  → 2
+
+The BIRD frame inherits the following properties from ANIMAL:
+
+    Needs_Food  → Yes
+    Has_Life    → Yes
+
+Thus, common properties do not need to be stored repeatedly in every child frame.
+
+============================================================
+5. FRAME INHERITANCE EXAMPLE
+============================================================
+
+Consider the following frame.
+
+FRAME: ANIMAL
+
+    Has_Life    → Yes
+    Needs_Food  → Yes
+    Can_Move    → Yes
+
+Now create a BIRD frame.
+
+FRAME: BIRD
+
+    IS-A            → ANIMAL
+    Has_Wings       → Yes
+    Number_of_Legs  → 2
+    Can_Fly         → Yes (Default)
+
+The BIRD frame inherits properties from ANIMAL.
+
+BIRD FRAME
+
+    Has_Wings       → Yes
+    Number_of_Legs  → 2
+    Can_Fly         → Yes
+    Has_Life        → Yes (Inherited)
+    Needs_Food      → Yes (Inherited)
+    Can_Move        → Yes (Inherited)
+
+The inherited properties are obtained from the parent frame, ANIMAL.
+
+============================================================
+6. MULTI-LEVEL INHERITANCE
+============================================================
+
+Inheritance can occur through multiple levels of a frame hierarchy.
+
+Example:
+
+    LIVING_THING
+         |
+         | is-a
+         ↓
+       ANIMAL
+         |
+         | is-a
+         ↓
+        BIRD
+         |
+         | is-a
+         ↓
+       PARROT
+
+Consider the following properties.
+
+FRAME: LIVING_THING
+
+    Needs_Energy → Yes
+
+FRAME: ANIMAL
+
+    IS-A       → LIVING_THING
+    Can_Move   → Yes
+
+FRAME: BIRD
+
+    IS-A       → ANIMAL
+    Has_Wings  → Yes
+
+FRAME: PARROT
+
+    IS-A       → BIRD
+    Can_Talk   → Yes
+
+The PARROT frame inherits properties from all its parent frames.
+
+PARROT FRAME
+
+    Can_Talk      → Yes
+    Has_Wings     → Yes (Inherited from BIRD)
+    Can_Move      → Yes (Inherited from ANIMAL)
+    Needs_Energy  → Yes (Inherited from LIVING_THING)
+
+This is called multi-level inheritance.
+
+============================================================
+7. DEFAULT VALUES AND INHERITANCE
+============================================================
+
+Frames can use default values to represent typical properties of a class.
+
+Example:
+
+FRAME: BIRD
+
+    Has_Wings  → Yes
+    Legs       → 2
+    Can_Fly    → Yes (Default)
+
+Now create a PENGUIN frame.
+
+FRAME: PENGUIN
+
+    IS-A      → BIRD
+    Can_Fly   → No
+
+The BIRD frame specifies that birds can normally fly by default.
+
+However, the PENGUIN frame specifies:
+
+    Can_Fly → No
+
+The specific value in the PENGUIN frame overrides the inherited default value.
+
+Important Principle:
+
+Specific knowledge generally takes precedence over inherited or default knowledge.
+
+This allows frame systems to represent exceptions.
+
+============================================================
+8. FRAME HIERARCHY EXAMPLE
+============================================================
+
+A frame system can represent a hierarchy of concepts.
+
+                         VEHICLE
+                            |
+              +-------------+-------------+
+              |                           |
+              ↓                           ↓
+             CAR                         BIKE
+              |
+          +---+---+
+          |       |
+          ↓       ↓
+        SEDAN     SUV
+
+Consider the following frames.
+
+FRAME: VEHICLE
+
+    Has_Engine  → Yes
+    Has_Wheels  → Yes
+
+FRAME: CAR
+
+    IS-A        → VEHICLE
+    Wheels      → 4
+
+FRAME: SEDAN
+
+    IS-A        → CAR
+    Doors       → 4
+
+The SEDAN frame inherits properties from CAR and VEHICLE.
+
+SEDAN FRAME
+
+    Doors       → 4
+    Wheels      → 4 (Inherited from CAR)
+    Has_Engine  → Yes (Inherited from VEHICLE)
+    Has_Wheels  → Yes (Inherited from VEHICLE)
+
+This hierarchical organization reduces duplication of knowledge.
+
+============================================================
+9. ADVANTAGES OF FRAMES
+============================================================
+
+1. Structured Representation:
+   Frames organize knowledge in a clear and systematic manner.
+
+2. Supports Inheritance:
+   Child frames can obtain common properties from parent frames.
+
+3. Supports Default Reasoning:
+   Default values can represent typical properties when specific
+   information is unavailable.
+
+4. Easy to Understand:
+   Frames resemble records and objects used in programming.
+
+5. Efficient Knowledge Representation:
+   Common information can be stored at higher levels and inherited
+   by lower-level frames.
+
+6. Supports Hierarchies:
+   Frames can represent relationships between general and specific
+   concepts.
+
+============================================================
+10. LIMITATIONS OF FRAMES
+============================================================
+
+1. Complex Logical Relationships:
+   Frames may be less convenient for representing highly complex
+   logical relationships.
+
+2. Exception Handling:
+   Managing many exceptions can become complicated.
+
+3. Lack of a Universal Standard:
+   Different frame systems may use different structures and rules.
+
+4. Dynamic Knowledge:
+   Representing frequently changing knowledge may require additional
+   mechanisms.
+
+5. Uncertainty:
+   Basic frame systems do not inherently provide a complete method
+   for representing uncertain knowledge.
+
+============================================================
+11. FRAMES VS SEMANTIC NETWORKS
+============================================================
+
+Feature: Representation
+
+    Semantic Network:
+        Graph consisting of nodes and links.
+
+    Frames:
+        Structured records consisting of slots and values.
+
+Feature: Main Elements
+
+    Semantic Network:
+        Nodes and relationships.
+
+    Frames:
+        Frame names, slots, values, and defaults.
+
+Feature: Knowledge Representation
+
+    Semantic Network:
+        Emphasizes relationships between concepts.
+
+    Frames:
+        Emphasize properties and detailed descriptions of concepts.
+
+Feature: Inheritance
+
+    Semantic Network:
+        Supports inheritance through relationships.
+
+    Frames:
+        Supports inheritance through parent-child frame structures.
+
+Feature: Default Values
+
+    Semantic Network:
+        Can be represented, but basic networks do not define a
+        universal default-value mechanism.
+
+    Frames:
+        Commonly support default values.
+
+Feature: Example
+
+    Semantic Network:
+        Dog → is-a → Animal
+
+    Frames:
+        FRAME: DOG
+            Legs → 4
+            Sound → Bark
+
+Feature: Best Suited For
+
+    Semantic Network:
+        Representing relationships between concepts.
+
+    Frames:
+        Representing structured knowledge about objects and concepts.
+
+Relationship Between Them:
+
+    Semantic Networks:
+        Concepts + Relationships
+
+    Frames:
+        Concepts + Properties + Values + Defaults
+
+Both are knowledge representation techniques used in Artificial
+Intelligence.
+
+============================================================
+12. EXAM DEFINITIONS
+============================================================
+
+Definition of a Frame:
+
+A frame is a structured knowledge representation technique in
+Artificial Intelligence that represents an object, concept, or
+situation using a collection of slots and their values. Frames
+support inheritance, default values, and hierarchical organization
+of knowledge.
+
+Definition of Inheritance:
+
+Inheritance is the mechanism by which a child frame obtains
+properties and values from its parent frame unless those values
+are specifically overridden.
+
+============================================================
+13. QUICK REVISION
+============================================================
+
+Example hierarchy:
+
+    ANIMAL
+       |
+       ↓
+      BIRD
+       |
+       ↓
+     PARROT
+
+Properties:
+
+    ANIMAL:
+        Needs_Food → Yes
+
+    BIRD:
+        Has_Wings → Yes
+
+    PARROT:
+        Can_Talk → Yes
+
+The resulting PARROT frame contains:
+
+    Can_Talk     → Yes
+    Has_Wings    → Yes (Inherited from BIRD)
+    Needs_Food   → Yes (Inherited from ANIMAL)
+
+Key Points:
+
+1. A frame represents knowledge in a structured format.
+2. Slots represent properties or attributes.
+3. Values provide information about slots.
+4. Default values represent typical or assumed information.
+5. Inheritance transfers properties from parent frames to child
+   frames.
+6. Specific values can override inherited defaults.
+7. Multi-level inheritance allows properties to pass through
+   several levels of a hierarchy.
+
+KEY FORMULA:
+
+    Frame = Concept + Slots + Values + Defaults + Inheritance
