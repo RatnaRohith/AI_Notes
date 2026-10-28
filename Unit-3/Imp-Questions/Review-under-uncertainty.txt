@@ -1,0 +1,105 @@
+REASONING UNDER UNCERTAINTY – QUESTION BANK
+
+PART A: 2-MARK QUESTIONS
+
+1. Define reasoning under uncertainty.
+2. Why is reasoning under uncertainty required in Artificial Intelligence?
+3. List any four sources of uncertainty in AI.
+4. Differentiate between certain reasoning and uncertain reasoning.
+5. Define probability-based reasoning.
+6. What is conditional probability? Write its formula.
+7. State Bayes' theorem and write its formula.
+8. Define prior probability and posterior probability.
+9. What is likelihood in Bayesian reasoning?
+10. Define a Bayesian Network.
+11. What are the main components of a Bayesian Network?
+12. Define fuzzy logic.
+13. Differentiate between probability and fuzzy logic.
+14. What are certainty factors?
+15. What is Dempster-Shafer Theory?
+16. Define non-monotonic reasoning.
+17. What is default reasoning? Give an example.
+18. What is decision-making under uncertainty?
+19. Define expected utility and write its formula.
+20. Mention any four applications of reasoning under uncertainty.
+21. List any four advantages of reasoning under uncertainty.
+22. List any four limitations of reasoning under uncertainty.
+23. What is noisy information? Give an example.
+24. What is incomplete information? Give an example.
+25. What is ambiguous information? Give an example.
+26. What is a Conditional Probability Table (CPT)?
+27. What is a degree of membership in fuzzy logic?
+28. Mention the role of certainty factors in the MYCIN expert system.
+29. What is sensor fusion?
+30. Differentiate between incomplete information and uncertain information.
+
+PART B: 5-MARK QUESTIONS
+
+1. Explain the need for reasoning under uncertainty in Artificial Intelligence.
+2. Explain the major sources of uncertainty in AI with examples.
+3. Differentiate between certain reasoning and reasoning under uncertainty.
+4. Explain probability-based reasoning with a suitable example.
+5. Explain conditional probability with its formula and an example.
+6. Explain Bayes' theorem and the meaning of its terms.
+7. Explain Bayesian reasoning with a suitable example.
+8. Explain the structure and components of a Bayesian Network.
+9. Explain fuzzy logic and its applications in AI.
+10. Differentiate between probability theory and fuzzy logic.
+11. Explain certainty factors and their role in expert systems.
+12. Explain Dempster-Shafer Theory with an example.
+13. Explain non-monotonic reasoning with a suitable example.
+14. Explain default reasoning and its relationship with non-monotonic reasoning.
+15. Explain decision-making under uncertainty with an example.
+16. Explain expected utility and its role in decision-making.
+17. Compare probability theory, fuzzy logic, and certainty factors.
+18. Explain the applications of reasoning under uncertainty.
+19. Discuss the advantages and limitations of reasoning under uncertainty.
+20. Explain the general framework for reasoning under uncertainty.
+21. Differentiate between incomplete information and uncertain information.
+22. Explain how a medical diagnosis system uses reasoning under uncertainty.
+23. Explain the role of reasoning under uncertainty in autonomous vehicles.
+24. Compare Bayesian Networks and Dempster-Shafer Theory.
+25. Explain how an AI system updates its conclusions when new evidence becomes available.
+
+PART C: 10-MARK QUESTIONS
+
+1. Define reasoning under uncertainty. Explain its need, major sources, and importance in Artificial Intelligence.
+
+2. Explain the different approaches to reasoning under uncertainty, including probability theory, Bayesian reasoning, Bayesian Networks, fuzzy logic, certainty factors, and Dempster-Shafer Theory.
+
+3. Explain Bayes' theorem in detail. Define prior probability, likelihood, evidence, and posterior probability with a suitable example.
+
+4. What is a Bayesian Network? Explain its components, structure, working principle, and applications with a suitable diagram.
+
+5. Explain fuzzy logic in detail. Discuss its basic concept, membership values, applications, advantages, and limitations.
+
+6. Explain certainty factors and Dempster-Shafer Theory. Discuss how they represent uncertainty and compare their approaches.
+
+7. Define non-monotonic reasoning. Explain its working principle, default reasoning, examples, and applications in Artificial Intelligence.
+
+8. Explain decision-making under uncertainty. Discuss decision theory and expected utility with suitable examples.
+
+9. Discuss the different techniques used to handle uncertainty in AI. Compare their principles and applications.
+
+10. Explain the application of reasoning under uncertainty in medical diagnosis. Discuss how an AI system evaluates symptoms, estimates probabilities, and updates its conclusions.
+
+11. Explain the role of reasoning under uncertainty in autonomous vehicles and robotics, with suitable examples.
+
+12. Discuss the advantages, limitations, and real-world applications of reasoning under uncertainty in Artificial Intelligence.
+
+13. Compare certain reasoning, probabilistic reasoning, fuzzy reasoning, and non-monotonic reasoning with suitable examples.
+
+14. Explain the complete framework of reasoning under uncertainty, from data collection and uncertainty representation to inference and decision-making.
+
+15. Explain how Bayesian reasoning, fuzzy logic, and decision theory can be used together in an intelligent decision-support system.
+
+16. Discuss the role of reasoning under uncertainty in expert systems. Explain probability-based reasoning, certainty factors, and default reasoning with examples.
+
+17. Explain conditional probability and Bayes' theorem. Discuss their importance in uncertain reasoning and AI-based prediction systems.
+
+18. Explain how reasoning under uncertainty handles incomplete, noisy, ambiguous, dynamic, and conflicting information, with suitable examples.
+
+19. Describe the major uncertainty-handling techniques used in AI. Explain their advantages, limitations, and suitability for different applications.
+
+20. Explain the use of reasoning under uncertainty in weather forecasting, finance, natural language processing, medical diagnosis, and autonomous vehicles.
+
